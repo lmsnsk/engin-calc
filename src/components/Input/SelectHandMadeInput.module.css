@@ -1,0 +1,91 @@
+.currentField {
+  display: flex;
+  width: clamp(200px, 30vw, 300px);
+  justify-content: space-between;
+  font-size: clamp(12px, 2.3vmin, 18px);
+  border-radius: 0;
+  background-color: white;
+  border: 1px rgb(231, 231, 231) solid;
+  border-radius: 4px;
+  transition: 0.2s;
+  padding: 2px;
+}
+
+.currentField:hover,
+.currentField:focus {
+  outline: none;
+  border: 1px rgb(168, 168, 168) solid;
+}
+
+.field {
+  display: block;
+}
+
+.dropBox {
+  position: absolute;
+  width: clamp(200px, 30vw, 300px);
+  height: auto;
+  border: 1px rgb(168, 168, 168) solid;
+  background-color: white;
+  border-radius: 4px;
+  transition: 0.3s;
+  animation: det 0.3s 1;
+  z-index: 4;
+}
+
+@keyframes det {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100;
+  }
+}
+
+.dropBox button {
+  text-align: left;
+  width: 100%;
+  border: none;
+  font-size: clamp(12px, 2.3vmin, 18px);
+  background-color: transparent;
+  color: rgb(0, 0, 0);
+  padding: 6px;
+  z-index: 5;
+  border-radius: 4px;
+}
+
+.dropBox button:hover,
+.dropBox button:focus {
+  outline: none;
+  background-color: #a7a7a7;
+}
+
+.bar span {
+  width: 8px;
+  height: 3px;
+  background-color: rgb(56, 56, 56);
+  display: inline-block;
+  translate: -3px -5px;
+  border-radius: 1.5px;
+  transition: 0.3s;
+}
+
+.bar1 {
+  transform: rotateZ(40deg) translateX(2px);
+}
+
+.bar2 {
+  transform: rotateZ(-40deg) translateX(-2px);
+}
+
+.change {
+  display: block;
+}
+
+.changeBar1 {
+  transform: rotateZ(-40deg) translateY(2px);
+}
+
+.changeBar2 {
+  transform: rotateZ(40deg) translateY(2px);
+}
