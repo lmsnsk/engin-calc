@@ -1,0 +1,39 @@
+.checkbox {
+  position: relative;
+  top: 10px;
+  width: 30px;
+  height: 10px;
+  background-color: #dbdbdb;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+}
+
+.toogler {
+  position: relative;
+  top: -6px;
+  left: -5px;
+  width: 20px;
+  height: 20px;
+  background-color: #a8a8a8;
+  border-radius: 13px;
+  margin: auto;
+  transition: 0.3s;
+}
+
+.tooglerChanged {
+  position: relative;
+  top: -6px;
+  left: 5px;
+  width: 20px;
+  height: 20px;
+  background-color: #8899fc;
+  border-radius: 13px;
+  margin: auto;
+  transition: 0.3s;
+}
+
+.tooglerChanged:hover,
+.toogler:hover {
+  scale: 1.1;
+}

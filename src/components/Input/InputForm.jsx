@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import stl from "./Form.module.css";
+import stl from "./InputForm.module.css";
 
 const InputForm = (props) => {
   const dispatch = useDispatch();
@@ -9,15 +9,27 @@ const InputForm = (props) => {
     setValueContainer(e.target.value);
   };
 
+  //Отменяет отправку формы при нажатии Enter
   const pressKey = (event) => {
     if (event.keyCode === 13) event.preventDefault();
   };
 
   return (
     <>
-      <div className={stl.form}>{props.name}</div>
+      <div className={!props.toogler ? stl.form : stl.formDisable}>{props.name}</div>
       <form className={stl.form} onKeyDown={pressKey}>
-        <input className={stl.input} required type="number" onChange={onValueChange} value={props.value} />
+        {!props.toogler ? (
+          <input className={stl.input} required type="number" onChange={onValueChange} value={props.value} />
+        ) : (
+          <input
+            className={stl.inputDisable}
+            required
+            type="number"
+            onChange={onValueChange}
+            value={props.value}
+            disabled
+          />
+        )}
         <p>{props.unit}</p>
       </form>
     </>

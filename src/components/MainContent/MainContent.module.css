@@ -46,8 +46,3 @@ h1 {
   font-size: clamp(14px, 3vmin, 20px);
   margin-bottom: 10px;
 }
-
-.checkbox {
-  scale: 1.3;
-  translate: 10vmin 5px;
-}

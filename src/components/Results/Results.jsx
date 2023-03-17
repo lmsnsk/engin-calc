@@ -1,5 +1,5 @@
 import React from "react";
-import stl from "./../Input/Form.module.css";
+import stl from "./Results.module.css";
 
 const Results = (props) => {
   let resultElement = props.results.map((el) => {

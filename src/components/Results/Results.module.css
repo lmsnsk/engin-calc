@@ -73,26 +73,3 @@ input::-webkit-inner-spin-button {
   padding: 3px 2px 10px 2px;
   align-items: center;
 }
-
-.calcBtn {
-  background-color: rgb(103, 112, 87);
-  border: none;
-  padding: 10px 30px;
-  color: white;
-  font-size: 24px;
-  font-weight: 700;
-  margin-top: 10px;
-  cursor: pointer;
-  transition: 0.15s;
-  display: block;
-  margin: 5px auto;
-  border-radius: 4px;
-}
-
-.calcBtn:hover {
-  background-color: rgb(74, 82, 62);
-}
-
-.calcBtn:active {
-  scale: 0.95;
-}

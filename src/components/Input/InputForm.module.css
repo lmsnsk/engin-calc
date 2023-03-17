@@ -1,0 +1,61 @@
+.form {
+  color: rgb(43, 43, 43);
+  height: 35px;
+  line-height: 1;
+  font-size: clamp(14px, 3vmin, 20px);
+  transition: 0.3s;
+}
+
+.formDisable {
+  color: rgb(197, 197, 197);
+  line-height: 1;
+  font-size: clamp(14px, 3vmin, 20px);
+  transition: 0.3s;
+}
+
+.form p {
+  margin-left: 5px;
+  display: inline-block;
+  font-family: "Times New Roman", Times, serif;
+  font-style: italic;
+  font-size: clamp(12px, 2.3vmin, 18px);
+  color: rgb(150, 150, 150);
+}
+
+.input {
+  font-weight: 50;
+  width: clamp(60px, 14vmin, 100px);
+  font-size: clamp(14px, 3vmin, 18px);
+  background-color: transparent;
+  border: 1px rgb(231, 231, 231) solid;
+  text-align: right;
+  padding-right: 3px;
+  color: rgb(43, 43, 43);
+  transition: 0.2s;
+  border-radius: 4px;
+}
+
+.inputDisable {
+  font-weight: 50;
+  width: clamp(60px, 14vmin, 100px);
+  font-size: clamp(14px, 3vmin, 18px);
+  background-color: transparent;
+  border: 1px rgb(231, 231, 231) solid;
+  text-align: right;
+  padding-right: 3px;
+  color: rgb(197, 197, 197);
+  transition: 0.2s;
+  border-radius: 4px;
+}
+
+.input:hover,
+.input:focus {
+  outline: none;
+  border: 1px rgb(168, 168, 168) solid;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

@@ -1,7 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Beams from "./Beams/Beams";
-// import LashingRing from "./LashingRing/LashingRing";
-import LashingRingCopy from "./LashingRing/LashingRingCopy";
+import LashingRing from "./LashingRing/LashingRing";
 import stl from "./MainContent.module.css";
 
 const MainContent = (props) => {
@@ -12,7 +11,7 @@ const MainContent = (props) => {
           path="/LashingRing"
           element={
             <div className={stl.content}>
-              <LashingRingCopy state={props.store.getState().lashingRing} />
+              <LashingRing state={props.store.getState().lashingRing} />
             </div>
           }
         />

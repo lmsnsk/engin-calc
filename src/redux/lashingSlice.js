@@ -12,6 +12,7 @@ const initialState = {
     matBoltLimit: { value: "", name: "Предел прочности болта" },
     planeCount: { value: "", name: "Кол-во плоскостей среза" },
   },
+  jumperCustom: "",
   conFactorText: "",
   conFactor: 1,
   sigmaInEar: "",
@@ -20,6 +21,7 @@ const initialState = {
   earFS: "",
   earFSSM: "",
   boltFS: "",
+  toogler: false,
 };
 
 const lashingSlice = createSlice({
@@ -27,10 +29,15 @@ const lashingSlice = createSlice({
   initialState,
   reducers: {
     calculateLashingRing(state) {
-      //jumperCustom = (earRadius * 2 - holeDiam) / 2;
+      let jumperCustom = (state.earParams.earRadius.value * 2 - state.earParams.holeDiam.value) / 2;
+      state.jumperCustom = jumperCustom;
       let factor = 0.565 + 0.46 - (0.1 * (state.earParams.earRadius.value * 2)) / state.earParams.holeDiam.value;
       let sigmaInEar =
-        state.earParams.load.value / (2 * state.earParams.jumper.value * state.earParams.earThick.value * factor);
+        state.earParams.load.value /
+        (2 *
+          (state.toogler ? state.jumperCustom : state.earParams.jumper.value) *
+          state.earParams.earThick.value *
+          factor);
       let sigmaSm = state.earParams.load.value / (state.earParams.earThick.value * state.earParams.holeDiam.value);
       let tauInBolt =
         (4 * state.earParams.load.value) /
@@ -94,6 +101,9 @@ const lashingSlice = createSlice({
     setBoltFS(state, action) {
       state.boltFS = action.payload;
     },
+    setToogler(state, action) {
+      state.toogler = action.payload;
+    },
   },
 });
 
@@ -115,6 +125,7 @@ export const {
   setEarFS,
   setEarFSSM,
   setBoltFS,
+  setToogler,
 } = lashingSlice.actions;
 
 export default lashingSlice.reducer;
