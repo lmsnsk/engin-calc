@@ -29,7 +29,7 @@ const beamsSlice = createSlice({
   initialState,
   reducers: "",
 });
-
+//sdfgsd
 export const {
   calculateLashingRing,
   setEarThick,
