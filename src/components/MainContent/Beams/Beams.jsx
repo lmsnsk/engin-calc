@@ -26,16 +26,7 @@ let titles = [
   "Уголок",
 ];
 
-let paramsArray = [
-  { value: 1, name: titles[0] },
-  { value: 2, name: titles[1] },
-  { value: 3, name: titles[2] },
-  { value: 4, name: titles[3] },
-  { value: 5, name: titles[4] },
-  { value: 6, name: titles[5] },
-  { value: 7, name: titles[6] },
-  { value: 8, name: titles[7] },
-];
+let paramsArray = titles.map((el, index) => ({ value: index + 1, name: el }));
 
 const Beams = () => {
   let [sectionShowed, setSectionShowed] = useState("");
@@ -77,20 +68,22 @@ const Beams = () => {
   };
 
   return (
-    <div className={stl.wrapper}>
-      <h1>Расчёт балок</h1>
-      <SelectHandMadeInput
-        name="beams"
-        id="beams"
-        paramsArray={paramsArray}
-        value={sectionShowed}
-        setValue={setSectionShowed}
-      />
-      {currentSection()}
-      <div className={stl.initialData}>
-        {inputFn("Нагрузка", load, kgs, setLoad)}
-        {inputFn("Предел прочности материала", matLimit, kgsmm2, setMatLimit)}
-        {inputFn("Модуль упругости метериала", elMod, gpa, setElMod)}
+    <div className={stl.content}>
+      <div className={stl.wrapper}>
+        <h1>Расчёт балок</h1>
+        <SelectHandMadeInput
+          name="beams"
+          id="beams"
+          paramsArray={paramsArray}
+          value={sectionShowed}
+          setValue={setSectionShowed}
+        />
+        {currentSection()}
+        <div className={stl.initialData}>
+          {inputFn("Нагрузка", load, kgs, setLoad)}
+          {inputFn("Предел прочности материала", matLimit, kgsmm2, setMatLimit)}
+          {inputFn("Модуль упругости метериала", elMod, gpa, setElMod)}
+        </div>
       </div>
     </div>
   );

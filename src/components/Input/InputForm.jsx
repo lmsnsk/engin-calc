@@ -16,9 +16,9 @@ const InputForm = (props) => {
 
   return (
     <>
-      <div className={!props.toogler ? stl.form : stl.formDisable}>{props.name}</div>
+      <div className={!props.disableInput ? stl.form : stl.formDisable}>{props.name}</div>
       <form className={stl.form} onKeyDown={pressKey}>
-        {!props.toogler ? (
+        {!props.disableInput ? (
           <input className={stl.input} required type="number" onChange={onValueChange} value={props.value} />
         ) : (
           <input

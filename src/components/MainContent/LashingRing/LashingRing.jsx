@@ -52,7 +52,7 @@ const LashingRing = () => {
   const jumperCustom = useSelector((state) => state.lashingRing.jumperCustom);
 
   const inputFn = (name, value, unit, setValue, toogler) => {
-    return <InputForm name={name} value={value} unit={unit} setValue={setValue} toogler={toogler} />;
+    return <InputForm name={name} value={value} unit={unit} setValue={setValue} disableInput={toogler} />;
   };
 
   let results = [
@@ -65,33 +65,35 @@ const LashingRing = () => {
   ];
 
   return (
-    <div className={stl.wrapper}>
-      <h1>Расчёт проушин и болтов</h1>
-      <img className={stl.image} src={image} alt="Проушина" />
-      <div className={stl.initialData}>
-        {inputFn("Толщина ушка", earThick, mm, setEarThick)}
-        {inputFn("Радиус ушка", earRadius, mm, setEarRadius)}
-        {inputFn("Диаметр отверстия", holeDiam, mm, setHoleDiam)}
-        <div className={stl.label}>Автоматически считать перемычку</div>
-        <CheckBox check={toogler} setCheck={setToogler} />
-        {inputFn("Поперечная перемычка", toogler ? jumperCustom : jumper, mm, setJumper, toogler)}
-        {inputFn("Диаметр болта", boltDiam, mm, setBoltDiam)}
-        {inputFn("Нагрузка", load, kgs, setLoad)}
-        {inputFn("Предел прочности ушка", matEarLimit, kgsmm2, setEMatLimit)}
-        {inputFn("Предел прочности болта", matBoltLimit, kgsmm2, setBMatLimit)}
-        {inputFn("Кол-во плоскостей среза", planeCount, sht, setPlaneCount)}
-        <div className={stl.form}>Тип соединения</div>
-        <SelectHandMadeInput
-          name="connactionType"
-          id="connactionType"
-          paramsArray={paramsArray}
-          value={conFactor}
-          text={conFactorText}
-          setValue={setConFactor}
-        />
+    <div className={stl.content}>
+      <div className={stl.wrapper}>
+        <h1>Расчёт проушин и болтов</h1>
+        <img className={stl.image} src={image} alt="Проушина" />
+        <div className={stl.initialData}>
+          {inputFn("Толщина ушка", earThick, mm, setEarThick)}
+          {inputFn("Радиус ушка", earRadius, mm, setEarRadius)}
+          {inputFn("Диаметр отверстия", holeDiam, mm, setHoleDiam)}
+          <div className={stl.label}>Автоматически считать перемычку</div>
+          <CheckBox check={toogler} setCheck={setToogler} />
+          {inputFn("Поперечная перемычка", toogler ? jumperCustom : jumper, mm, setJumper, toogler)}
+          {inputFn("Диаметр болта", boltDiam, mm, setBoltDiam)}
+          {inputFn("Нагрузка", load, kgs, setLoad)}
+          {inputFn("Предел прочности ушка", matEarLimit, kgsmm2, setEMatLimit)}
+          {inputFn("Предел прочности болта", matBoltLimit, kgsmm2, setBMatLimit)}
+          {inputFn("Кол-во плоскостей среза", planeCount, sht, setPlaneCount)}
+          <div className={stl.form}>Тип соединения</div>
+          <SelectHandMadeInput
+            name="connactionType"
+            id="connactionType"
+            paramsArray={paramsArray}
+            value={conFactor}
+            text={conFactorText}
+            setValue={setConFactor}
+          />
+        </div>
+        <CalculationButton calculateFn={calculateLashingRing} />
+        <Results results={results} />
       </div>
-      <CalculationButton calculateFn={calculateLashingRing} />
-      <Results results={results} />
     </div>
   );
 };
