@@ -2,7 +2,7 @@ import { useState } from "react";
 import InputForm from "../../../Input/InputForm";
 import Results from "../../../Results/Results";
 import stl from "./../../MainContent.module.css";
-import CalcTwoSupBeam from "./CalcTwoSupBeam";
+import CalcTwoSupBeam from "./TwoSupBeam";
 
 const Circle = (props) => {
   let [diam, setDiam] = useState("");

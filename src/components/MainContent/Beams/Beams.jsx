@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useSelector } from "react-redux";
+import { setBeamTypeShowed, setElMod, setLoad, setMatLimit, setSectionShowed } from "../../../redux/beamsSlice";
 import InputForm from "../../Input/InputForm";
 import SelectHandMadeInput from "../../Input/SelectHandMadeInput";
 import stl from "./../MainContent.module.css";
+import TwoSupBeam from "./Sections/TwoSupBeam";
 import ChannelHoriz from "./Sections/ChannelHoriz";
 import ChannelVert from "./Sections/ChannelVert";
 import Circle from "./Sections/Circle";
@@ -10,8 +12,7 @@ import Corner from "./Sections/Corner";
 import Rectangle from "./Sections/Rectangle";
 import RectangleTube from "./Sections/RectangleTube";
 import TBeam from "./Sections/TBeam";
-// import SelectInput from "../../Input/SelectInput";
-// import RectangleTubeCopy from "./Sections/RectangleTube copy";
+import CalculationButton from "../../Input/CalculationButton";
 
 let [kgs, kgsmm2, gpa] = ["кгс", "кгс/мм2", "ГПа"];
 
@@ -26,23 +27,24 @@ let titles = [
   "Уголок",
 ];
 
-let paramsArray = titles.map((el, index) => ({ value: index + 1, name: el }));
+let paramsSectionsArray = titles.map((el, index) => ({ value: index + 1, name: el }));
+
+let paramsBeamTypeArray = [
+  { value: 1, name: "Двухопорная балка" },
+  { value: 2, name: "Консольная балка" },
+  { value: 3, name: "Общая потеря устойчивости" },
+];
 
 const Beams = () => {
-  let [sectionShowed, setSectionShowed] = useState("");
-  let [load, setLoad] = useState("");
-  let [matLimit, setMatLimit] = useState("");
-  let [elMod, setElMod] = useState("");
+  const sectionShowed = useSelector((state) => state.beams.sectionShowed);
+  const sectionShowedText = useSelector((state) => state.beams.sectionShowedText);
+  const beamTypeShowed = useSelector((state) => state.beams.beamTypeShowed);
+  const beamTypeShowedText = useSelector((state) => state.beams.beamTypeShowedText);
+  const load = useSelector((state) => state.beams.load);
+  const matLimit = useSelector((state) => state.beams.matLimit);
+  const elMod = useSelector((state) => state.beams.elMod);
 
   let initialParams = { load: load, matLimit: matLimit, elMod: elMod };
-
-  const inputFn = (name, value, unit, setValue, calculateFn) => {
-    return <InputForm name={name} value={value} unit={unit} setValue={setValue} calculateFn={calculateFn} />;
-  };
-
-  // const onSectionChange = (e) => {
-  //   setSectionShowed(+e.target.value);
-  // };
 
   const currentSection = () => {
     switch (sectionShowed) {
@@ -67,23 +69,47 @@ const Beams = () => {
     }
   };
 
+  const currentBeamType = () => {
+    switch (beamTypeShowed) {
+      case 1:
+        return <TwoSupBeam title={paramsBeamTypeArray[0].name} initialParams={initialParams} />;
+      case 2:
+        return <TwoSupBeam title={titles[1]} />;
+      case 3:
+        return <TwoSupBeam title={titles[2]} />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <div className={stl.content}>
       <div className={stl.wrapper}>
         <h1>Расчёт балок</h1>
         <SelectHandMadeInput
-          name="beams"
-          id="beams"
-          paramsArray={paramsArray}
+          name="sections"
+          id="sections"
+          paramsArray={paramsSectionsArray}
           value={sectionShowed}
           setValue={setSectionShowed}
+          text={sectionShowedText}
         />
         {currentSection()}
         <div className={stl.initialData}>
-          {inputFn("Нагрузка", load, kgs, setLoad)}
-          {inputFn("Предел прочности материала", matLimit, kgsmm2, setMatLimit)}
-          {inputFn("Модуль упругости метериала", elMod, gpa, setElMod)}
+          <InputForm name="Нагрузка" value={load} unit={kgs} setValue={setLoad} />
+          <InputForm name="Предел прочности материала" value={matLimit} unit={kgsmm2} setValue={setMatLimit} />
+          <InputForm name="Модуль упругости метериала" value={elMod} unit={gpa} setValue={setElMod} />
         </div>
+        <SelectHandMadeInput
+          name="beamsType"
+          id="beamsType"
+          paramsArray={paramsBeamTypeArray}
+          value={beamTypeShowed}
+          setValue={setBeamTypeShowed}
+          text={beamTypeShowedText}
+        />
+        {currentBeamType()}
+        <CalculationButton calculateFn={() => {}} />
       </div>
     </div>
   );

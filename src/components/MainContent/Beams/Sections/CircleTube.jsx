@@ -5,7 +5,7 @@ import stl from "./../../MainContent.module.css";
 
 const CircleTube = (props) => {
   let [diam, setDiam] = useState("");
-  let [thick, setThick] = useState("");
+  let [thickWall, setThickWall] = useState("");
   let [area, setArea] = useState("");
   let [momRes, setMomRes] = useState("");
   let [momIn, setMomIn] = useState("");
@@ -18,7 +18,7 @@ const CircleTube = (props) => {
     { id: 3, name: "Момент инерции сечения", value: momIn, unit: mm4 },
   ];
 
-  let innerDiam = diam - 2 * thick;
+  let innerDiam = diam - 2 * thickWall;
 
   let calculationSection = () => {
     area = (Math.PI * (diam ** 2 - innerDiam ** 2)) / 4;
@@ -38,7 +38,7 @@ const CircleTube = (props) => {
       <h2>{props.title}</h2>
       <div className={stl.initialData}>
         {inputFn("Диаметр", diam, mm, setDiam, calculationSection)}
-        {inputFn("Толщина стенки", thick, mm, setThick, calculationSection)}
+        {inputFn("Толщина стенки", thickWall, mm, setThickWall, calculationSection)}
       </div>
       <Results results={results} />
     </>

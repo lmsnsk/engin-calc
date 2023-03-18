@@ -31,15 +31,15 @@ let paramsArray = [
 ];
 
 const LashingRing = () => {
-  const earThick = useSelector((state) => state.lashingRing.earParams.earThick.value);
-  const earRadius = useSelector((state) => state.lashingRing.earParams.earRadius.value);
-  const holeDiam = useSelector((state) => state.lashingRing.earParams.holeDiam.value);
-  const jumper = useSelector((state) => state.lashingRing.earParams.jumper.value);
-  const boltDiam = useSelector((state) => state.lashingRing.earParams.boltDiam.value);
-  const load = useSelector((state) => state.lashingRing.earParams.load.value);
-  const matEarLimit = useSelector((state) => state.lashingRing.earParams.matEarLimit.value);
-  const matBoltLimit = useSelector((state) => state.lashingRing.earParams.matBoltLimit.value);
-  const planeCount = useSelector((state) => state.lashingRing.earParams.planeCount.value);
+  const earThick = useSelector((state) => state.lashingRing.earParams.earThick);
+  const earRadius = useSelector((state) => state.lashingRing.earParams.earRadius);
+  const holeDiam = useSelector((state) => state.lashingRing.earParams.holeDiam);
+  const jumper = useSelector((state) => state.lashingRing.earParams.jumper);
+  const boltDiam = useSelector((state) => state.lashingRing.earParams.boltDiam);
+  const load = useSelector((state) => state.lashingRing.earParams.load);
+  const matEarLimit = useSelector((state) => state.lashingRing.earParams.matEarLimit);
+  const matBoltLimit = useSelector((state) => state.lashingRing.earParams.matBoltLimit);
+  const planeCount = useSelector((state) => state.lashingRing.earParams.planeCount);
   const conFactor = useSelector((state) => state.lashingRing.conFactor);
   const conFactorText = useSelector((state) => state.lashingRing.conFactorText);
   const sigmaInEar = useSelector((state) => state.lashingRing.sigmaInEar);
@@ -50,10 +50,6 @@ const LashingRing = () => {
   const boltFS = useSelector((state) => state.lashingRing.boltFS);
   const toogler = useSelector((state) => state.lashingRing.toogler);
   const jumperCustom = useSelector((state) => state.lashingRing.jumperCustom);
-
-  const inputFn = (name, value, unit, setValue, toogler) => {
-    return <InputForm name={name} value={value} unit={unit} setValue={setValue} disableInput={toogler} />;
-  };
 
   let results = [
     { id: 1, name: "Напряжения в ушке", value: sigmaInEar, unit: kgsmm2 },
@@ -70,17 +66,23 @@ const LashingRing = () => {
         <h1>Расчёт проушин и болтов</h1>
         <img className={stl.image} src={image} alt="Проушина" />
         <div className={stl.initialData}>
-          {inputFn("Толщина ушка", earThick, mm, setEarThick)}
-          {inputFn("Радиус ушка", earRadius, mm, setEarRadius)}
-          {inputFn("Диаметр отверстия", holeDiam, mm, setHoleDiam)}
+          <InputForm name="Толщина ушка" value={earThick} unit={mm} setValue={setEarThick} />
+          <InputForm name="Радиус ушка" value={earRadius} unit={mm} setValue={setEarRadius} />
+          <InputForm name="Диаметр отверстия" value={holeDiam} unit={mm} setValue={setHoleDiam} />
           <div className={stl.label}>Автоматически считать перемычку</div>
           <CheckBox check={toogler} setCheck={setToogler} />
-          {inputFn("Поперечная перемычка", toogler ? jumperCustom : jumper, mm, setJumper, toogler)}
-          {inputFn("Диаметр болта", boltDiam, mm, setBoltDiam)}
-          {inputFn("Нагрузка", load, kgs, setLoad)}
-          {inputFn("Предел прочности ушка", matEarLimit, kgsmm2, setEMatLimit)}
-          {inputFn("Предел прочности болта", matBoltLimit, kgsmm2, setBMatLimit)}
-          {inputFn("Кол-во плоскостей среза", planeCount, sht, setPlaneCount)}
+          <InputForm
+            name="Поперечная перемычка"
+            value={toogler ? jumperCustom : jumper}
+            unit={mm}
+            setValue={setJumper}
+            disableInput={toogler}
+          />
+          <InputForm name="Диаметр болта" value={boltDiam} unit={mm} setValue={setBoltDiam} />
+          <InputForm name="Нагрузка" value={load} unit={kgs} setValue={setLoad} />
+          <InputForm name="Предел прочности ушка" value={matEarLimit} unit={kgsmm2} setValue={setEMatLimit} />
+          <InputForm name="Предел прочности болта" value={matBoltLimit} unit={kgsmm2} setValue={setBMatLimit} />
+          <InputForm name="Кол-во плоскостей среза" value={planeCount} unit={sht} setValue={setPlaneCount} />
           <div className={stl.form}>Тип соединения</div>
           <SelectHandMadeInput
             name="connactionType"

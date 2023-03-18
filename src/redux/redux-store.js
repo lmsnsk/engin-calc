@@ -1,12 +1,11 @@
-// import { combineReducers, createStore } from "redux";
 import { configureStore } from "@reduxjs/toolkit";
 import lashingReducer from "./lashingSlice";
+import beamsReducer from "./beamsSlice";
 
-// const reducers = combineReducers({ lashingRing: lashingReducer });
-// const store = createStore(reducers);
 const store = configureStore({
   reducer: {
     lashingRing: lashingReducer,
+    beams: beamsReducer,
   },
 });
 

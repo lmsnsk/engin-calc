@@ -54,7 +54,6 @@ const CalcTwoSupBeam = (props) => {
         {inputFn("Длина балки", length, mm, setLength, calculate)}
         {inputFn("Расстояние до нагрузки", loadDistance, mm, setLoadDistance, calculate)}
       </div>
-      <CalculationButton calculateFn={calculate} />
       <Results results={results} />
     </>
   );

@@ -6,7 +6,7 @@ import stl from "./../../MainContent.module.css";
 const RectangleTube = (props) => {
   let [width, setWidth] = useState("");
   let [heigth, setHeigth] = useState("");
-  let [thick, setThick] = useState("");
+  let [thickWall, setThickWall] = useState("");
   let [area, setArea] = useState("");
   let [momRes, setMomRes] = useState("");
   let [momIn, setMomIn] = useState("");
@@ -19,8 +19,8 @@ const RectangleTube = (props) => {
     { id: 3, name: "Момент инерции сечения", value: momIn, unit: mm4 },
   ];
 
-  let widthInner = width - 2 * thick;
-  let heigthInner = heigth - 2 * thick;
+  let widthInner = width - 2 * thickWall;
+  let heigthInner = heigth - 2 * thickWall;
 
   let calculationSection = () => {
     area = width * heigth - widthInner * heigthInner;
@@ -41,7 +41,7 @@ const RectangleTube = (props) => {
       <div className={stl.initialData}>
         {inputFn("Ширина", width, mm, setWidth, calculationSection)}
         {inputFn("Высота", heigth, mm, setHeigth, calculationSection)}
-        {inputFn("Толщина стенки", thick, mm, setThick, calculationSection)}
+        {inputFn("Толщина стенки", thickWall, mm, setThickWall, calculationSection)}
       </div>
       <Results results={results} />
     </>
