@@ -1,14 +1,116 @@
-import { useState } from "react";
+import { useSelector } from "react-redux";
+import { setDiam, setHeigth, setThickShelf, setThickWall, setWidth } from "../../../../redux/beamsSlice";
 import InputForm from "../../../Input/InputForm";
 import Results from "../../../Results/Results";
 import stl from "./../../MainContent.module.css";
 
-const Section = (props) => {
-  let [area, setArea] = useState("");
-  let [momRes, setMomRes] = useState("");
-  let [momIn, setMomIn] = useState("");
+let [mm, mm2, mm3, mm4] = ["мм", "мм2", "мм3", "мм4"];
 
-  let [mm, mm2, mm3, mm4] = ["мм", "мм2", "мм3", "мм4"];
+const Section = (props) => {
+  const sectionShowed = useSelector((state) => state.beams.sectionShowed);
+  const diam = useSelector((state) => state.beams.diam);
+  const width = useSelector((state) => state.beams.width);
+  const heigth = useSelector((state) => state.beams.heigth);
+  const thickWall = useSelector((state) => state.beams.thickWall);
+  const thickShelf = useSelector((state) => state.beams.thickShelf);
+  const area = useSelector((state) => state.beams.area);
+  const momRes = useSelector((state) => state.beams.momRes);
+  const momIn = useSelector((state) => state.beams.momIn);
+
+  const sectionParamsArr = [
+    <InputForm name="Диаметр" value={diam} unit={mm} setValue={setDiam} calculateFn={props.calculateFn} />,
+    <InputForm name="Ширина" value={width} unit={mm} setValue={setWidth} calculateFn={props.calculateFn} />,
+    <InputForm name="Высота" value={heigth} unit={mm} setValue={setHeigth} calculateFn={props.calculateFn} />,
+    <InputForm
+      name="Толщина стенки"
+      value={thickWall}
+      unit={mm}
+      setValue={setThickWall}
+      calculateFn={props.calculateFn}
+    />,
+    <InputForm
+      name="Толщина полок"
+      value={thickShelf}
+      unit={mm}
+      setValue={setThickShelf}
+      calculateFn={props.calculateFn}
+    />,
+  ];
+
+  const currentSection = () => {
+    switch (sectionShowed) {
+      case 1:
+        return <>{sectionParamsArr[0]}</>;
+      case 2:
+        return (
+          <>
+            {sectionParamsArr[0]}
+            {sectionParamsArr[3]}
+          </>
+        );
+      case 3:
+        return (
+          <>
+            {sectionParamsArr[1]}
+            {sectionParamsArr[2]}
+          </>
+        );
+      case 4:
+        return (
+          <>
+            {sectionParamsArr[1]}
+            {sectionParamsArr[2]}
+            {sectionParamsArr[3]}
+          </>
+        );
+      case 5:
+        return (
+          <>
+            {sectionParamsArr[1]}
+            {sectionParamsArr[2]}
+            {sectionParamsArr[3]}
+            {sectionParamsArr[4]}
+          </>
+        );
+      case 6:
+        return (
+          <>
+            {sectionParamsArr[1]}
+            {sectionParamsArr[2]}
+            {sectionParamsArr[3]}
+            {sectionParamsArr[4]}
+          </>
+        );
+      case 7:
+        return (
+          <>
+            {sectionParamsArr[1]}
+            {sectionParamsArr[2]}
+            {sectionParamsArr[3]}
+            {sectionParamsArr[4]}
+          </>
+        );
+      case 8:
+        return (
+          <>
+            {sectionParamsArr[1]}
+            {sectionParamsArr[2]}
+            {sectionParamsArr[3]}
+            <InputForm
+              name="Толщина полки"
+              value={thickShelf}
+              unit={mm}
+              setValue={setThickShelf}
+              calculateFn={props.calculateFn}
+            />
+          </>
+        );
+      default:
+        return null;
+    }
+  };
+
+  // const title = props.titles.filter((el, index) => index + 1 === sectionShowed);
 
   let results = [
     { id: 1, name: "Площадь сечения", value: area, unit: mm2 },
@@ -16,20 +118,9 @@ const Section = (props) => {
     { id: 3, name: "Момент инерции сечения", value: momIn, unit: mm4 },
   ];
 
-  props.calculateSection(area, momRes, momIn, setArea, setMomRes, setMomIn);
-
-  const inputFn = (name, value, unit, setValue, calculateFn) => {
-    return <InputForm name={name} value={value} unit={unit} setValue={setValue} calculateFn={calculateFn} />;
-  };
-
-  let inputElement = props.inputArray.map((el) => {
-    return inputFn(el[0], el[1], mm, el[2], props.calculateSection);
-  });
-
   return (
     <>
-      <h2>{props.title}</h2>
-      <div className={stl.initialData}>{inputElement}</div>
+      <div className={stl.initialData}>{currentSection()}</div>
       <Results results={results} />
     </>
   );

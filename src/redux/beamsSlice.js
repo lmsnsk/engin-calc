@@ -2,9 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   sectionShowed: "",
-  sectionShowedText: "",
+  sectionShowedText: "- Выберите сечение балки -",
   beamTypeShowed: "",
-  beamTypeShowedText: "",
+  beamTypeShowedText: "- Выберите тип балки -",
   load: "",
   matLimit: "",
   elMod: "",
@@ -39,7 +39,7 @@ const beamsSlice = createSlice({
       state.beamTypeShowedText = action.payload.name;
     },
     setLoad(state, action) {
-      state.sectionShowed = action.payload;
+      state.load = action.payload;
     },
     setMatLimit(state, action) {
       state.matLimit = action.payload;

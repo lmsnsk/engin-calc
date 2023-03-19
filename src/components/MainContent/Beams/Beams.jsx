@@ -1,20 +1,28 @@
-import { useSelector } from "react-redux";
-import { setBeamTypeShowed, setElMod, setLoad, setMatLimit, setSectionShowed } from "../../../redux/beamsSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  calculateTwoSupBeam,
+  setBeamTypeShowed,
+  setElMod,
+  setLoad,
+  setMatLimit,
+  setSectionShowed,
+  calculateChannelHorizSection,
+  calculateChannelVertSection,
+  calculateCircleSection,
+  calculateCircleTubeSection,
+  calculateRectangleSection,
+  calculateRectangleTubeSection,
+  calculateTBeamAndCornerSection,
+} from "../../../redux/beamsSlice";
 import InputForm from "../../Input/InputForm";
 import SelectHandMadeInput from "../../Input/SelectHandMadeInput";
 import stl from "./../MainContent.module.css";
 import TwoSupBeam from "./Sections/TwoSupBeam";
-import ChannelHoriz from "./Sections/ChannelHoriz";
-import ChannelVert from "./Sections/ChannelVert";
-import Circle from "./Sections/Circle";
-import CircleTube from "./Sections/CircleTube";
-import Corner from "./Sections/Corner";
-import Rectangle from "./Sections/Rectangle";
-import RectangleTube from "./Sections/RectangleTube";
-import TBeam from "./Sections/TBeam";
 import CalculationButton from "../../Input/CalculationButton";
+import Section from "./Sections/Section";
+import Results from "../../Results/Results";
 
-let [kgs, kgsmm2, gpa] = ["кгс", "кгс/мм2", "ГПа"];
+let [mm, kgs, kgsm, kgsmm2, gpa] = ["мм", "кгс", "кгс м", "кгс/мм2", "ГПа"];
 
 let titles = [
   "Пруток круглый",
@@ -35,7 +43,7 @@ let paramsBeamTypeArray = [
   { value: 3, name: "Общая потеря устойчивости" },
 ];
 
-const Beams = () => {
+const Beams = (props) => {
   const sectionShowed = useSelector((state) => state.beams.sectionShowed);
   const sectionShowedText = useSelector((state) => state.beams.sectionShowedText);
   const beamTypeShowed = useSelector((state) => state.beams.beamTypeShowed);
@@ -43,36 +51,21 @@ const Beams = () => {
   const load = useSelector((state) => state.beams.load);
   const matLimit = useSelector((state) => state.beams.matLimit);
   const elMod = useSelector((state) => state.beams.elMod);
+  const aReaction = useSelector((state) => state.beams.aReaction);
+  const bReaction = useSelector((state) => state.beams.bReaction);
+  const moment = useSelector((state) => state.beams.moment);
+  const strain = useSelector((state) => state.beams.strain);
+  const deflection = useSelector((state) => state.beams.deflection);
+  const safeFactor = useSelector((state) => state.beams.safeFactor);
 
-  let initialParams = { load: load, matLimit: matLimit, elMod: elMod };
-
-  const currentSection = () => {
-    switch (sectionShowed) {
-      case 1:
-        return <Circle title={titles[0]} initialParams={initialParams} />;
-      case 2:
-        return <CircleTube title={titles[1]} />;
-      case 3:
-        return <Rectangle title={titles[2]} />;
-      case 4:
-        return <RectangleTube title={titles[3]} />;
-      case 5:
-        return <ChannelVert title={titles[4]} />;
-      case 6:
-        return <ChannelHoriz title={titles[5]} />;
-      case 7:
-        return <TBeam title={titles[6]} />;
-      case 8:
-        return <Corner title={titles[7]} />;
-      default:
-        return null;
-    }
-  };
+  const dispatch = useDispatch();
+  const calculateCurrentSection = () => dispatch(calculateSection());
+  const calculateCurrentBeamType = () => dispatch(calculateTwoSupBeam());
 
   const currentBeamType = () => {
     switch (beamTypeShowed) {
       case 1:
-        return <TwoSupBeam title={paramsBeamTypeArray[0].name} initialParams={initialParams} />;
+        return <TwoSupBeam title={paramsBeamTypeArray[0].name} calculateFn={calculateCurrentBeamType} />;
       case 2:
         return <TwoSupBeam title={titles[1]} />;
       case 3:
@@ -81,6 +74,38 @@ const Beams = () => {
         return null;
     }
   };
+
+  function calculateSection() {
+    switch (sectionShowed) {
+      case 1:
+        return calculateCircleSection();
+      case 2:
+        return calculateCircleTubeSection();
+      case 3:
+        return calculateRectangleSection();
+      case 4:
+        return calculateRectangleTubeSection();
+      case 5:
+        return calculateChannelVertSection();
+      case 6:
+        return calculateChannelHorizSection();
+      case 7:
+        return calculateTBeamAndCornerSection();
+      case 8:
+        return calculateTBeamAndCornerSection();
+      default:
+        return null;
+    }
+  }
+
+  let results = [
+    { id: 1, name: "Реакция в точке А", value: aReaction, unit: kgs },
+    { id: 2, name: "Реакция в точке Б", value: bReaction, unit: kgs },
+    { id: 3, name: "Максимальный изгибающий момент", value: moment, unit: kgsm },
+    { id: 4, name: "Максимальные напряжения", value: strain, unit: kgsmm2 },
+    { id: 5, name: "Максимальный прогиб", value: deflection, unit: mm },
+    { id: 6, name: "Запас прочности", value: safeFactor, unit: "", color: true },
+  ];
 
   return (
     <div className={stl.content}>
@@ -94,11 +119,29 @@ const Beams = () => {
           setValue={setSectionShowed}
           text={sectionShowedText}
         />
-        {currentSection()}
+        <Section titles={titles} calculateFn={calculateCurrentSection} />
         <div className={stl.initialData}>
-          <InputForm name="Нагрузка" value={load} unit={kgs} setValue={setLoad} />
-          <InputForm name="Предел прочности материала" value={matLimit} unit={kgsmm2} setValue={setMatLimit} />
-          <InputForm name="Модуль упругости метериала" value={elMod} unit={gpa} setValue={setElMod} />
+          <InputForm
+            name="Нагрузка"
+            value={load}
+            unit={kgs}
+            setValue={setLoad}
+            calculateFn={calculateCurrentBeamType}
+          />
+          <InputForm
+            name="Предел прочности материала"
+            value={matLimit}
+            unit={kgsmm2}
+            setValue={setMatLimit}
+            calculateFn={calculateCurrentBeamType}
+          />
+          <InputForm
+            name="Модуль упругости метериала"
+            value={elMod}
+            unit={gpa}
+            setValue={setElMod}
+            calculateFn={calculateCurrentBeamType}
+          />
         </div>
         <SelectHandMadeInput
           name="beamsType"
@@ -109,7 +152,8 @@ const Beams = () => {
           text={beamTypeShowedText}
         />
         {currentBeamType()}
-        <CalculationButton calculateFn={() => {}} />
+        <CalculationButton calculateFn={calculateCurrentBeamType} text="Рассчитать" />
+        <Results results={results} />
       </div>
     </div>
   );

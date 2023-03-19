@@ -66,9 +66,27 @@ const LashingRing = () => {
         <h1>Расчёт проушин и болтов</h1>
         <img className={stl.image} src={image} alt="Проушина" />
         <div className={stl.initialData}>
-          <InputForm name="Толщина ушка" value={earThick} unit={mm} setValue={setEarThick} />
-          <InputForm name="Радиус ушка" value={earRadius} unit={mm} setValue={setEarRadius} />
-          <InputForm name="Диаметр отверстия" value={holeDiam} unit={mm} setValue={setHoleDiam} />
+          <InputForm
+            name="Толщина ушка"
+            value={earThick}
+            unit={mm}
+            setValue={setEarThick}
+            calculateFn={calculateLashingRing}
+          />
+          <InputForm
+            name="Радиус ушка"
+            value={earRadius}
+            unit={mm}
+            setValue={setEarRadius}
+            calculateFn={calculateLashingRing}
+          />
+          <InputForm
+            name="Диаметр отверстия"
+            value={holeDiam}
+            unit={mm}
+            setValue={setHoleDiam}
+            calculateFn={calculateLashingRing}
+          />
           <div className={stl.label}>Автоматически считать перемычку</div>
           <CheckBox check={toogler} setCheck={setToogler} />
           <InputForm
@@ -77,12 +95,37 @@ const LashingRing = () => {
             unit={mm}
             setValue={setJumper}
             disableInput={toogler}
+            calculateFn={calculateLashingRing}
           />
-          <InputForm name="Диаметр болта" value={boltDiam} unit={mm} setValue={setBoltDiam} />
+          <InputForm
+            name="Диаметр болта"
+            value={boltDiam}
+            unit={mm}
+            setValue={setBoltDiam}
+            calculateFn={calculateLashingRing}
+          />
           <InputForm name="Нагрузка" value={load} unit={kgs} setValue={setLoad} />
-          <InputForm name="Предел прочности ушка" value={matEarLimit} unit={kgsmm2} setValue={setEMatLimit} />
-          <InputForm name="Предел прочности болта" value={matBoltLimit} unit={kgsmm2} setValue={setBMatLimit} />
-          <InputForm name="Кол-во плоскостей среза" value={planeCount} unit={sht} setValue={setPlaneCount} />
+          <InputForm
+            name="Предел прочности ушка"
+            value={matEarLimit}
+            unit={kgsmm2}
+            setValue={setEMatLimit}
+            calculateFn={calculateLashingRing}
+          />
+          <InputForm
+            name="Предел прочности болта"
+            value={matBoltLimit}
+            unit={kgsmm2}
+            setValue={setBMatLimit}
+            calculateFn={calculateLashingRing}
+          />
+          <InputForm
+            name="Кол-во плоскостей среза"
+            value={planeCount}
+            unit={sht}
+            setValue={setPlaneCount}
+            calculateFn={calculateLashingRing}
+          />
           <div className={stl.form}>Тип соединения</div>
           <SelectHandMadeInput
             name="connactionType"
@@ -93,7 +136,7 @@ const LashingRing = () => {
             setValue={setConFactor}
           />
         </div>
-        <CalculationButton calculateFn={calculateLashingRing} />
+        <CalculationButton calculateFn={calculateLashingRing} text="Рассчитать" />
         <Results results={results} />
       </div>
     </div>

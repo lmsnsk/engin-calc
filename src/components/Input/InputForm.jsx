@@ -19,7 +19,14 @@ const InputForm = (props) => {
       <div className={!props.disableInput ? stl.form : stl.formDisable}>{props.name}</div>
       <form className={stl.form} onKeyDown={pressKey}>
         {!props.disableInput ? (
-          <input className={stl.input} required type="number" onChange={onValueChange} value={props.value} />
+          <input
+            className={stl.input}
+            required
+            type="number"
+            onChange={onValueChange}
+            value={props.value}
+            onBlur={props.calculateFn}
+          />
         ) : (
           <input
             className={stl.inputDisable}

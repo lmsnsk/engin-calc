@@ -7,7 +7,7 @@ const CalculationButton = (props) => {
 
   return (
     <button className={stl.calcBtn} onClick={calculateFnContainer}>
-      Рассчтитать
+      {props.text}
     </button>
   );
 };
