@@ -17,6 +17,7 @@ const initialState = {
   momRes: "",
   momIn: "",
   length: "",
+  lengthFactor: "",
   aReaction: "",
   bReaction: "",
   moment: "",
@@ -73,6 +74,9 @@ const beamsSlice = createSlice({
     },
     setLength(state, action) {
       state.length = action.payload;
+    },
+    setlengthFactor(state, action) {
+      state.lengthFactor = action.payload;
     },
     setAReaction(state, action) {
       state.aReaction = action.payload;
@@ -197,6 +201,7 @@ export const {
   setMomRes,
   setMomIn,
   setLength,
+  setlengthFactor,
   setAReaction,
   setBReaction,
   setMoment,

@@ -15,12 +15,14 @@ import {
   calculateTBeamAndCornerSection,
 } from "../../../redux/beamsSlice";
 import InputForm from "../../Input/InputForm";
-import SelectHandMadeInput from "../../Input/SelectHandMadeInput";
+import SelectInput from "../../Input/SelectInput";
 import stl from "./../MainContent.module.css";
-import TwoSupBeam from "./Sections/TwoSupBeam";
+import TwoSupBeam from "./TwoSupBeam";
 import CalculationButton from "../../Input/CalculationButton";
-import Section from "./Sections/Section";
+import Section from "./Section";
 import Results from "../../Results/Results";
+import ConsoleBeam from "./ConsoleBeam";
+import Buckling from "./Buckling";
 
 let [mm, kgs, kgsm, kgsmm2, gpa] = ["мм", "кгс", "кгс м", "кгс/мм2", "ГПа"];
 
@@ -60,16 +62,27 @@ const Beams = (props) => {
 
   const dispatch = useDispatch();
   const calculateCurrentSection = () => dispatch(calculateSection());
-  const calculateCurrentBeamType = () => dispatch(calculateTwoSupBeam());
+  const calculateCurrentBeamType = () => {
+    switch (beamTypeShowed) {
+      case 1:
+        return dispatch(calculateTwoSupBeam());
+      case 2:
+        return;
+      case 3:
+        return;
+      default:
+        return null;
+    }
+  };
 
   const currentBeamType = () => {
     switch (beamTypeShowed) {
       case 1:
         return <TwoSupBeam title={paramsBeamTypeArray[0].name} calculateFn={calculateCurrentBeamType} />;
       case 2:
-        return <TwoSupBeam title={titles[1]} />;
+        return <ConsoleBeam title={paramsBeamTypeArray[1].name} calculateFn={calculateCurrentBeamType} />;
       case 3:
-        return <TwoSupBeam title={titles[2]} />;
+        return <Buckling title={paramsBeamTypeArray[2].name} calculateFn={calculateCurrentBeamType} />;
       default:
         return null;
     }
@@ -108,53 +121,45 @@ const Beams = (props) => {
   ];
 
   return (
-    <div className={stl.content}>
-      <div className={stl.wrapper}>
-        <h1>Расчёт балок</h1>
-        <SelectHandMadeInput
-          name="sections"
-          id="sections"
-          paramsArray={paramsSectionsArray}
-          value={sectionShowed}
-          setValue={setSectionShowed}
-          text={sectionShowedText}
+    <div className={stl.wrapper}>
+      <h1>Расчёт балок</h1>
+      <SelectInput
+        name="sections"
+        id="sections"
+        paramsArray={paramsSectionsArray}
+        value={sectionShowed}
+        setValue={setSectionShowed}
+        text={sectionShowedText}
+      />
+      <Section titles={titles} calculateFn={calculateCurrentSection} />
+      <div className={stl.initialData}>
+        <InputForm name="Нагрузка" value={load} unit={kgs} setValue={setLoad} calculateFn={calculateCurrentBeamType} />
+        <InputForm
+          name="Предел прочности материала"
+          value={matLimit}
+          unit={kgsmm2}
+          setValue={setMatLimit}
+          calculateFn={calculateCurrentBeamType}
         />
-        <Section titles={titles} calculateFn={calculateCurrentSection} />
-        <div className={stl.initialData}>
-          <InputForm
-            name="Нагрузка"
-            value={load}
-            unit={kgs}
-            setValue={setLoad}
-            calculateFn={calculateCurrentBeamType}
-          />
-          <InputForm
-            name="Предел прочности материала"
-            value={matLimit}
-            unit={kgsmm2}
-            setValue={setMatLimit}
-            calculateFn={calculateCurrentBeamType}
-          />
-          <InputForm
-            name="Модуль упругости метериала"
-            value={elMod}
-            unit={gpa}
-            setValue={setElMod}
-            calculateFn={calculateCurrentBeamType}
-          />
-        </div>
-        <SelectHandMadeInput
-          name="beamsType"
-          id="beamsType"
-          paramsArray={paramsBeamTypeArray}
-          value={beamTypeShowed}
-          setValue={setBeamTypeShowed}
-          text={beamTypeShowedText}
+        <InputForm
+          name="Модуль упругости метериала"
+          value={elMod}
+          unit={gpa}
+          setValue={setElMod}
+          calculateFn={calculateCurrentBeamType}
         />
-        {currentBeamType()}
-        <CalculationButton calculateFn={calculateCurrentBeamType} text="Рассчитать" />
-        <Results results={results} />
       </div>
+      <SelectInput
+        name="beamsType"
+        id="beamsType"
+        paramsArray={paramsBeamTypeArray}
+        value={beamTypeShowed}
+        setValue={setBeamTypeShowed}
+        text={beamTypeShowedText}
+      />
+      {currentBeamType()}
+      <CalculationButton calculateFn={calculateCurrentBeamType} text="Рассчитать" />
+      <Results results={results} />
     </div>
   );
 };

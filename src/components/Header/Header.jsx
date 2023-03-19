@@ -1,6 +1,6 @@
 import { useState } from "react";
 import stl from "./Header.module.css";
-import NavItem from "./NavItem";
+import Links from "./Links";
 
 const Header = (props) => {
   const [isVisible, setVisibility] = useState(false);
@@ -14,10 +14,7 @@ const Header = (props) => {
         </button>
         {isVisible ? (
           <div className={stl.dropContainer}>
-            <NavItem link="/LashingRing" text="Расчет проушин" />
-            <NavItem link="/Beams" text="Расчет балок" />
-            <NavItem link="/1" text="Расчет группы болтов" />
-            <NavItem link="/2" text="Расчет пружины" />
+            <Links />
           </div>
         ) : null}
       </div>

@@ -1,8 +1,9 @@
 import { useSelector } from "react-redux";
-import { setDiam, setHeigth, setThickShelf, setThickWall, setWidth } from "../../../../redux/beamsSlice";
-import InputForm from "../../../Input/InputForm";
-import Results from "../../../Results/Results";
-import stl from "./../../MainContent.module.css";
+import { setDiam, setHeigth, setThickShelf, setThickWall, setWidth } from "../../../redux/beamsSlice";
+import HideContainer from "../../Input/HideContainer";
+import InputForm from "../../Input/InputForm";
+import Results from "../../Results/Results";
+import stl from "./../MainContent.module.css";
 
 let [mm, mm2, mm3, mm4] = ["мм", "мм2", "мм3", "мм4"];
 
@@ -118,10 +119,12 @@ const Section = (props) => {
     { id: 3, name: "Момент инерции сечения", value: momIn, unit: mm4 },
   ];
 
+  const title = <p>Площадь, момент сопротивления и момент инерции сечения</p>;
+
   return (
     <>
       <div className={stl.initialData}>{currentSection()}</div>
-      <Results results={results} />
+      <HideContainer data={<Results results={results} />} title={title} />
     </>
   );
 };

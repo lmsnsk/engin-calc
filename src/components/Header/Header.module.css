@@ -1,9 +1,11 @@
 .wrapper {
-  top: 0;
   position: fixed;
+  display: flex;
+  left: 5px;
+  right: 5px;
   height: 50px;
-  width: 100%;
-  background-color: rgb(103, 112, 87);
+  border-radius: 10px;
+  background-color: rgb(211, 211, 211);
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
   z-index: 5;
 }
@@ -37,6 +39,17 @@
 
 .change .bar3 {
   transform: translate(0, -11px) rotate(-45deg);
+}
+
+.sidebar {
+  padding-left: 20px;
+  min-height: 90vh;
+  top: 5px;
+  position: relative;
+  left: 5px;
+  min-width: 350px;
+  border-radius: 10px;
+  background-color: rgb(211, 211, 211);
 }
 
 .dropContainer {

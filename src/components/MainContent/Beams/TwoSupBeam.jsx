@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
-import { setLength, setLoadDistance } from "../../../../redux/beamsSlice";
-import InputForm from "../../../Input/InputForm";
-import stl from "./../../MainContent.module.css";
+import { setLength, setLoadDistance } from "../../../redux/beamsSlice";
+import InputForm from "../../Input/InputForm";
+import stl from "./../MainContent.module.css";
 
 const CalcTwoSupBeam = (props) => {
   const length = useSelector((state) => state.beams.length);

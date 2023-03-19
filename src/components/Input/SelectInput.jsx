@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import stl from "./SelectHandMadeInput.module.css";
+import stl from "./SelectInput.module.css";
 
 const SelectHandMadeInput = (props) => {
   // let paramsArray = [
