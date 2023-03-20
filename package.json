@@ -2,21 +2,24 @@
   "name": "engin-calc",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://lmsnsk.github.io/engin-calc",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "flow-bin": ">=0.44.2 <1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.8.2",
     "react-scripts": "5.0.1",
     "redux": "^4.2.1",
-    "web-vitals": "^2.1.4",
-    "flow-bin": ">=0.44.2 <1"
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -41,6 +44,7 @@
     ]
   },
   "devDependencies": {
-    "flow-babel-webpack-plugin": "^1.1.1"
+    "flow-babel-webpack-plugin": "^1.1.1",
+    "gh-pages": "^5.0.0"
   }
 }
