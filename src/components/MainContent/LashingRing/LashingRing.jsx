@@ -8,7 +8,10 @@ import {
   calculateLashingRing,
   setBMatLimit,
   setBoltDiam,
+  setBoltFS,
   setConFactor,
+  setEarFS,
+  setEarFSSM,
   setEarRadius,
   setEarThick,
   setEMatLimit,
@@ -16,9 +19,12 @@ import {
   setJumper,
   setLoad,
   setPlaneCount,
+  setSigmaInEar,
+  setSigmaSm,
+  setTauInBolt,
   setToogler,
 } from "../../../redux/lashingSlice";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CheckBox from "../../Input/CheckBox";
 
 const [mm, kgs, kgsmm2, sht] = ["мм", "кгс", "кгс/мм2", "шт"];
@@ -59,6 +65,17 @@ const LashingRing = () => {
     { id: 5, name: "Напряжения среза в стержне болта", value: tauInBolt, unit: kgsmm2 },
     { id: 6, name: "Запас прочности в стержне болта", value: boltFS, unit: "", color: true },
   ];
+
+  const dispatch = useDispatch();
+
+  const clearEarResults = () => {
+    dispatch(setSigmaInEar(""));
+    dispatch(setEarFS(""));
+    dispatch(setSigmaSm(""));
+    dispatch(setEarFSSM(""));
+    dispatch(setTauInBolt(""));
+    dispatch(setBoltFS(""));
+  };
 
   return (
     <div className={stl.wrapper}>
@@ -133,6 +150,7 @@ const LashingRing = () => {
           value={conFactor}
           text={conFactorText}
           setValue={setConFactor}
+          sideEffect={clearEarResults}
         />
       </div>
       <CalculationButton calculateFn={calculateLashingRing} text="Рассчитать" />

@@ -25,6 +25,8 @@ const initialState = {
   strain: "",
   deflection: "",
   safeFactor: "",
+  criticalLoad: "",
+  criticalFactor: "",
 };
 
 const beamsSlice = createSlice({
@@ -98,6 +100,12 @@ const beamsSlice = createSlice({
     },
     setSafeFactor(state, action) {
       state.safeFactor = action.payload;
+    },
+    setCriticalLoad(state, action) {
+      state.criticalLoad = action.payload;
+    },
+    setCriticalFactor(state, action) {
+      state.criticalFactor = action.payload;
     },
     calculateCircleSection(state) {
       let area = (Math.PI * state.diam ** 2) / 4;
@@ -183,6 +191,25 @@ const beamsSlice = createSlice({
       state.deflection = deflection;
       state.safeFactor = safeFactor;
     },
+    calculateConsoleBeam(state) {
+      let aReaction = state.load;
+      let moment = aReaction * (state.length / 1000);
+      let strain = (moment * 1000) / state.momRes;
+      let deflection = (state.load * state.length ** 3) / (3 * (state.elMod * 101.9716) * state.momIn);
+      let safeFactor = state.matLimit / strain;
+      state.aReaction = aReaction;
+      state.moment = moment;
+      state.strain = strain;
+      state.deflection = deflection;
+      state.safeFactor = safeFactor;
+    },
+    calculateBuckling(state) {
+      let criticalLoad =
+        (Math.PI ** 2 * (state.elMod * 101.9716) * state.momIn) / (state.lengthFactor * state.length) ** 2;
+      let criticalFactor = criticalLoad / state.load;
+      state.criticalLoad = criticalLoad;
+      state.criticalFactor = criticalFactor;
+    },
   },
 });
 
@@ -209,6 +236,8 @@ export const {
   setStrain,
   setDeflection,
   setSafeFactor,
+  setCriticalLoad,
+  setCriticalFactor,
   calculateCircleSection,
   calculateCircleTubeSection,
   calculateRectangleSection,
@@ -217,6 +246,8 @@ export const {
   calculateChannelVertSection,
   calculateTBeamAndCornerSection,
   calculateTwoSupBeam,
+  calculateConsoleBeam,
+  calculateBuckling,
 } = beamsSlice.actions;
 
 export default beamsSlice.reducer;

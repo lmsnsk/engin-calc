@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
 import {
-  calculateTwoSupBeam,
   setBeamTypeShowed,
   setElMod,
   setLoad,
@@ -13,6 +12,17 @@ import {
   calculateRectangleSection,
   calculateRectangleTubeSection,
   calculateTBeamAndCornerSection,
+  calculateTwoSupBeam,
+  calculateConsoleBeam,
+  calculateBuckling,
+  setStrain,
+  setDeflection,
+  setSafeFactor,
+  setCriticalLoad,
+  setCriticalFactor,
+  setAReaction,
+  setBReaction,
+  setMoment,
 } from "../../../redux/beamsSlice";
 import InputForm from "../../Input/InputForm";
 import SelectInput from "../../Input/SelectInput";
@@ -59,30 +69,21 @@ const Beams = (props) => {
   const strain = useSelector((state) => state.beams.strain);
   const deflection = useSelector((state) => state.beams.deflection);
   const safeFactor = useSelector((state) => state.beams.safeFactor);
+  const criticalLoad = useSelector((state) => state.beams.criticalLoad);
+  const criticalFactor = useSelector((state) => state.beams.criticalFactor);
 
   const dispatch = useDispatch();
+
   const calculateCurrentSection = () => dispatch(calculateSection());
+
   const calculateCurrentBeamType = () => {
     switch (beamTypeShowed) {
       case 1:
         return dispatch(calculateTwoSupBeam());
       case 2:
-        return;
+        return dispatch(calculateConsoleBeam());
       case 3:
-        return;
-      default:
-        return null;
-    }
-  };
-
-  const currentBeamType = () => {
-    switch (beamTypeShowed) {
-      case 1:
-        return <TwoSupBeam title={paramsBeamTypeArray[0].name} calculateFn={calculateCurrentBeamType} />;
-      case 2:
-        return <ConsoleBeam title={paramsBeamTypeArray[1].name} calculateFn={calculateCurrentBeamType} />;
-      case 3:
-        return <Buckling title={paramsBeamTypeArray[2].name} calculateFn={calculateCurrentBeamType} />;
+        return dispatch(calculateBuckling());
       default:
         return null;
     }
@@ -111,6 +112,19 @@ const Beams = (props) => {
     }
   }
 
+  const currentBeamType = () => {
+    switch (beamTypeShowed) {
+      case 1:
+        return <TwoSupBeam title={paramsBeamTypeArray[0].name} calculateFn={calculateCurrentBeamType} />;
+      case 2:
+        return <ConsoleBeam title={paramsBeamTypeArray[1].name} calculateFn={calculateCurrentBeamType} />;
+      case 3:
+        return <Buckling title={paramsBeamTypeArray[2].name} calculateFn={calculateCurrentBeamType} />;
+      default:
+        return null;
+    }
+  };
+
   let results = [
     { id: 1, name: "Реакция в точке А", value: aReaction, unit: kgs },
     { id: 2, name: "Реакция в точке Б", value: bReaction, unit: kgs },
@@ -118,7 +132,20 @@ const Beams = (props) => {
     { id: 4, name: "Максимальные напряжения", value: strain, unit: kgsmm2 },
     { id: 5, name: "Максимальный прогиб", value: deflection, unit: mm },
     { id: 6, name: "Запас прочности", value: safeFactor, unit: "", color: true },
+    { id: 7, name: "Критическая нагрузка", value: criticalLoad, unit: kgs },
+    { id: 8, name: "Запас по устойчивости", value: criticalFactor, unit: "", color: true },
   ];
+
+  const clearBeamParams = () => {
+    dispatch(setAReaction(""));
+    dispatch(setBReaction(""));
+    dispatch(setMoment(""));
+    dispatch(setStrain(""));
+    dispatch(setDeflection(""));
+    dispatch(setSafeFactor(""));
+    dispatch(setCriticalLoad(""));
+    dispatch(setCriticalFactor(""));
+  };
 
   return (
     <div className={stl.wrapper}>
@@ -130,6 +157,7 @@ const Beams = (props) => {
         value={sectionShowed}
         setValue={setSectionShowed}
         text={sectionShowedText}
+        sideEffect={clearBeamParams}
       />
       <Section titles={titles} calculateFn={calculateCurrentSection} />
       <div className={stl.initialData}>
@@ -156,6 +184,7 @@ const Beams = (props) => {
         value={beamTypeShowed}
         setValue={setBeamTypeShowed}
         text={beamTypeShowedText}
+        sideEffect={clearBeamParams}
       />
       {currentBeamType()}
       <CalculationButton calculateFn={calculateCurrentBeamType} text="Рассчитать" />

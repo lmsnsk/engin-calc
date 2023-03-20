@@ -5,8 +5,8 @@ const Links = (props) => {
     <>
       <NavItem link="/LashingRing" text="Расчет проушин" />
       <NavItem link="/Beams" text="Расчет балок" />
-      <NavItem link="/1" text="Расчет группы болтов" />
-      <NavItem link="/2" text="Расчет пружины" />
+      <NavItem link="/1" text="//В работе//" />
+      <NavItem link="/2" text="//В работе//" />
     </>
   );
 };

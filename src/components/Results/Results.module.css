@@ -68,7 +68,7 @@ input::-webkit-inner-spin-button {
 .resultData {
   position: relative;
   display: grid;
-  grid-template-columns: 7fr 3fr;
+  grid-template-columns: 7fr 4fr;
   padding: 10px 2px 5px 2px;
   align-items: center;
 }

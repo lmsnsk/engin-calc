@@ -11,5 +11,19 @@
 }
 
 .content {
+  position: relative;
   margin: 0 auto;
+  flex-grow: 1;
+}
+
+@media (max-width: 1000px) {
+  .hidebar {
+    opacity: 0;
+  }
+}
+
+@media (min-width: 1000px) {
+  .content {
+    padding-left: 370px;
+  }
 }

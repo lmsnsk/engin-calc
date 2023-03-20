@@ -8,13 +8,13 @@ const Buckling = (props) => {
   const length = useSelector((state) => state.beams.length);
   const lengthFactor = useSelector((state) => state.beams.lengthFactor);
 
-  const paramsArray = [0.2, 0.3, 0.5, 1, 2];
+  const paramsArray = [0.33, 0.5, 0.7, 1, 2];
 
   return (
     <>
       <div className={stl.initialData}>
         <InputForm name="Длина балки" value={length} unit="мм" setValue={setLength} calculateFn={props.calculateFn} />
-        <div className={stl.form}>Коэффициент приведённой длины</div>
+        <div className={stl.form}>Коэффициент приведения длины</div>
         <SelectMiniInput
           name="lengthFactor"
           id="lengthFactor"

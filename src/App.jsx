@@ -8,7 +8,9 @@ function App() {
     <div>
       <Header />
       <div className={stl.wrapper}>
-        <Sidebar />
+        <div className={stl.hidebar}>
+          <Sidebar />
+        </div>
         <div className={stl.content}>
           <MainContent />
         </div>

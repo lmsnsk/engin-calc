@@ -21,6 +21,7 @@ const SelectHandMadeInput = (props) => {
   const onButtonClick = (el) => {
     setVisibility(false);
     setValueContainer(el);
+    props.sideEffect();
   };
 
   let selectField = props.paramsArray.map((element) => (
