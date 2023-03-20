@@ -21,7 +21,7 @@ const initialState = {
   earFS: "",
   earFSSM: "",
   boltFS: "",
-  toogler: false,
+  toogler: true,
 };
 
 const lashingSlice = createSlice({

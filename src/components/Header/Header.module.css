@@ -52,7 +52,7 @@
   top: 55px;
   left: 5px;
   position: fixed;
-  min-width: 330px;
+  min-width: 250px;
   border-radius: 10px;
   background-color: rgb(211, 211, 211);
   z-index: 3;
@@ -64,7 +64,7 @@
   padding-left: 20px;
   top: 55px;
   left: 5px;
-  min-width: 330px;
+  min-width: 250px;
   z-index: 5;
   background-color: rgba(211, 211, 211, 0.5);
   border-radius: 10px;

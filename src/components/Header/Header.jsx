@@ -14,7 +14,7 @@ const Header = (props) => {
         </button>
         {isVisible ? (
           <div className={stl.dropContainer}>
-            <Links />
+            <Links effect={setVisibility} />
           </div>
         ) : null}
       </div>

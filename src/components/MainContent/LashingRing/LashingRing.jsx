@@ -1,5 +1,5 @@
 import stl from "./../MainContent.module.css";
-import image from "./../../../assets/images/lashing-ring.jpg";
+import image from "./../../../assets/images/ear.png";
 import Results from "../../Results/Results";
 import CalculationButton from "../../Input/CalculationButton";
 import InputForm from "../../Input/InputForm";
@@ -57,7 +57,7 @@ const LashingRing = () => {
   const toogler = useSelector((state) => state.lashingRing.toogler);
   const jumperCustom = useSelector((state) => state.lashingRing.jumperCustom);
 
-  let results = [
+  const results = [
     { id: 1, name: "Напряжения в ушке", value: sigmaInEar, unit: kgsmm2 },
     { id: 2, name: "Запас прочности в ушке", value: earFS, unit: "", color: true },
     { id: 3, name: "Напряжения смятия материала ушка", value: sigmaSm, unit: kgsmm2 },
@@ -77,71 +77,39 @@ const LashingRing = () => {
     dispatch(setBoltFS(""));
   };
 
+  const inputCalculation = () => dispatch(calculateLashingRing());
+
+  function input(name, value, unit, setValue, calculateFn, disableInput) {
+    return (
+      <InputForm
+        name={name}
+        value={value}
+        unit={unit}
+        setValue={setValue}
+        calculateFn={calculateFn}
+        disableInput={disableInput}
+      />
+    );
+  }
+
   return (
     <div className={stl.wrapper}>
       <h1>Расчёт проушин и болтов</h1>
-      <img className={stl.image} src={image} alt="Проушина" />
+      <div className={stl.imageBox}>
+        <img className={stl.image} src={image} alt="Проушина" />
+      </div>
       <div className={stl.initialData}>
-        <InputForm
-          name="Толщина ушка"
-          value={earThick}
-          unit={mm}
-          setValue={setEarThick}
-          calculateFn={calculateLashingRing}
-        />
-        <InputForm
-          name="Радиус ушка"
-          value={earRadius}
-          unit={mm}
-          setValue={setEarRadius}
-          calculateFn={calculateLashingRing}
-        />
-        <InputForm
-          name="Диаметр отверстия"
-          value={holeDiam}
-          unit={mm}
-          setValue={setHoleDiam}
-          calculateFn={calculateLashingRing}
-        />
-        <div className={stl.label}>Автоматически считать перемычку</div>
+        {input("Толщина ушка", earThick, mm, setEarThick, inputCalculation)}
+        {input("Радиус ушка", earRadius, mm, setEarRadius, inputCalculation)}
+        {input("Диаметр отверстия", holeDiam, mm, setHoleDiam, inputCalculation)}
+        <div className={stl.label}>Отверстие и радиус ушка соосны</div>
         <CheckBox check={toogler} setCheck={setToogler} />
-        <InputForm
-          name="Поперечная перемычка"
-          value={toogler ? jumperCustom : jumper}
-          unit={mm}
-          setValue={setJumper}
-          disableInput={toogler}
-          calculateFn={calculateLashingRing}
-        />
-        <InputForm
-          name="Диаметр болта"
-          value={boltDiam}
-          unit={mm}
-          setValue={setBoltDiam}
-          calculateFn={calculateLashingRing}
-        />
-        <InputForm name="Нагрузка" value={load} unit={kgs} setValue={setLoad} />
-        <InputForm
-          name="Предел прочности ушка"
-          value={matEarLimit}
-          unit={kgsmm2}
-          setValue={setEMatLimit}
-          calculateFn={calculateLashingRing}
-        />
-        <InputForm
-          name="Предел прочности болта"
-          value={matBoltLimit}
-          unit={kgsmm2}
-          setValue={setBMatLimit}
-          calculateFn={calculateLashingRing}
-        />
-        <InputForm
-          name="Кол-во плоскостей среза"
-          value={planeCount}
-          unit={sht}
-          setValue={setPlaneCount}
-          calculateFn={calculateLashingRing}
-        />
+        {input("Поперечная перемычка", toogler ? jumperCustom : jumper, mm, setJumper, inputCalculation, toogler)}
+        {input("Диаметр болта", boltDiam, mm, setBoltDiam, inputCalculation)}
+        {input("Нагрузка", load, kgs, setLoad, inputCalculation)}
+        {input("Предел прочности ушка", matEarLimit, kgsmm2, setEMatLimit, inputCalculation)}
+        {input("Предел прочности болта", matBoltLimit, kgsmm2, setBMatLimit, inputCalculation)}
+        {input("Кол-во плоскостей среза", planeCount, sht, setPlaneCount, inputCalculation)}
         <div className={stl.form}>Тип соединения</div>
         <SelectInput
           name="connactionType"
@@ -153,7 +121,7 @@ const LashingRing = () => {
           sideEffect={clearEarResults}
         />
       </div>
-      <CalculationButton calculateFn={calculateLashingRing} text="Рассчитать" />
+      <CalculationButton calculateFn={inputCalculation} text="Рассчитать" />
       <Results results={results} />
     </div>
   );
