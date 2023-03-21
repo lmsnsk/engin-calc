@@ -1,0 +1,89 @@
+.titles {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-evenly;
+  font-size: clamp(14px, 3vmin, 20px);
+}
+
+.input {
+  font-weight: 50;
+  width: clamp(60px, 14vmin, 100px);
+  font-size: clamp(14px, 3vmin, 18px);
+  background-color: transparent;
+  border: 1px rgb(231, 231, 231) solid;
+  text-align: right;
+  padding-right: 3px;
+  color: rgb(43, 43, 43);
+  transition: 0.2s;
+  border-radius: 4px;
+}
+
+.input:hover,
+.input:focus {
+  outline: none;
+  border: 1px rgb(168, 168, 168) solid;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.unit {
+  margin-left: 5px;
+  display: inline-block;
+  font-family: "Times New Roman", Times, serif;
+  font-style: italic;
+  font-size: clamp(12px, 2.3vmin, 18px);
+  color: rgb(150, 150, 150);
+}
+
+.buttonBox {
+  display: flex;
+  justify-content: end;
+  margin-top: 5px;
+}
+
+.buttonBox button {
+  position: relative;
+  display: flex;
+  width: 30px;
+  height: 30px;
+  border: none;
+  color: rgb(255, 255, 255);
+  font-size: clamp(22px, 4vmin, 30px);
+  font-weight: 100;
+  cursor: pointer;
+  transition: 0.15s;
+  display: block;
+  margin: 0 5px;
+  border-radius: 8px;
+}
+
+.buttonBox button:active {
+  scale: 0.8;
+}
+
+.add {
+  background-color: rgb(21, 151, 43);
+}
+
+.remove {
+  background-color: rgb(201, 35, 35);
+}
+
+.bar1,
+.bar2 {
+  position: absolute;
+  height: 4px;
+  width: 20px;
+  border-radius: 2px;
+  background-color: #fff;
+  translate: 5px -2px;
+}
+
+.bar2 {
+  translate: 5px -2px;
+  transform: rotateZ(90deg);
+}

@@ -29,6 +29,7 @@
 .bar3 {
   width: 35px;
   height: 5px;
+  border-radius: 2.5px;
   background-color: #333;
   margin: 6px 0;
   transition: 0.3s;
@@ -47,7 +48,8 @@
 }
 
 .sidebar {
-  padding-left: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
   min-height: 50vh;
   top: 55px;
   left: 5px;
@@ -61,7 +63,8 @@
 
 .dropContainer {
   position: absolute;
-  padding-left: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
   top: 55px;
   left: 5px;
   min-width: 250px;
@@ -84,15 +87,29 @@
 }
 
 .dropItem {
-  font-size: 24px;
-  padding-top: 30px;
+  font-size: clamp(18px, 3.5vmin, 22px);
+  padding: 10px;
+}
+
+.dropItem::after {
+  content: "";
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 4px;
+  background-color: rgb(197, 197, 197);
+  border-radius: 2px;
 }
 
 a {
   text-decoration: none;
-  color: inherit;
+  color: rgb(73, 73, 73);
+}
+
+a:hover {
+  color: rgb(187, 23, 23);
 }
 
 .active {
-  color: rgb(107, 0, 0);
+  color: rgb(109, 16, 16);
 }
