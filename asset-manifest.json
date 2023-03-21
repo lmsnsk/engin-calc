@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/engin-calc/static/css/main.e2c0a391.css",
-    "main.js": "/engin-calc/static/js/main.dcce604b.js",
+    "main.css": "/engin-calc/static/css/main.dde3903f.css",
+    "main.js": "/engin-calc/static/js/main.5e6691e9.js",
     "static/js/787.ef7a1acb.chunk.js": "/engin-calc/static/js/787.ef7a1acb.chunk.js",
-    "static/media/lashing-ring.jpg": "/engin-calc/static/media/lashing-ring.addf67693cc5ef6b2d40.jpg",
+    "static/media/ear.png": "/engin-calc/static/media/ear.4d2fdb0b800fdf73d9a7.png",
     "index.html": "/engin-calc/index.html",
-    "main.e2c0a391.css.map": "/engin-calc/static/css/main.e2c0a391.css.map",
-    "main.dcce604b.js.map": "/engin-calc/static/js/main.dcce604b.js.map",
+    "main.dde3903f.css.map": "/engin-calc/static/css/main.dde3903f.css.map",
+    "main.5e6691e9.js.map": "/engin-calc/static/js/main.5e6691e9.js.map",
     "787.ef7a1acb.chunk.js.map": "/engin-calc/static/js/787.ef7a1acb.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e2c0a391.css",
-    "static/js/main.dcce604b.js"
+    "static/css/main.dde3903f.css",
+    "static/js/main.5e6691e9.js"
   ]
 }
