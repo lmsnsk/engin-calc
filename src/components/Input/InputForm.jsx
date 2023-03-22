@@ -6,7 +6,7 @@ const InputForm = (props) => {
   const setValueContainer = (el) => dispatch(props.setValue(el));
 
   const onValueChange = (e) => {
-    setValueContainer(e.target.value);
+    setValueContainer(+e.target.value);
   };
 
   //Отменяет отправку формы при нажатии Enter

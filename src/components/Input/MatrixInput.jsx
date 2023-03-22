@@ -9,7 +9,7 @@ const MatrixInput = (props) => {
 
   function onChange(index1, index2) {
     return function (e) {
-      boltsParams[index1][index2] = e.target.value;
+      boltsParams[index1][index2] = +e.target.value;
       dispatch(props.setValue(boltsParams));
     };
   }

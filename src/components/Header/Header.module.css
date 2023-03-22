@@ -10,6 +10,13 @@
   z-index: 3;
 }
 
+.title {
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.9;
+  margin-left: 20px;
+}
+
 .navButton {
   font-size: 20px;
   margin-left: 20px;

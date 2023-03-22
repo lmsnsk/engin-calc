@@ -18,6 +18,7 @@ const Header = (props) => {
           </div>
         ) : null}
       </div>
+      <div className={stl.title}> Инженерные расчёты</div>
     </div>
   );
 };

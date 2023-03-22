@@ -2,7 +2,7 @@
   color: rgb(0, 0, 0);
   height: 35px;
   line-height: 1;
-  font-size: clamp(14px, 3vmin, 20px);
+  font-size: clamp(14px, 2.5vmin, 20px);
   transition: 0.3s;
 }
 

@@ -1,6 +1,7 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   addRow,
+  calculateBoltGroup,
   removeRow,
   setBoltParams,
   setCenterDistance,
@@ -9,9 +10,12 @@ import {
   setSliceLimit,
   setThickness,
 } from "../../../redux/boltGroupSlice";
+import CalculationButton from "../../Input/CalculationButton";
 import InputForm from "../../Input/InputForm";
 import MatrixInput from "../../Input/MatrixInput";
 import stl from "./../MainContent.module.css";
+import boltsImg from "./../../../assets/images/bolt-group.png";
+import Results from "../../Results/Results";
 
 const BoltGroup = () => {
   const load = useSelector((state) => state.boltGroup.load);
@@ -20,9 +24,14 @@ const BoltGroup = () => {
   const centerDistance = useSelector((state) => state.boltGroup.centerDistance);
   const thickness = useSelector((state) => state.boltGroup.thickness);
   const boltParams = useSelector((state) => state.boltGroup.boltParams);
+  const sliseMargin = useSelector((state) => state.boltGroup.sliseMargin);
+  const collapseMargin = useSelector((state) => state.boltGroup.collapseMargin);
 
   const titles = ["Диаметр", "Плечо", "Угол"];
   const units = ["мм", "мм", "град"];
+
+  const dispatch = useDispatch();
+  const inputCalculation = () => dispatch(calculateBoltGroup());
 
   function input(name, value, unit, setValue, calculateFn, disableInput) {
     return (
@@ -37,15 +46,31 @@ const BoltGroup = () => {
     );
   }
 
+  const resultsSlice = sliseMargin.map((el, index) => ({
+    id: index,
+    name: `Болт ${index + 1}`,
+    value: el,
+    unit: "",
+    color: true,
+  }));
+  const resultsCollapse = collapseMargin.map((el, index) => ({
+    id: index,
+    name: `Болт ${index + 1}`,
+    value: el,
+    unit: "",
+    color: true,
+  }));
+
   return (
     <div className={stl.wrapper}>
       <h1>Расчет группы болтов</h1>
+      <img className={stl.imageBolt} src={boltsImg} alt="bolts" />
       <div className={stl.initialData}>
-        {input("Нагрузка", load, "мм", setLoad, () => {})}
-        {input("Расстояние от центра кручения до нагрузки", centerDistance, "мм", setCenterDistance, () => {})}
-        {input("Толщина пластины", thickness, "мм", setThickness, () => {})}
-        {input("Предел прочности смятия пластины", matLimit, "кгс/мм2", setMatLimit, () => {})}
-        {input("Предел прочности на срез болта", sliceLimit, "кгс/мм2", setSliceLimit, () => {})}
+        {input("Нагрузка", load, "кгс", setLoad, function () {})}
+        {input("Расстояние от центра кручения до нагрузки", centerDistance, "мм", setCenterDistance, function () {})}
+        {input("Толщина пластины", thickness, "мм", setThickness, function () {})}
+        {input("Предел прочности смятия пластины", matLimit, "кгс/мм2", setMatLimit, function () {})}
+        {input("Предел прочности на срез болта", sliceLimit, "кгс/мм2", setSliceLimit, function () {})}
       </div>
       <h2>Матрица болтов</h2>
       <MatrixInput
@@ -56,6 +81,17 @@ const BoltGroup = () => {
         addRow={addRow}
         removeRow={removeRow}
       />
+      <CalculationButton calculateFn={inputCalculation} text="Рассчитать" />
+      <div className={stl.matrixResult}>
+        <div>
+          <h2>Запас по срезу болтов</h2>
+          <Results results={resultsSlice} />
+        </div>
+        <div>
+          <h2>Запас по смятию</h2>
+          <Results results={resultsCollapse} />
+        </div>
+      </div>
     </div>
   );
 };

@@ -10,7 +10,7 @@ const Links = (props) => {
       <NavItem link="/LashingRing" text="Расчет проушин" effect={props.effect} img={eyeletImg} />
       <NavItem link="/Beams" text="Расчет балок" effect={props.effect} img={beamImg} />
       <NavItem link="/BoltGroup" text="Расчёт группы болтов" effect={props.effect} img={boltImg} />
-      <NavItem link="/2" text="//В работе//" effect={props.effect} img={gearImg} />
+      <NavItem link="/WorkInProgress" text="//В работе//" effect={props.effect} img={gearImg} />
     </>
   );
 };
