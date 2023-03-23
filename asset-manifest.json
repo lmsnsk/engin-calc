@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/engin-calc/static/css/main.1ba90c80.css",
-    "main.js": "/engin-calc/static/js/main.cc08e60a.js",
-    "static/js/787.ef7a1acb.chunk.js": "/engin-calc/static/js/787.ef7a1acb.chunk.js",
-    "static/media/ear.png": "/engin-calc/static/media/ear.4d2fdb0b800fdf73d9a7.png",
-    "static/media/bolt-group.png": "/engin-calc/static/media/bolt-group.02cff9d4de420a9cbb5e.png",
-    "static/media/gear.svg": "/engin-calc/static/media/gear.61f8302d2cbd5fb57113ed83cd87fb81.svg",
-    "static/media/bolts.svg": "/engin-calc/static/media/bolts.60487975ea48c934ab4edec7a0b33e99.svg",
-    "static/media/beam.svg": "/engin-calc/static/media/beam.bde2ac10a881a9496fcb6bcc6b7f1353.svg",
-    "static/media/eyelet.svg": "/engin-calc/static/media/eyelet.9ec31a9ad496a875009409b22dfbd3b5.svg",
-    "index.html": "/engin-calc/index.html",
-    "main.1ba90c80.css.map": "/engin-calc/static/css/main.1ba90c80.css.map",
-    "main.cc08e60a.js.map": "/engin-calc/static/js/main.cc08e60a.js.map",
-    "787.ef7a1acb.chunk.js.map": "/engin-calc/static/js/787.ef7a1acb.chunk.js.map"
+    "main.css": "/lmsnsk/engin-calc/static/css/main.831420c8.css",
+    "main.js": "/lmsnsk/engin-calc/static/js/main.405ca3ea.js",
+    "static/js/787.ef7a1acb.chunk.js": "/lmsnsk/engin-calc/static/js/787.ef7a1acb.chunk.js",
+    "static/media/ear.png": "/lmsnsk/engin-calc/static/media/ear.4d2fdb0b800fdf73d9a7.png",
+    "static/media/bolt-group.png": "/lmsnsk/engin-calc/static/media/bolt-group.02cff9d4de420a9cbb5e.png",
+    "static/media/gear.svg": "/lmsnsk/engin-calc/static/media/gear.61f8302d2cbd5fb57113ed83cd87fb81.svg",
+    "static/media/bolts.svg": "/lmsnsk/engin-calc/static/media/bolts.60487975ea48c934ab4edec7a0b33e99.svg",
+    "static/media/beam.svg": "/lmsnsk/engin-calc/static/media/beam.bde2ac10a881a9496fcb6bcc6b7f1353.svg",
+    "static/media/eyelet.svg": "/lmsnsk/engin-calc/static/media/eyelet.9ec31a9ad496a875009409b22dfbd3b5.svg",
+    "index.html": "/lmsnsk/engin-calc/index.html",
+    "main.831420c8.css.map": "/lmsnsk/engin-calc/static/css/main.831420c8.css.map",
+    "main.405ca3ea.js.map": "/lmsnsk/engin-calc/static/js/main.405ca3ea.js.map",
+    "787.ef7a1acb.chunk.js.map": "/lmsnsk/engin-calc/static/js/787.ef7a1acb.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.1ba90c80.css",
-    "static/js/main.cc08e60a.js"
+    "static/css/main.831420c8.css",
+    "static/js/main.405ca3ea.js"
   ]
 }
