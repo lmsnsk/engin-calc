@@ -39,21 +39,26 @@ const MatrixInput = (props) => {
     </div>
   ));
 
+  const addRemoveButtons = (
+    <div className={stl.buttonBox}>
+      {rowsQuantity > 1 ? (
+        <button className={stl.remove} onClick={removeRowField}>
+          <div className={stl.bar1}></div>
+        </button>
+      ) : null}
+      <button className={stl.add} onClick={addRowField}>
+        <div className={stl.bar1}></div>
+        <div className={stl.bar2}></div>
+      </button>
+    </div>
+  );
+
   return (
     <>
+      {addRemoveButtons}
       <div className={stl.titles}>{titles}</div>
       {matrixData}
-      <div className={stl.buttonBox}>
-        {rowsQuantity > 1 ? (
-          <button className={stl.remove} onClick={removeRowField}>
-            <div className={stl.bar1}></div>
-          </button>
-        ) : null}
-        <button className={stl.add} onClick={addRowField}>
-          <div className={stl.bar1}></div>
-          <div className={stl.bar2}></div>
-        </button>
-      </div>
+      {addRemoveButtons}
     </>
   );
 };

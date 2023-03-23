@@ -27,7 +27,14 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import CheckBox from "../../Input/CheckBox";
 
-const [mm, kgs, kgsmm2, sht] = ["мм", "кгс", "кгс/мм2", "шт"];
+const [mm, kgs, kgsmm2, sht] = [
+  "мм",
+  "кгс",
+  <>
+    кг/мм<sup>2</sup>
+  </>,
+  "шт",
+];
 
 let paramsArray = [
   { value: 0.2, name: "Подвижное" },

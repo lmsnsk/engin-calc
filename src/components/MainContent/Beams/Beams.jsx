@@ -34,7 +34,15 @@ import Results from "../../Results/Results";
 import ConsoleBeam from "./ConsoleBeam";
 import Buckling from "./Buckling";
 
-let [mm, kgs, kgsm, kgsmm2, gpa] = ["мм", "кгс", "кгс м", "кгс/мм2", "ГПа"];
+let [mm, kgs, kgsm, kgsmm2, gpa] = [
+  "мм",
+  "кгс",
+  "кгс м",
+  <>
+    кг/мм<sup>2</sup>
+  </>,
+  "ГПа",
+];
 
 let titles = [
   "Пруток круглый",

@@ -29,6 +29,11 @@ const BoltGroup = () => {
 
   const titles = ["Диаметр", "Плечо", "Угол"];
   const units = ["мм", "мм", "град"];
+  const kgmm2 = (
+    <>
+      кг/мм<sup>2</sup>
+    </>
+  );
 
   const dispatch = useDispatch();
   const inputCalculation = () => dispatch(calculateBoltGroup());
@@ -69,8 +74,8 @@ const BoltGroup = () => {
         {input("Нагрузка", load, "кгс", setLoad, function () {})}
         {input("Расстояние от центра кручения до нагрузки", centerDistance, "мм", setCenterDistance, function () {})}
         {input("Толщина пластины", thickness, "мм", setThickness, function () {})}
-        {input("Предел прочности смятия пластины", matLimit, "кгс/мм2", setMatLimit, function () {})}
-        {input("Предел прочности на срез болта", sliceLimit, "кгс/мм2", setSliceLimit, function () {})}
+        {input("Предел прочности смятия пластины", matLimit, kgmm2, setMatLimit, function () {})}
+        {input("Предел прочности на срез болта", sliceLimit, kgmm2, setSliceLimit, function () {})}
       </div>
       <h2>Матрица болтов</h2>
       <MatrixInput

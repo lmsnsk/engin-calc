@@ -58,6 +58,10 @@ h1 {
   margin-bottom: 10px;
 }
 
+.form {
+  font-size: clamp(14px, 3vmin, 20px);
+}
+
 .wip {
   display: flex;
   justify-content: center;
