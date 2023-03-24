@@ -1,0 +1,33 @@
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 7vmin;
+  padding-top: 30vmin;
+}
+
+.buttonBox {
+  width: clamp(140px, 18vmin, 250px);
+  height: clamp(140px, 18vmin, 250px);
+  border: 1px gray solid;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  transition: 0.3s;
+}
+
+.buttonBox:hover {
+  background-color: gray;
+}
+
+.buttonBox img {
+  width: 70%;
+  height: 70%;
+}
+
+.title {
+  text-align: center;
+  font-weight: 600;
+}
