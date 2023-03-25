@@ -7,11 +7,13 @@ const Header = (props) => {
   return (
     <div className={stl.wrapper}>
       <div className={isVisible ? stl.change : null}>
-        <button className={stl.navButton} onClick={() => setVisibility(!isVisible)}>
-          <div className={stl.bar1}></div>
-          <div className={stl.bar2}></div>
-          <div className={stl.bar3}></div>
-        </button>
+        {!props.startPegeVisible ? (
+          <button className={stl.navButton} onClick={() => setVisibility(!isVisible)}>
+            <div className={stl.bar1}></div>
+            <div className={stl.bar2}></div>
+            <div className={stl.bar3}></div>
+          </button>
+        ) : null}
         {isVisible ? (
           <div className={stl.dropContainer}>
             <Links effect={setVisibility} />

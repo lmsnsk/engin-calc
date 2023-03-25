@@ -6,11 +6,24 @@
   padding-top: 30vmin;
 }
 
+.bgImage {
+  position: fixed;
+  top: 0;
+}
+
+@media (max-width: 1000px) {
+  .bgImage {
+    height: 100%;
+  }
+}
+
 .buttonBox {
   width: clamp(140px, 18vmin, 250px);
   height: clamp(140px, 18vmin, 250px);
   border: 1px gray solid;
   border-radius: 10px;
+  background-color: rgba(214, 214, 214, 0.8);
+  backdrop-filter: blur(10px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,8 +31,9 @@
   transition: 0.3s;
 }
 
-.buttonBox:hover {
-  background-color: gray;
+.buttonBox:hover,
+.buttonBox:active {
+  scale: 1.2;
 }
 
 .buttonBox img {
@@ -30,4 +44,5 @@
 .title {
   text-align: center;
   font-weight: 600;
+  padding: 0 10px;
 }

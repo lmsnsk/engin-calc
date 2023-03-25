@@ -1,10 +1,10 @@
 import stl from "./Header.module.css";
 import Links from "./Links";
 
-const Sidebar = (props) => {
+const Sidebar = () => {
   return (
     <div className={stl.sidebar}>
-      <Links />
+      <Links effect={function () {}} />
     </div>
   );
 };
