@@ -5,7 +5,18 @@ import InputForm from "../../Input/InputForm";
 import Results from "../../Results/Results";
 import stl from "./../MainContent.module.css";
 
-let [mm, mm2, mm3, mm4] = ["мм", "мм2", "мм3", "мм4"];
+let [mm, mm2, mm3, mm4] = [
+  "мм",
+  <>
+    кг/мм<sup>2</sup>
+  </>,
+  <>
+    кг/мм<sup>3</sup>
+  </>,
+  <>
+    кг/мм<sup>4</sup>
+  </>,
+];
 
 const Section = (props) => {
   const sectionShowed = useSelector((state) => state.beams.sectionShowed);
@@ -111,8 +122,6 @@ const Section = (props) => {
     }
   };
 
-  // const title = props.titles.filter((el, index) => index + 1 === sectionShowed);
-
   let results = [
     { id: 1, name: "Площадь сечения", value: area, unit: mm2 },
     { id: 2, name: "Момент сопотивления сечения", value: momRes, unit: mm3 },
@@ -123,6 +132,8 @@ const Section = (props) => {
 
   return (
     <>
+      <h2>{props.titles[sectionShowed - 1]}</h2>
+      <br />
       <div className={stl.initialData}>{currentSection()}</div>
       <HideContainer data={<Results results={results} />} title={title} />
     </>
