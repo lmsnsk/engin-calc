@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/lmsnsk/engin-calc/static/css/main.ecb0b774.css",
-    "main.js": "/lmsnsk/engin-calc/static/js/main.8cd26f26.js",
+    "main.css": "/lmsnsk/engin-calc/static/css/main.fb145285.css",
+    "main.js": "/lmsnsk/engin-calc/static/js/main.59b32357.js",
     "static/js/787.ef7a1acb.chunk.js": "/lmsnsk/engin-calc/static/js/787.ef7a1acb.chunk.js",
     "static/media/bc1.jpg": "/lmsnsk/engin-calc/static/media/bc1.8195ded032b4ba1a38c3.jpg",
     "static/media/ear.png": "/lmsnsk/engin-calc/static/media/ear.4d2fdb0b800fdf73d9a7.png",
@@ -13,13 +13,21 @@
     "static/media/bolts.svg": "/lmsnsk/engin-calc/static/media/bolts.60487975ea48c934ab4edec7a0b33e99.svg",
     "static/media/beam.svg": "/lmsnsk/engin-calc/static/media/beam.bde2ac10a881a9496fcb6bcc6b7f1353.svg",
     "static/media/eyelet.svg": "/lmsnsk/engin-calc/static/media/eyelet.9ec31a9ad496a875009409b22dfbd3b5.svg",
+    "static/media/channelHoriz.svg": "/lmsnsk/engin-calc/static/media/channelHoriz.834d901a574e53f733d8f98977d50ecf.svg",
+    "static/media/channelVert.svg": "/lmsnsk/engin-calc/static/media/channelVert.bcfd8312059130839bf8c78bb28545da.svg",
     "index.html": "/lmsnsk/engin-calc/index.html",
-    "main.ecb0b774.css.map": "/lmsnsk/engin-calc/static/css/main.ecb0b774.css.map",
-    "main.8cd26f26.js.map": "/lmsnsk/engin-calc/static/js/main.8cd26f26.js.map",
+    "static/media/tBeam.svg": "/lmsnsk/engin-calc/static/media/tBeam.45ce09ff2df11ab573543c51e405b5eb.svg",
+    "static/media/rectTube.svg": "/lmsnsk/engin-calc/static/media/rectTube.853a501fbee24d0436d579d4b7e523a3.svg",
+    "static/media/corner.svg": "/lmsnsk/engin-calc/static/media/corner.05e41a5cd7b71917e1cc75a1429c0314.svg",
+    "static/media/circleTube.svg": "/lmsnsk/engin-calc/static/media/circleTube.22db543544ddd117638ac3ba37dd98e7.svg",
+    "static/media/rect.svg": "/lmsnsk/engin-calc/static/media/rect.d9c86395a00eefe778e39dd6ad263b74.svg",
+    "static/media/circle.svg": "/lmsnsk/engin-calc/static/media/circle.c752669d2131beef5a75ac4bdde0fce4.svg",
+    "main.fb145285.css.map": "/lmsnsk/engin-calc/static/css/main.fb145285.css.map",
+    "main.59b32357.js.map": "/lmsnsk/engin-calc/static/js/main.59b32357.js.map",
     "787.ef7a1acb.chunk.js.map": "/lmsnsk/engin-calc/static/js/787.ef7a1acb.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ecb0b774.css",
-    "static/js/main.8cd26f26.js"
+    "static/css/main.fb145285.css",
+    "static/js/main.59b32357.js"
   ]
 }
