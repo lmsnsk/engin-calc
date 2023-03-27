@@ -25,7 +25,6 @@ import {
   setMoment,
 } from "../../../redux/beamsSlice";
 import InputForm from "../../Input/InputForm";
-import SelectInput from "../../Input/SelectInput";
 import stl from "./../MainContent.module.css";
 import TwoSupBeam from "./TwoSupBeam";
 import CalculationButton from "../../Input/CalculationButton";
@@ -41,6 +40,9 @@ import channelVertImg from "./../../../assets/images/channelVert.svg";
 import channelHorizImg from "./../../../assets/images/channelHoriz.svg";
 import tBeamImg from "./../../../assets/images/tBeam.svg";
 import cornerImg from "./../../../assets/images/corner.svg";
+import consoleImg from "./../../../assets/images/console.svg";
+import twoBSupImg from "./../../../assets/images/2bsup.svg";
+import bucklingImg from "./../../../assets/images/buckling.svg";
 
 let [mm, kgs, kgsm, kgsmm2, gpa] = [
   "мм",
@@ -74,7 +76,6 @@ let paramsBeamTypeArray = [
 const Beams = () => {
   const sectionShowed = useSelector((state) => state.beams.sectionShowed);
   const beamTypeShowed = useSelector((state) => state.beams.beamTypeShowed);
-  const beamTypeShowedText = useSelector((state) => state.beams.beamTypeShowedText);
   const load = useSelector((state) => state.beams.load);
   const matLimit = useSelector((state) => state.beams.matLimit);
   const elMod = useSelector((state) => state.beams.elMod);
@@ -162,15 +163,34 @@ const Beams = () => {
     dispatch(setCriticalFactor(""));
   };
 
-  function onButtonClick(section) {
+  function onSectionButtonClick(section) {
+    clearBeamParams();
     return dispatch(setSectionShowed(section));
   }
 
-  function buttonSelect(img, section) {
+  function onBeamTypeButtonClick(type) {
+    clearBeamParams();
+    return dispatch(setBeamTypeShowed(type));
+  }
+
+  function buttonSectionSelect(img, param) {
     return (
       <div
-        className={`${stl.buttonSelect} ${sectionShowed === section.value ? stl.buttonSelectActive : null}`}
-        onClick={() => onButtonClick(section)}
+        className={`${stl.buttonSelect} ${sectionShowed === param.value ? stl.buttonSelectActive : null}`}
+        onClick={() => onSectionButtonClick(param)}
+      >
+        <img src={img} alt="" />
+      </div>
+    );
+  }
+
+  function buttonBeamTypeSelect(img, param) {
+    return (
+      <div
+        className={`${stl.buttonSelect} ${stl.buttonBeamTypeSelect} ${
+          beamTypeShowed === param.value ? stl.buttonSelectActive : null
+        }`}
+        onClick={() => onBeamTypeButtonClick(param)}
       >
         <img src={img} alt="" />
       </div>
@@ -182,14 +202,14 @@ const Beams = () => {
       <h1>Расчёт балок</h1>
       <h2>Выберите сечение балки</h2>
       <div className={stl.buttonSelectBox}>
-        {buttonSelect(circleImg, paramsSectionsArray[0])}
-        {buttonSelect(circleTubeImg, paramsSectionsArray[1])}
-        {buttonSelect(rectImg, paramsSectionsArray[2])}
-        {buttonSelect(rectTubeImg, paramsSectionsArray[3])}
-        {buttonSelect(channelVertImg, paramsSectionsArray[4])}
-        {buttonSelect(channelHorizImg, paramsSectionsArray[5])}
-        {buttonSelect(tBeamImg, paramsSectionsArray[6])}
-        {buttonSelect(cornerImg, paramsSectionsArray[7])}
+        {buttonSectionSelect(circleImg, paramsSectionsArray[0])}
+        {buttonSectionSelect(circleTubeImg, paramsSectionsArray[1])}
+        {buttonSectionSelect(rectImg, paramsSectionsArray[2])}
+        {buttonSectionSelect(rectTubeImg, paramsSectionsArray[3])}
+        {buttonSectionSelect(channelVertImg, paramsSectionsArray[4])}
+        {buttonSectionSelect(channelHorizImg, paramsSectionsArray[5])}
+        {buttonSectionSelect(tBeamImg, paramsSectionsArray[6])}
+        {buttonSectionSelect(cornerImg, paramsSectionsArray[7])}
       </div>
       <Section titles={titles} calculateFn={calculateCurrentSection} />
       <div className={stl.initialData}>
@@ -209,15 +229,12 @@ const Beams = () => {
           calculateFn={calculateCurrentBeamType}
         />
       </div>
-      <SelectInput
-        name="beamsType"
-        id="beamsType"
-        paramsArray={paramsBeamTypeArray}
-        value={beamTypeShowed}
-        setValue={setBeamTypeShowed}
-        text={beamTypeShowedText}
-        sideEffect={clearBeamParams}
-      />
+      <h2>Выберите тип балки</h2>
+      <div className={stl.buttonSelectBox}>
+        {buttonBeamTypeSelect(twoBSupImg, paramsBeamTypeArray[0])}
+        {buttonBeamTypeSelect(consoleImg, paramsBeamTypeArray[1])}
+        {buttonBeamTypeSelect(bucklingImg, paramsBeamTypeArray[2])}
+      </div>
       {currentBeamType()}
       <CalculationButton calculateFn={calculateCurrentBeamType} text="Рассчитать" />
       <Results results={results} />

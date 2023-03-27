@@ -8,13 +8,13 @@ import stl from "./../MainContent.module.css";
 let [mm, mm2, mm3, mm4] = [
   "мм",
   <>
-    кг/мм<sup>2</sup>
+    мм<sup>2</sup>
   </>,
   <>
-    кг/мм<sup>3</sup>
+    мм<sup>3</sup>
   </>,
   <>
-    кг/мм<sup>4</sup>
+    мм<sup>4</sup>
   </>,
 ];
 
