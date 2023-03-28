@@ -135,7 +135,13 @@ const Beams = () => {
       case 2:
         return <ConsoleBeam title={paramsBeamTypeArray[1].name} calculateFn={calculateCurrentBeamType} />;
       case 3:
-        return <Buckling title={paramsBeamTypeArray[2].name} calculateFn={calculateCurrentBeamType} />;
+        return (
+          <Buckling
+            title={paramsBeamTypeArray[2].name}
+            calculateFn={calculateCurrentBeamType}
+            clearBeamParams={clearBeamParams}
+          />
+        );
       default:
         return null;
     }
