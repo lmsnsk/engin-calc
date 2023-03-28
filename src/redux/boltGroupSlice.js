@@ -18,7 +18,7 @@ const initialState = {
 };
 
 const boltGroupSlice = createSlice({
-  name: "beams",
+  name: "boltgroup",
   initialState,
   reducers: {
     setLoad(state, action) {
