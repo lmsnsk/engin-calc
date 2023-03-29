@@ -93,6 +93,26 @@ const Spring = () => {
     }
   }
 
+  function resultText() {
+    if (springType === 1) {
+      return [
+        "Длина максимально сжатой пружины",
+        "Длина несжатой пружины",
+        "Длина предварительно сжатой пружины",
+        "Длина рабоче-сжатой пружины",
+      ];
+    } else if (springType === 2) {
+      return [
+        "Длина максимально растянутой пружины",
+        "Длина нерастянутой пружины",
+        "Длина предварительно растянутой пружины",
+        "Длина рабоче-растянутой пружины",
+      ];
+    } else {
+      return "";
+    }
+  }
+
   const results1 = [{ id: 1, name: "Сила пружины при максимальной деформации", value: F3, unit: kgs }];
 
   const results = [
@@ -103,10 +123,10 @@ const Spring = () => {
     { id: 5, name: "Деформация предварительного натяжения", value: s1, unit: mm },
     { id: 6, name: "Рабочая деформация", value: s2, unit: mm },
     { id: 7, name: "Максимальная деформация", value: s3, unit: mm },
-    { id: 8, name: "Длина максимально сжатой пружины", value: l3, unit: mm },
-    { id: 9, name: "Длина несжатой пружины", value: l0, unit: mm },
-    { id: 10, name: "Длина предварительно сжатой пружины", value: l1, unit: mm },
-    { id: 11, name: "Длина рабоче-сжатой пружины", value: l2, unit: mm },
+    { id: 8, name: resultText()[0], value: l3, unit: mm },
+    { id: 9, name: resultText()[1], value: l0, unit: mm },
+    { id: 10, name: resultText()[2], value: l1, unit: mm },
+    { id: 11, name: resultText()[3], value: l2, unit: mm },
     { id: 12, name: "Шаг пружины", value: t, unit: mm },
     { id: 13, name: "Длина развертки", value: l, unit: mm },
     { id: 13, name: "Масса пружины", value: m, unit: kg },
