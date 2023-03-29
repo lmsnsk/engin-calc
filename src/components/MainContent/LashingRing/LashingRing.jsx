@@ -2,7 +2,7 @@ import stl from "./../MainContent.module.css";
 import image from "./../../../assets/images/ear.png";
 import Results from "../../Results/Results";
 import CalculationButton from "../../Input/CalculationButton";
-import InputForm from "../../Input/InputForm";
+import input from "./../../hoc/input";
 import SelectInput from "../../Input/SelectInput";
 import {
   calculateLashingRing,
@@ -75,28 +75,15 @@ const LashingRing = () => {
 
   const dispatch = useDispatch();
 
-  const clearEarResults = () => {
+  const inputCalculation = () => dispatch(calculateLashingRing());
+
+  function clearEarResults() {
     dispatch(setSigmaInEar(""));
     dispatch(setEarFS(""));
     dispatch(setSigmaSm(""));
     dispatch(setEarFSSM(""));
     dispatch(setTauInBolt(""));
     dispatch(setBoltFS(""));
-  };
-
-  const inputCalculation = () => dispatch(calculateLashingRing());
-
-  function input(name, value, unit, setValue, calculateFn, disableInput) {
-    return (
-      <InputForm
-        name={name}
-        value={value}
-        unit={unit}
-        setValue={setValue}
-        calculateFn={calculateFn}
-        disableInput={disableInput}
-      />
-    );
   }
 
   return (

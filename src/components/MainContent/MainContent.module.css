@@ -37,7 +37,7 @@ h1 {
 .initialData {
   position: relative;
   display: grid;
-  grid-template-columns: 5fr 4fr;
+  grid-template-columns: 5fr 3fr;
   padding: 3px 2px 10px 2px;
 }
 
@@ -118,4 +118,9 @@ h1 {
 
 .buttonSelect:hover {
   scale: 1.1;
+}
+
+.spring {
+  margin: 0 auto 20px auto;
+  text-align: center;
 }

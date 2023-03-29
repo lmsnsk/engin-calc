@@ -6,6 +6,7 @@ import Sidebar from "./components/Header/Sidebar";
 import Beams from "./components/MainContent/Beams/Beams";
 import BoltGroup from "./components/MainContent/BoltGroup/BoltGroup";
 import LashingRing from "./components/MainContent/LashingRing/LashingRing";
+import Spring from "./components/MainContent/Spring/Spring";
 import WorkInProgress from "./components/MainContent/WorkInProgress/WorkInProgress";
 import StartPage from "./components/StartPage/StartPage";
 
@@ -27,6 +28,7 @@ function App() {
               <Route path="/LashingRing" element={<LashingRing />} />
               <Route path="/Beams" element={<Beams />} />
               <Route path="/BoltGroup" element={<BoltGroup />} />
+              <Route path="/Spring" element={<Spring />} />
               <Route path="/WorkInProgress" element={<WorkInProgress />} />
             </Routes>
           </div>
