@@ -1,4 +1,4 @@
-import stl from "./../MainContent.module.css";
+import stl from "./LashingRing.module.css";
 import image from "./../../../assets/images/ear.png";
 import Results from "../../Results/Results";
 import CalculationButton from "../../Input/CalculationButton";
@@ -115,7 +115,7 @@ const LashingRing = () => {
           sideEffect={clearEarResults}
         />
       </div>
-      <CalculationButton calculateFn={inputCalculation} text="Рассчитать" />
+      <CalculationButton calculateFn={calculateLashingRing} text="Рассчитать" />
       <Results results={results} />
     </div>
   );

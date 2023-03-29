@@ -95,11 +95,11 @@ const Beams = () => {
   const calculateCurrentBeamType = () => {
     switch (beamTypeShowed) {
       case 1:
-        return dispatch(calculateTwoSupBeam());
+        return calculateTwoSupBeam();
       case 2:
-        return dispatch(calculateConsoleBeam());
+        return calculateConsoleBeam();
       case 3:
-        return dispatch(calculateBuckling());
+        return calculateBuckling();
       default:
         return null;
     }

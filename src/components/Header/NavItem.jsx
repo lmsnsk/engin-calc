@@ -4,7 +4,9 @@ import stl from "./Header.module.css";
 const NavItem = (props) => {
   return (
     <div className={stl.dropItem}>
-      <img className={stl.icon} src={props.img} alt="" />
+      <div className={stl.iconBox}>
+        <img className={stl.icon} src={props.img} alt="" />
+      </div>
       <NavLink
         to={props.link}
         className={(navData) => (navData.isActive ? stl.active : null)}

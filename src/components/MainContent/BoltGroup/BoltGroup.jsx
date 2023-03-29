@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   addRow,
   calculateBoltGroup,
@@ -13,7 +13,7 @@ import {
 import CalculationButton from "../../Input/CalculationButton";
 import InputForm from "../../Input/InputForm";
 import MatrixInput from "../../Input/MatrixInput";
-import stl from "./../MainContent.module.css";
+import stl from "./BoltGroup.module.css";
 import boltsImg from "./../../../assets/images/bolt-group.png";
 import Results from "../../Results/Results";
 
@@ -34,9 +34,6 @@ const BoltGroup = () => {
       кг/мм<sup>2</sup>
     </>
   );
-
-  const dispatch = useDispatch();
-  const inputCalculation = () => dispatch(calculateBoltGroup());
 
   function input(name, value, unit, setValue, calculateFn, disableInput) {
     return (
@@ -69,7 +66,9 @@ const BoltGroup = () => {
   return (
     <div className={stl.wrapper}>
       <h1>Расчет группы болтов</h1>
-      <img className={stl.imageBolt} src={boltsImg} alt="bolts" />
+      <div className={stl.imageBox}>
+        <img className={stl.imageBolt} src={boltsImg} alt="bolts" />
+      </div>
       <div className={stl.initialData}>
         {input("Нагрузка", load, "кгс", setLoad, function () {})}
         {input("Расстояние от центра кручения до нагрузки", centerDistance, "мм", setCenterDistance, function () {})}
@@ -86,7 +85,7 @@ const BoltGroup = () => {
         addRow={addRow}
         removeRow={removeRow}
       />
-      <CalculationButton calculateFn={inputCalculation} text="Рассчитать" />
+      <CalculationButton calculateFn={calculateBoltGroup} text="Рассчитать" />
       <div className={stl.matrixResult}>
         <div>
           <h2>Запас по срезу болтов</h2>

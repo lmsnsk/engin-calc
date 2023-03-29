@@ -161,7 +161,7 @@ const Spring = () => {
         {input("Жесткость одного витка", c1, nutonmm, setc1, inputCalculation)}
         {input("Максимальная деформация одного витка", s3w, mm, sets3w, inputCalculation)}
       </div>
-      <CalculationButton calculateFn={inputCalculation} text="Рассчитать" />
+      <CalculationButton calculateFn={calculateSpring} text="Рассчитать" />
       <Results results={results} />
     </div>
   );
