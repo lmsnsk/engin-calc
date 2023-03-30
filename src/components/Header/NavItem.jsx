@@ -3,18 +3,18 @@ import stl from "./Header.module.css";
 
 const NavItem = (props) => {
   return (
-    <div className={stl.dropItem}>
-      <div className={stl.iconBox}>
-        <img className={stl.icon} src={props.img} alt="" />
-      </div>
-      <NavLink
-        to={props.link}
-        className={(navData) => (navData.isActive ? stl.active : null)}
-        onClick={() => props.effect(false)}
-      >
+    <NavLink
+      to={props.link}
+      className={(navData) => (navData.isActive ? stl.active : null)}
+      onClick={() => props.effect(false)}
+    >
+      <div className={stl.dropItem}>
+        <div className={stl.iconBox}>
+          <img className={stl.icon} src={props.img} alt="" />
+        </div>
         {props.text}
-      </NavLink>
-    </div>
+      </div>
+    </NavLink>
   );
 };
 
