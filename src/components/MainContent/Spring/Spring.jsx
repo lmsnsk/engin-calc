@@ -129,7 +129,7 @@ const Spring = () => {
     { id: 11, name: resultText()[3], value: l2, unit: mm },
     { id: 12, name: "Шаг пружины", value: t, unit: mm },
     { id: 13, name: "Длина развертки", value: l, unit: mm },
-    { id: 13, name: "Масса пружины", value: m, unit: kg },
+    { id: 14, name: "Масса пружины", value: m, unit: kg },
   ];
 
   return (

@@ -12,9 +12,21 @@ const SelectHandMadeInput = (props) => {
 
   let [isVisible, setVisibility] = useState(false);
 
-  const onCurrentButtonClick = () => {
+  function onCurrentButtonClick() {
     setVisibility(!isVisible);
-  };
+    scrolling();
+  }
+
+  function getCoordinate() {
+    let coordinates = document.querySelector("#selectInput").getBoundingClientRect();
+    return coordinates.top;
+  }
+
+  function scrolling() {
+    if (getCoordinate() + 150 > document.documentElement.clientHeight && isVisible === false) {
+      setTimeout(() => window.scrollBy({ top: 150, left: 0, behavior: "smooth" }), 100);
+    }
+  }
 
   const dispatch = useDispatch();
   const setValueContainer = (el) => dispatch(props.setValue(el));
@@ -33,7 +45,7 @@ const SelectHandMadeInput = (props) => {
   return (
     <div>
       <div>
-        <button onClick={onCurrentButtonClick} className={stl.currentField}>
+        <button onClick={onCurrentButtonClick} className={stl.currentField} id="selectInput">
           <span>{props.text}</span>
           <span className={stl.bar}>
             <span className={isVisible ? stl.changeBar1 : stl.bar1}></span>

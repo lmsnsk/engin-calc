@@ -4,6 +4,10 @@ import Links from "./Links";
 
 const Header = (props) => {
   const [isVisible, setVisibility] = useState(false);
+  function link(e) {
+    setVisibility(e);
+    setTimeout(() => window.scroll({ top: 0, left: 0, behavior: "smooth" }), 100);
+  }
   return (
     <div className={stl.wrapper}>
       <div className={isVisible ? stl.change : null}>
@@ -16,7 +20,7 @@ const Header = (props) => {
         ) : null}
         {isVisible ? (
           <div className={stl.dropContainer}>
-            <Links effect={setVisibility} />
+            <Links effect={link} />
           </div>
         ) : null}
       </div>
