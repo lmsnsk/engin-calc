@@ -1,0 +1,85 @@
+.wrapper {
+  padding-left: 5px;
+  max-width: 800px;
+  margin: 5px auto;
+  transition: 0.3s;
+}
+
+h1 {
+  margin-bottom: 20px;
+  font-size: clamp(22px, 4vmin, 30px);
+}
+
+h2 {
+  font-size: clamp(18px, 3.7vmin, 27px);
+}
+
+.initialData {
+  position: relative;
+  display: grid;
+  grid-template-columns: 5fr 3fr;
+  padding: 3px 2px 10px 2px;
+}
+
+.buttonSelectBox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 10px 0 20px 0;
+}
+
+.buttonSelect {
+  width: 170px;
+  height: 110px;
+  background-color: rgb(211, 211, 211);
+  transition: 0.2s;
+  border: 1px rgb(168, 168, 168) solid;
+  border-radius: 5px;
+  margin: 5px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.buttonSelectActive {
+  background-color: rgb(171, 176, 204);
+}
+
+.buttonSelect {
+  text-align: center;
+  font-weight: 500;
+}
+
+.buttonSelect img {
+  width: 100%;
+}
+
+.buttonSelect:hover {
+  scale: 1.1;
+}
+
+.spring {
+  margin: 0 auto 20px auto;
+  text-align: center;
+}
+
+.getF3 {
+  background-color: rgb(103, 112, 87);
+  border: none;
+  padding: 3px 10px;
+  color: rgb(255, 255, 255);
+  font-size: clamp(16px, 2.5vmin, 18px);
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.15s;
+  display: block;
+  margin: 5px auto;
+  border-radius: 4px;
+}
+
+.getF3:hover {
+  background-color: rgb(74, 82, 62);
+}
+
+.getF3:active {
+  scale: 0.95;
+}

@@ -11,7 +11,7 @@ const ConsoleBeam = (props) => {
       <h2>{props.title}</h2>
       <br />
       <div className={stl.initialData}>
-        <InputForm name="Длина балки" value={length} unit="мм" setValue={setLength} calculateFn={props.calculateFn} />
+        <InputForm name="Длина балки" value={length} unit="мм" setValue={setLength} />
       </div>
     </>
   );

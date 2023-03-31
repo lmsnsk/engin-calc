@@ -75,8 +75,6 @@ const LashingRing = () => {
 
   const dispatch = useDispatch();
 
-  const inputCalculation = () => dispatch(calculateLashingRing());
-
   function clearEarResults() {
     dispatch(setSigmaInEar(""));
     dispatch(setEarFS(""));
@@ -93,17 +91,17 @@ const LashingRing = () => {
         <img className={stl.image} src={image} alt="Проушина" />
       </div>
       <div className={stl.initialData}>
-        {input("Толщина ушка", earThick, mm, setEarThick, inputCalculation)}
-        {input("Радиус ушка", earRadius, mm, setEarRadius, inputCalculation)}
-        {input("Диаметр отверстия", holeDiam, mm, setHoleDiam, inputCalculation)}
+        {input("Толщина ушка", earThick, mm, setEarThick)}
+        {input("Радиус ушка", earRadius, mm, setEarRadius)}
+        {input("Диаметр отверстия", holeDiam, mm, setHoleDiam)}
         <div className={stl.label}>Отверстие и радиус ушка соосны</div>
         <CheckBox check={toogler} setCheck={setToogler} />
-        {input("Поперечная перемычка", toogler ? jumperCustom : jumper, mm, setJumper, inputCalculation, toogler)}
-        {input("Диаметр болта", boltDiam, mm, setBoltDiam, inputCalculation)}
-        {input("Нагрузка", load, kgs, setLoad, inputCalculation)}
-        {input("Предел прочности ушка", matEarLimit, kgsmm2, setEMatLimit, inputCalculation)}
-        {input("Предел прочности болта", matBoltLimit, kgsmm2, setBMatLimit, inputCalculation)}
-        {input("Кол-во плоскостей среза", planeCount, sht, setPlaneCount, inputCalculation)}
+        {input("Поперечная перемычка", toogler ? jumperCustom : jumper, mm, setJumper, toogler)}
+        {input("Диаметр болта", boltDiam, mm, setBoltDiam)}
+        {input("Нагрузка", load, kgs, setLoad)}
+        {input("Предел прочности ушка", matEarLimit, kgsmm2, setEMatLimit)}
+        {input("Предел прочности болта", matBoltLimit, kgsmm2, setBMatLimit)}
+        {input("Кол-во плоскостей среза", planeCount, sht, setPlaneCount)}
         <div className={stl.form}>Тип соединения</div>
         <SelectInput
           name="connactionType"

@@ -11,10 +11,11 @@ import {
   setc1,
   sets3w,
   setSpringType,
+  calculateF3,
 } from "../../../redux/springSlice";
 import CalculationButton from "../../Input/CalculationButton";
 import input from "../../hoc/input";
-import stl from "./../MainContent.module.css";
+import stl from "./Spring.module.css";
 import Results from "../../Results/Results";
 import springCompressionImg from "./../../../assets/images/spring-compression.svg";
 import springStretchingImg from "./../../../assets/images/spring-stretching.svg";
@@ -64,10 +65,6 @@ const Spring = () => {
 
   const dispatch = useDispatch();
 
-  function inputCalculation() {
-    dispatch(calculateSpring());
-  }
-
   function changeSpringType(type) {
     dispatch(setSpringType(type));
   }
@@ -75,12 +72,11 @@ const Spring = () => {
   function buttonSpringTypeSelect(img, param) {
     return (
       <div
-        className={`${stl.buttonSelect} ${stl.buttonBeamTypeSelect} ${
-          springType === param.value ? stl.buttonSelectActive : null
-        }`}
+        className={`${stl.buttonSelect} ${springType === param.value ? stl.buttonSelectActive : null}`}
         onClick={() => changeSpringType(param)}
       >
         <img src={img} alt="" />
+        <p>{param.name}</p>
       </div>
     );
   }
@@ -140,29 +136,40 @@ const Spring = () => {
         {buttonSpringTypeSelect(springCompressionImg, paramsSpringTypeArray[0])}
         {buttonSpringTypeSelect(springStretchingImg, paramsSpringTypeArray[1])}
       </div>
-      <div className={stl.spring}>
-        <h3>{typeText()}</h3>
-      </div>
-      <div className={stl.initialData}>
-        {input("Сила пружины при предварительной деформации", F1, kgs, setF1, inputCalculation)}
-        {input("Сила пружины при рабочей деформации", F2, kgs, setF2, inputCalculation)}
-        {input("Коэффициент максимальной деформации", delta, "", setDelta, inputCalculation)}
-      </div>
-      <Results results={results1} />
-      <div className={stl.initialData}>
-        {input("Рабочий ход пружины", h, mm, seth, inputCalculation)}
-        {input("Плотность материала пружины", ro, kgm3, setRo, inputCalculation)}
-      </div>
-      <h3>Берется из таблиц ГОСТ 13766...76-86 по силе при максимальной деформации</h3>
-      <br />
-      <div className={stl.initialData}>
-        {input("Внейшний диаметр пружины", D1, mm, setD1, inputCalculation)}
-        {input("Диаметр проволоки пружины", d, mm, setd, inputCalculation)}
-        {input("Жесткость одного витка", c1, nutonmm, setc1, inputCalculation)}
-        {input("Максимальная деформация одного витка", s3w, mm, sets3w, inputCalculation)}
-      </div>
-      <CalculationButton calculateFn={calculateSpring} text="Рассчитать" />
-      <Results results={results} />
+      {springType ? (
+        <>
+          <div className={stl.spring}>
+            <h3>{typeText()}</h3>
+          </div>
+          <div className={stl.initialData}>
+            {input("Сила пружины при предварительной деформации", F1, kgs, setF1)}
+            {input("Сила пружины при рабочей деформации", F2, kgs, setF2)}
+            {input("Коэффициент максимальной деформации", delta, "", setDelta)}
+          </div>
+          <div className={stl.initialData}>
+            {input("Рабочий ход пружины", h, mm, seth)}
+            {input("Плотность материала пружины", ro, kgm3, setRo)}
+          </div>
+          <button className={stl.getF3} onClick={() => dispatch(calculateF3())}>
+            Получить силу пружины при максимальной деформации
+          </button>
+          <Results results={results1} />
+          {F3 ? (
+            <>
+              <h3>Берется из таблиц ГОСТ 13766...76-86 по силе при максимальной деформации</h3>
+              <br />
+              <div className={stl.initialData}>
+                {input("Внейшний диаметр пружины", D1, mm, setD1)}
+                {input("Диаметр проволоки пружины", d, mm, setd)}
+                {input("Жесткость одного витка", c1, nutonmm, setc1)}
+                {input("Максимальная деформация одного витка", s3w, mm, sets3w)}
+              </div>
+              <CalculationButton calculateFn={calculateSpring} text="Рассчитать" />
+              <Results results={results} />
+            </>
+          ) : null}
+        </>
+      ) : null}
     </div>
   );
 };

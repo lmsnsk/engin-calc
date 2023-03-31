@@ -70,11 +70,11 @@ const BoltGroup = () => {
         <img className={stl.imageBolt} src={boltsImg} alt="bolts" />
       </div>
       <div className={stl.initialData}>
-        {input("Нагрузка", load, "кгс", setLoad, function () {})}
-        {input("Расстояние от центра кручения до нагрузки", centerDistance, "мм", setCenterDistance, function () {})}
+        {input("Нагрузка", load, "кгс", setLoad)}
+        {input("Расстояние от центра кручения до нагрузки", centerDistance, "мм", setCenterDistance)}
         {input("Толщина пластины", thickness, "мм", setThickness, function () {})}
-        {input("Предел прочности смятия пластины", matLimit, kgmm2, setMatLimit, function () {})}
-        {input("Предел прочности на срез болта", sliceLimit, kgmm2, setSliceLimit, function () {})}
+        {input("Предел прочности смятия пластины", matLimit, kgmm2, setMatLimit)}
+        {input("Предел прочности на срез болта", sliceLimit, kgmm2, setSliceLimit)}
       </div>
       <h2>Матрица болтов</h2>
       <MatrixInput

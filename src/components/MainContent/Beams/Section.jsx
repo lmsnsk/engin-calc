@@ -3,7 +3,7 @@ import { setDiam, setHeigth, setThickShelf, setThickWall, setWidth } from "../..
 import HideContainer from "../../Input/HideContainer";
 import InputForm from "../../Input/InputForm";
 import Results from "../../Results/Results";
-import stl from "./../MainContent.module.css";
+import stl from "./Beams.module.css";
 
 let [mm, mm2, mm3, mm4] = [
   "мм",
@@ -30,23 +30,11 @@ const Section = (props) => {
   const momIn = useSelector((state) => state.beams.momIn);
 
   const sectionParamsArr = [
-    <InputForm name="Диаметр" value={diam} unit={mm} setValue={setDiam} calculateFn={props.calculateFn} />,
-    <InputForm name="Ширина" value={width} unit={mm} setValue={setWidth} calculateFn={props.calculateFn} />,
-    <InputForm name="Высота" value={heigth} unit={mm} setValue={setHeigth} calculateFn={props.calculateFn} />,
-    <InputForm
-      name="Толщина стенки"
-      value={thickWall}
-      unit={mm}
-      setValue={setThickWall}
-      calculateFn={props.calculateFn}
-    />,
-    <InputForm
-      name="Толщина полок"
-      value={thickShelf}
-      unit={mm}
-      setValue={setThickShelf}
-      calculateFn={props.calculateFn}
-    />,
+    <InputForm name="Диаметр" value={diam} unit={mm} setValue={setDiam} />,
+    <InputForm name="Ширина" value={width} unit={mm} setValue={setWidth} />,
+    <InputForm name="Высота" value={heigth} unit={mm} setValue={setHeigth} />,
+    <InputForm name="Толщина стенки" value={thickWall} unit={mm} setValue={setThickWall} />,
+    <InputForm name="Толщина полок" value={thickShelf} unit={mm} setValue={setThickShelf} />,
   ];
 
   const currentSection = () => {
@@ -135,6 +123,9 @@ const Section = (props) => {
       <h2>{props.titles[sectionShowed - 1]}</h2>
       <br />
       <div className={stl.initialData}>{currentSection()}</div>
+      <button className={stl.getSectionParams} onClick={props.calculate}>
+        Получить параметры сечения
+      </button>
       <HideContainer data={<Results results={results} />} title={title} />
     </>
   );

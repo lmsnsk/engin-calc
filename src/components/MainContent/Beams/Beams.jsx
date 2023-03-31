@@ -25,7 +25,7 @@ import {
   setMoment,
 } from "../../../redux/beamsSlice";
 import InputForm from "../../Input/InputForm";
-import stl from "./../MainContent.module.css";
+import stl from "./Beams.module.css";
 import TwoSupBeam from "./TwoSupBeam";
 import CalculationButton from "../../Input/CalculationButton";
 import Section from "./Section";
@@ -90,9 +90,7 @@ const Beams = () => {
 
   const dispatch = useDispatch();
 
-  const calculateCurrentSection = () => dispatch(calculateSection());
-
-  const calculateCurrentBeamType = () => {
+  function calculateBeamType() {
     switch (beamTypeShowed) {
       case 1:
         return calculateTwoSupBeam();
@@ -103,7 +101,7 @@ const Beams = () => {
       default:
         return null;
     }
-  };
+  }
 
   function calculateSection() {
     switch (sectionShowed) {
@@ -128,20 +126,18 @@ const Beams = () => {
     }
   }
 
+  function calculateSectionCont() {
+    return dispatch(calculateSection());
+  }
+
   const currentBeamType = () => {
     switch (beamTypeShowed) {
       case 1:
-        return <TwoSupBeam title={paramsBeamTypeArray[0].name} calculateFn={calculateCurrentBeamType} />;
+        return <TwoSupBeam title={paramsBeamTypeArray[0].name} />;
       case 2:
-        return <ConsoleBeam title={paramsBeamTypeArray[1].name} calculateFn={calculateCurrentBeamType} />;
+        return <ConsoleBeam title={paramsBeamTypeArray[1].name} />;
       case 3:
-        return (
-          <Buckling
-            title={paramsBeamTypeArray[2].name}
-            calculateFn={calculateCurrentBeamType}
-            clearBeamParams={clearBeamParams}
-          />
-        );
+        return <Buckling title={paramsBeamTypeArray[2].name} clearBeamParams={clearBeamParams} />;
       default:
         return null;
     }
@@ -217,23 +213,11 @@ const Beams = () => {
         {buttonSectionSelect(tBeamImg, paramsSectionsArray[6])}
         {buttonSectionSelect(cornerImg, paramsSectionsArray[7])}
       </div>
-      <Section titles={titles} calculateFn={calculateCurrentSection} />
+      <Section titles={titles} calculate={calculateSectionCont} />
       <div className={stl.initialData}>
-        <InputForm name="Нагрузка" value={load} unit={kgs} setValue={setLoad} calculateFn={calculateCurrentBeamType} />
-        <InputForm
-          name="Предел прочности материала"
-          value={matLimit}
-          unit={kgsmm2}
-          setValue={setMatLimit}
-          calculateFn={calculateCurrentBeamType}
-        />
-        <InputForm
-          name="Модуль упругости метериала"
-          value={elMod}
-          unit={gpa}
-          setValue={setElMod}
-          calculateFn={calculateCurrentBeamType}
-        />
+        <InputForm name="Нагрузка" value={load} unit={kgs} setValue={setLoad} />
+        <InputForm name="Предел прочности материала" value={matLimit} unit={kgsmm2} setValue={setMatLimit} />
+        <InputForm name="Модуль упругости метериала" value={elMod} unit={gpa} setValue={setElMod} />
       </div>
       <h2>Выберите тип балки</h2>
       <div className={stl.buttonSelectBox}>
@@ -242,7 +226,7 @@ const Beams = () => {
         {buttonBeamTypeSelect(bucklingImg, paramsBeamTypeArray[2])}
       </div>
       {currentBeamType()}
-      <CalculationButton calculateFn={calculateCurrentBeamType} text="Рассчитать" />
+      <CalculationButton calculateFn={calculateBeamType} text="Рассчитать" />
       <Results results={results} />
     </div>
   );

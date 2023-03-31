@@ -3,16 +3,16 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   springType: "",
   F0: "",
-  F1: 1,
-  F2: 3.1,
+  F1: "",
+  F2: "",
   F3: "",
-  h: 18,
+  h: "",
   delta: 0.15,
-  ro: 7800,
-  D1: 12,
-  d: 1.2,
-  c1: 16.13,
-  s3w: 2.2,
+  ro: "",
+  D1: "",
+  d: "",
+  c1: "",
+  s3w: "",
   c: "",
   D: "",
   n: "",
@@ -32,6 +32,10 @@ const springSlice = createSlice({
   name: "spring",
   initialState,
   reducers: {
+    calculateF3(state) {
+      let F3 = (state.F2 * 9.8066) / (1 - state.delta);
+      state.F3 = F3;
+    },
     calculateSpring(state) {
       const g = 9.8066;
       let F3 = (state.F2 * g) / (1 - state.delta);
@@ -63,10 +67,10 @@ const springSlice = createSlice({
       let l = 3.2 * D * n;
       let m = l * Math.PI * (state.d ** 2 / 4) * (state.ro / 1000000000);
       state.F0 = F0;
-      state.F3 = F3;
       state.c = c;
       state.D = D;
       state.n = n;
+      state.F3 = F3;
       state.s1 = s1;
       state.s2 = s2;
       state.s3 = s3;
@@ -111,7 +115,19 @@ const springSlice = createSlice({
   },
 });
 
-export const { setSpringType, calculateSpring, setF1, setF2, seth, setDelta, setRo, setD1, setd, setc1, sets3w } =
-  springSlice.actions;
+export const {
+  setSpringType,
+  calculateF3,
+  calculateSpring,
+  setF1,
+  setF2,
+  seth,
+  setDelta,
+  setRo,
+  setD1,
+  setd,
+  setc1,
+  sets3w,
+} = springSlice.actions;
 
 export default springSlice.reducer;
