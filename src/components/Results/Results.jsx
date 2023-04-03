@@ -46,7 +46,7 @@ const Results = (props) => {
     );
   });
   return (
-    <div className={stl.result}>
+    <div className={stl.result} id="result">
       <div className={stl.resultData}>{resultElement}</div>
     </div>
   );

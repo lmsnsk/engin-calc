@@ -88,11 +88,11 @@ const BoltGroup = () => {
       <CalculationButton calculateFn={calculateBoltGroup} text="Рассчитать" />
       <div className={stl.matrixResult}>
         <div>
-          <h2>Запас по срезу болтов</h2>
+          {resultsSlice[0]?.value ? <h2>Запас по срезу</h2> : null}
           <Results results={resultsSlice} />
         </div>
         <div>
-          <h2>Запас по смятию</h2>
+          {resultsCollapse[0]?.value ? <h2>Запас по смятию</h2> : null}
           <Results results={resultsCollapse} />
         </div>
       </div>

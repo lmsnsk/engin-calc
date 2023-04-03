@@ -123,9 +123,6 @@ const Section = (props) => {
       <h2>{props.titles[sectionShowed - 1]}</h2>
       <br />
       <div className={stl.initialData}>{currentSection()}</div>
-      <button className={stl.getSectionParams} onClick={props.calculate}>
-        Получить параметры сечения
-      </button>
       <HideContainer data={<Results results={results} />} title={title} />
     </>
   );

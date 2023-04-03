@@ -43,6 +43,7 @@ import cornerImg from "./../../../assets/images/corner.svg";
 import consoleImg from "./../../../assets/images/console.svg";
 import twoBSupImg from "./../../../assets/images/2bsup.svg";
 import bucklingImg from "./../../../assets/images/buckling.svg";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
 let [mm, kgs, kgsm, kgsmm2, gpa] = [
   "мм",
@@ -90,6 +91,11 @@ const Beams = () => {
 
   const dispatch = useDispatch();
 
+  const calculate = createAsyncThunk("beams/calculate", async (_, { dispatch }) => {
+    dispatch(calculateSection());
+    dispatch(calculateBeamType());
+  });
+
   function calculateBeamType() {
     switch (beamTypeShowed) {
       case 1:
@@ -124,10 +130,6 @@ const Beams = () => {
       default:
         return null;
     }
-  }
-
-  function calculateSectionCont() {
-    return dispatch(calculateSection());
   }
 
   const currentBeamType = () => {
@@ -213,7 +215,7 @@ const Beams = () => {
         {buttonSectionSelect(tBeamImg, paramsSectionsArray[6])}
         {buttonSectionSelect(cornerImg, paramsSectionsArray[7])}
       </div>
-      <Section titles={titles} calculate={calculateSectionCont} />
+      <Section titles={titles} />
       <div className={stl.initialData}>
         <InputForm name="Нагрузка" value={load} unit={kgs} setValue={setLoad} />
         <InputForm name="Предел прочности материала" value={matLimit} unit={kgsmm2} setValue={setMatLimit} />
@@ -226,7 +228,7 @@ const Beams = () => {
         {buttonBeamTypeSelect(bucklingImg, paramsBeamTypeArray[2])}
       </div>
       {currentBeamType()}
-      <CalculationButton calculateFn={calculateBeamType} text="Рассчитать" />
+      <CalculationButton calculateFn={calculate} text="Рассчитать" />
       <Results results={results} />
     </div>
   );

@@ -12,8 +12,8 @@ h1 {
 .imageBox {
   padding: 10px;
   margin: 10px auto;
-  width: clamp(200px, 70vmin, 500px);
-  height: clamp(200px, 70vmin, 500px);
+  width: clamp(200px, 60vmin, 400px);
+  height: clamp(200px, 60vmin, 400px);
   border: 1px rgb(230, 230, 230) solid;
   border-radius: 10px;
   overflow: hidden;

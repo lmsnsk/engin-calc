@@ -9,7 +9,8 @@ const CalculationButton = (props) => {
   };
 
   function scrollToResults() {
-    window.scroll({ top: 2000, left: 0, behavior: "smooth" });
+    let element = document.querySelector("#result");
+    element.scrollIntoView({ behavior: "smooth", block: "center", inline: "start" });
   }
 
   return (
