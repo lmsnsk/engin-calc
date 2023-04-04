@@ -146,8 +146,8 @@ const Beams = () => {
   };
 
   let results = [
-    { id: 1, name: "Реакция в точке А", value: aReaction, unit: kgs },
-    { id: 2, name: "Реакция в точке Б", value: bReaction, unit: kgs },
+    { id: 1, name: "Реакция в опоре 1", value: aReaction, unit: kgs },
+    { id: 2, name: "Реакция в опоре 2", value: bReaction, unit: kgs },
     { id: 3, name: "Максимальный изгибающий момент", value: moment, unit: kgsm },
     { id: 4, name: "Максимальные напряжения", value: strain, unit: kgsmm2 },
     { id: 5, name: "Максимальный прогиб", value: deflection, unit: mm },

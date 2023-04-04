@@ -39,7 +39,7 @@ const lashingSlice = createSlice({
       let tauInBolt =
         (4 * state.earParams.load) / (Math.PI * state.earParams.boltDiam ** 2 * state.earParams.planeCount);
       let earFS = state.earParams.matEarLimit / sigmaInEar;
-      let earFSSM = (state.earParams.matEarLimit * state.conFactor) / sigmaInEar;
+      let earFSSM = (state.earParams.matEarLimit * state.conFactor) / sigmaSm;
       let boltFS = (state.earParams.matBoltLimit * 0.63) / tauInBolt;
       state.sigmaInEar = sigmaInEar;
       state.sigmaSm = sigmaSm;

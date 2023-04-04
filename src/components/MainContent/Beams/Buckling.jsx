@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { setLength, setlengthFactor } from "../../../redux/beamsSlice";
 import InputForm from "../../Input/InputForm";
-import stl from "./../MainContent.module.css";
+import stl from "./Beams.module.css";
 import buckling1Img from "./../../../assets/images/buckling1.svg";
 import buckling2Img from "./../../../assets/images/buckling2.svg";
 import buckling3Img from "./../../../assets/images/buckling3.svg";

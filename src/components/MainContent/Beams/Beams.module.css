@@ -26,9 +26,8 @@ h1 {
 .buttonSelect {
   width: 85px;
   height: 85px;
-  background-color: rgb(211, 211, 211);
+  background-color: transparent;
   transition: 0.2s;
-  border: 1px rgb(168, 168, 168) solid;
   border-radius: 5px;
   margin: 5px;
   cursor: pointer;
@@ -56,6 +55,7 @@ h1 {
 
 .buttonSelect:hover {
   scale: 1.1;
+  background-color: rgb(211, 211, 211);
 }
 
 .getSectionParams {
