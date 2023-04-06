@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setLength, setlengthFactor } from "../../../redux/beamsSlice";
+import { setLength, setLengthUnit, setlengthFactor } from "../../../redux/beamsSlice";
 import InputForm from "../../Input/InputForm";
 import stl from "./Beams.module.css";
 import buckling1Img from "./../../../assets/images/buckling1.svg";
@@ -10,8 +10,10 @@ import buckling5Img from "./../../../assets/images/buckling5.svg";
 import buckling6Img from "./../../../assets/images/buckling6.svg";
 import buckling7Img from "./../../../assets/images/buckling7.svg";
 import buckling8Img from "./../../../assets/images/buckling8.svg";
+import Units from "../../Units/Units";
+import { meterUnitArray } from "../../Units/unitArrays";
 
-const Buckling = (props) => {
+const Buckling = ({ clearBeamParams, title, calculateFn }) => {
   const length = useSelector((state) => state.beams.length);
   const lengthFactor = useSelector((state) => state.beams.lengthFactor);
 
@@ -20,7 +22,7 @@ const Buckling = (props) => {
   const dispatch = useDispatch();
 
   function onLengthFactorButtonClick(type) {
-    props.clearBeamParams();
+    clearBeamParams();
     return dispatch(setlengthFactor(type));
   }
 
@@ -39,10 +41,23 @@ const Buckling = (props) => {
 
   return (
     <>
-      <h2>{props.title}</h2>
+      <h2>{title}</h2>
       <br />
       <div className={stl.initialData}>
-        <InputForm name="Длина балки" value={length} unit="мм" setValue={setLength} />
+        <InputForm
+          name="Длина балки"
+          value={length.value}
+          unit={
+            <Units
+              unitArr={meterUnitArray}
+              changeUnit={setLengthUnit}
+              currentUnit={length.unit}
+              calculateFn={calculateFn}
+            />
+          }
+          setValue={setLength}
+          calculateFn={calculateFn}
+        />
       </div>
       <h2>Тип закрепления балки</h2>
       <div className={stl.buttonSelectBox}>

@@ -1,11 +1,13 @@
 import stl from "./Units.module.css";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
+import { unitText } from "./unitArrays";
 
 const Units = ({ unitArr, changeUnit, currentUnit, calculateFn }) => {
   const [isVisible, setVisible] = useState(false);
   const dispatch = useDispatch();
   const unitRef = useRef(null);
+  const unitScrollRef = useRef(null);
 
   const unitHandler = (unit) => {
     dispatch(changeUnit(unit));
@@ -13,18 +15,21 @@ const Units = ({ unitArr, changeUnit, currentUnit, calculateFn }) => {
     dispatch(calculateFn());
   };
 
-  const unitText = (text) => {
-    switch (text) {
-      case "кгс/мм2":
-        return (
-          <>
-            кг/мм<sup>2</sup>
-          </>
-        );
-      default:
-        return text;
+  function onCurrentButtonClick() {
+    setVisible(!isVisible);
+    scrolling();
+  }
+
+  function getCoordinate() {
+    let coordinates = unitScrollRef.current.getBoundingClientRect();
+    return coordinates.top;
+  }
+
+  function scrolling() {
+    if (getCoordinate() + 150 > document.documentElement.clientHeight && isVisible === false) {
+      setTimeout(() => window.scrollBy({ top: 150, left: 0, behavior: "smooth" }), 100);
     }
-  };
+  }
 
   useEffect(() => {
     if (!isVisible) return;
@@ -38,7 +43,7 @@ const Units = ({ unitArr, changeUnit, currentUnit, calculateFn }) => {
 
   return (
     <div className={stl.wrapper} ref={unitRef}>
-      <div className={stl.mainUnit} onClick={() => setVisible(!isVisible)}>
+      <div className={stl.mainUnit} onClick={onCurrentButtonClick} ref={unitScrollRef}>
         {unitText(currentUnit.text)}
       </div>
       {isVisible ? (
@@ -49,9 +54,7 @@ const Units = ({ unitArr, changeUnit, currentUnit, calculateFn }) => {
             </div>
           ))}
         </div>
-      ) : (
-        <div className={`${stl.dropBox} ${stl.dropBoxHidden}`}></div>
-      )}
+      ) : null}
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+import { kgsmm2UnitArray, kgsUnitArray, gpaUnitArray, kgsmUnitArray, meterUnitArray } from "./../../Units/unitArrays";
 import {
   setBeamTypeShowed,
   setElMod,
@@ -23,6 +24,15 @@ import {
   setAReaction,
   setBReaction,
   setMoment,
+  setLoadUnit,
+  setMatLimitUnit,
+  setElModUnit,
+  setAReactionUnit,
+  setBReactionUnit,
+  setMomentUnit,
+  setStrainUnit,
+  setDeflectionUnit,
+  setCriticalLoadUnit,
 } from "../../../redux/beamsSlice";
 import InputForm from "../../Input/InputForm";
 import stl from "./Beams.module.css";
@@ -44,16 +54,7 @@ import consoleImg from "./../../../assets/images/console.svg";
 import twoBSupImg from "./../../../assets/images/2bsup.svg";
 import bucklingImg from "./../../../assets/images/buckling.svg";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-
-let [mm, kgs, kgsm, kgsmm2, gpa] = [
-  "мм",
-  "кгс",
-  "кгс м",
-  <>
-    кг/мм<sup>2</sup>
-  </>,
-  "ГПа",
-];
+import Units from "../../Units/Units";
 
 let titles = [
   "Пруток круглый",
@@ -135,24 +136,88 @@ const Beams = () => {
   const currentBeamType = () => {
     switch (beamTypeShowed) {
       case 1:
-        return <TwoSupBeam title={paramsBeamTypeArray[0].name} />;
+        return <TwoSupBeam title={paramsBeamTypeArray[0].name} calculateFn={calculate} />;
       case 2:
-        return <ConsoleBeam title={paramsBeamTypeArray[1].name} />;
+        return <ConsoleBeam title={paramsBeamTypeArray[1].name} calculateFn={calculate} />;
       case 3:
-        return <Buckling title={paramsBeamTypeArray[2].name} clearBeamParams={clearBeamParams} />;
+        return (
+          <Buckling title={paramsBeamTypeArray[2].name} calculateFn={calculate} clearBeamParams={clearBeamParams} />
+        );
       default:
         return null;
     }
   };
 
   let results = [
-    { id: 1, name: "Реакция в опоре 1", value: aReaction, unit: kgs },
-    { id: 2, name: "Реакция в опоре 2", value: bReaction, unit: kgs },
-    { id: 3, name: "Максимальный изгибающий момент", value: moment, unit: kgsm },
-    { id: 4, name: "Максимальные напряжения", value: strain, unit: kgsmm2 },
-    { id: 5, name: "Максимальный прогиб", value: deflection, unit: mm },
+    {
+      id: 1,
+      name: "Реакция в опоре 1",
+      value: aReaction.value,
+      unit: (
+        <Units
+          unitArr={kgsUnitArray}
+          changeUnit={setAReactionUnit}
+          currentUnit={aReaction.unit}
+          calculateFn={calculate}
+        />
+      ),
+    },
+    {
+      id: 2,
+      name: "Реакция в опоре 2",
+      value: bReaction.value,
+      unit: (
+        <Units
+          unitArr={kgsUnitArray}
+          changeUnit={setBReactionUnit}
+          currentUnit={bReaction.unit}
+          calculateFn={calculate}
+        />
+      ),
+    },
+    {
+      id: 3,
+      name: "Максимальный изгибающий момент",
+      value: moment.value,
+      unit: (
+        <Units unitArr={kgsmUnitArray} changeUnit={setMomentUnit} currentUnit={moment.unit} calculateFn={calculate} />
+      ),
+    },
+    {
+      id: 4,
+      name: "Максимальные напряжения",
+      value: strain.value,
+      unit: (
+        <Units unitArr={kgsmm2UnitArray} changeUnit={setStrainUnit} currentUnit={strain.unit} calculateFn={calculate} />
+      ),
+    },
+    {
+      id: 5,
+      name: "Максимальный прогиб",
+      value: deflection.value,
+      unit: (
+        <Units
+          unitArr={meterUnitArray}
+          changeUnit={setDeflectionUnit}
+          currentUnit={deflection.unit}
+          calculateFn={calculate}
+        />
+      ),
+    },
     { id: 6, name: "Запас прочности", value: safeFactor, unit: "", color: true },
-    { id: 7, name: "Критическая нагрузка", value: criticalLoad, unit: kgs },
+    {
+      id: 7,
+      name: "Критическая нагрузка",
+      value: criticalLoad.value,
+      unit: (
+        <Units
+          unitArr={kgsUnitArray}
+          changeUnit={setCriticalLoadUnit}
+          currentUnit={criticalLoad.unit}
+          calculateFn={calculate}
+        />
+      ),
+    },
     { id: 8, name: "Запас по устойчивости", value: criticalFactor, unit: "", color: true },
   ];
 
@@ -215,11 +280,40 @@ const Beams = () => {
         {buttonSectionSelect(tBeamImg, paramsSectionsArray[6])}
         {buttonSectionSelect(cornerImg, paramsSectionsArray[7])}
       </div>
-      <Section titles={titles} />
+      <Section titles={titles} calculateFn={calculate} />
       <div className={stl.initialData}>
-        <InputForm name="Нагрузка" value={load} unit={kgs} setValue={setLoad} />
-        <InputForm name="Предел прочности материала" value={matLimit} unit={kgsmm2} setValue={setMatLimit} />
-        <InputForm name="Модуль упругости метериала" value={elMod} unit={gpa} setValue={setElMod} />
+        <InputForm
+          name="Нагрузка"
+          value={load.value}
+          unit={
+            <Units unitArr={kgsUnitArray} changeUnit={setLoadUnit} currentUnit={load.unit} calculateFn={calculate} />
+          }
+          setValue={setLoad}
+          calculateFn={calculate}
+        />
+        <InputForm
+          name="Предел прочности материала"
+          value={matLimit.value}
+          unit={
+            <Units
+              unitArr={kgsmm2UnitArray}
+              changeUnit={setMatLimitUnit}
+              currentUnit={matLimit.unit}
+              calculateFn={calculate}
+            />
+          }
+          setValue={setMatLimit}
+          calculateFn={calculate}
+        />
+        <InputForm
+          name="Модуль упругости метериала"
+          value={elMod.value}
+          unit={
+            <Units unitArr={gpaUnitArray} changeUnit={setElModUnit} currentUnit={elMod.unit} calculateFn={calculate} />
+          }
+          setValue={setElMod}
+          calculateFn={calculate}
+        />
       </div>
       <h2>Выберите тип балки</h2>
       <div className={stl.buttonSelectBox}>

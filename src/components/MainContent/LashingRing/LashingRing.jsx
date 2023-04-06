@@ -3,6 +3,7 @@ import image from "./../../../assets/images/ear.png";
 import Results from "../../Results/Results";
 import CalculationButton from "../../Input/CalculationButton";
 import SelectInput from "../../Input/SelectInput";
+import { kgsmm2UnitArray, meterUnitArray, kgsUnitArray } from "./../../Units/unitArrays";
 import {
   calculateLashingRing,
   setBMatLimit,
@@ -33,22 +34,6 @@ import CheckBox from "../../Input/CheckBox";
 import Units from "../../Units/Units";
 import InputForm from "../../Input/InputForm";
 
-const meterUnitArray = [
-  { text: "мм", factor: 1 },
-  { text: "см", factor: 10 },
-  { text: "м", factor: 1000 },
-];
-const kgsUnitArray = [
-  { text: "кгс", factor: 1 },
-  { text: "тс", factor: 1000 },
-  { text: "Н", factor: 1 / 9.81 },
-  { text: "кН", factor: 1000 / 9.81 },
-];
-const kgsmm2UnitArray = [
-  { text: "кгс/мм2", factor: 1 },
-  { text: "Мпа", factor: 1 / 9.81 },
-];
-
 const paramsArray = [
   { value: 0.2, name: "Подвижное" },
   { value: 0.65, name: "Малоподвижное" },
@@ -78,6 +63,9 @@ const LashingRing = () => {
   const jumperCustom = useSelector((state) => state.lashingRing.jumperCustom);
 
   const dispatch = useDispatch();
+  function calculate() {
+    dispatch(calculateLashingRing());
+  }
 
   const results = [
     {
@@ -174,13 +162,7 @@ const LashingRing = () => {
           calculateFn={calculateLashingRing}
         />
         <div className={stl.label}>Отверстие и радиус ушка соосны</div>
-        <CheckBox
-          check={toogler}
-          setCheck={setToogler}
-          sideEffect={function () {
-            dispatch(calculateLashingRing());
-          }}
-        />
+        <CheckBox check={toogler} setCheck={setToogler} sideEffect={calculate} />
         <InputForm
           name="Поперечная перемычка"
           value={toogler ? jumperCustom : jumper.value}
@@ -267,12 +249,10 @@ const LashingRing = () => {
           value={conFactor}
           text={conFactorText}
           setValue={setConFactor}
-          sideEffect={function () {
-            dispatch(calculateLashingRing());
-          }}
+          sideEffect={calculate}
         />
       </div>
-      <CalculationButton calculateFn={calculateLashingRing} text="Рассчитать" />
+      <CalculationButton calculateFn={calculate} text="Рассчитать" />
       <Results results={results} />
     </div>
   );
