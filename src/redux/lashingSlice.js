@@ -2,22 +2,22 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   earParams: {
-    earThick: "",
-    earRadius: "",
-    holeDiam: "",
-    jumper: "",
-    boltDiam: "",
-    load: "",
-    matEarLimit: "",
-    matBoltLimit: "",
+    earThick: { value: "", unit: { factor: 1, text: "мм" } },
+    earRadius: { value: "", unit: { factor: 1, text: "мм" } },
+    holeDiam: { value: "", unit: { factor: 1, text: "мм" } },
+    jumper: { value: "", unit: { factor: 1, text: "мм" } },
+    boltDiam: { value: "", unit: { factor: 1, text: "мм" } },
+    load: { value: "", unit: { factor: 1, text: "кгс" } },
+    matEarLimit: { value: "", unit: { factor: 1, text: "кгc/мм2" } },
+    matBoltLimit: { value: "", unit: { factor: 1, text: "кгc/мм2" } },
     planeCount: "",
   },
   jumperCustom: "",
-  conFactorText: "",
+  conFactorText: "Неподвижное разъемное",
   conFactor: 1,
-  sigmaInEar: "",
-  sigmaSm: "",
-  tauInBolt: "",
+  sigmaInEar: { value: "", unit: { factor: 1, text: "кгc/мм2" } },
+  sigmaSm: { value: "", unit: { factor: 1, text: "кгc/мм2" } },
+  tauInBolt: { value: "", unit: { factor: 1, text: "кгc/мм2" } },
   earFS: "",
   earFSSM: "",
   boltFS: "",
@@ -29,48 +29,118 @@ const lashingSlice = createSlice({
   initialState,
   reducers: {
     calculateLashingRing(state) {
-      let jumperCustom = (state.earParams.earRadius * 2 - state.earParams.holeDiam) / 2;
-      state.jumperCustom = jumperCustom;
-      let factor = 0.565 + 0.46 - (0.1 * (state.earParams.earRadius * 2)) / state.earParams.holeDiam;
-      let sigmaInEar =
-        state.earParams.load /
-        (2 * (state.toogler ? state.jumperCustom : state.earParams.jumper) * state.earParams.earThick * factor);
-      let sigmaSm = state.earParams.load / (state.earParams.earThick * state.earParams.holeDiam);
-      let tauInBolt =
-        (4 * state.earParams.load) / (Math.PI * state.earParams.boltDiam ** 2 * state.earParams.planeCount);
-      let earFS = state.earParams.matEarLimit / sigmaInEar;
-      let earFSSM = (state.earParams.matEarLimit * state.conFactor) / sigmaSm;
-      let boltFS = (state.earParams.matBoltLimit * 0.63) / tauInBolt;
-      state.sigmaInEar = sigmaInEar;
-      state.sigmaSm = sigmaSm;
-      state.tauInBolt = tauInBolt;
-      state.earFS = earFS;
-      state.earFSSM = earFSSM;
-      state.boltFS = boltFS;
+      if (
+        state.earParams.earThick.value &&
+        state.earParams.earRadius.value &&
+        state.earParams.holeDiam.value &&
+        state.earParams.boltDiam.value &&
+        state.earParams.load.value &&
+        state.earParams.matEarLimit.value &&
+        state.earParams.matBoltLimit.value &&
+        state.earParams.planeCount
+      ) {
+        let jumperCustom =
+          (state.earParams.earRadius.value * state.earParams.earRadius.unit.factor * 2 -
+            state.earParams.holeDiam.value * state.earParams.holeDiam.unit.factor) /
+          2 /
+          state.earParams.jumper.unit.factor;
+        state.jumperCustom = jumperCustom;
+        let factor =
+          0.565 +
+          0.46 -
+          ((0.1 * (state.earParams.earRadius.value * state.earParams.earRadius.unit.factor * 2)) /
+            state.earParams.holeDiam.value) *
+            state.earParams.holeDiam.unit.factor;
+        let sigmaInEar =
+          (state.earParams.load.value * state.earParams.load.unit.factor) /
+          (2 *
+            (state.toogler
+              ? jumperCustom * state.earParams.jumper.unit.factor
+              : state.earParams.jumper.value * state.earParams.jumper.unit.factor) *
+            state.earParams.earThick.value *
+            state.earParams.earThick.unit.factor *
+            factor) /
+          state.sigmaInEar.unit.factor;
+        let sigmaSm =
+          (state.earParams.load.value * state.earParams.load.unit.factor) /
+          (state.earParams.earThick.value *
+            state.earParams.earThick.unit.factor *
+            state.earParams.holeDiam.value *
+            state.earParams.holeDiam.unit.factor) /
+          state.sigmaSm.unit.factor;
+        let tauInBolt =
+          (4 * state.earParams.load.value * state.earParams.load.unit.factor) /
+          (Math.PI *
+            (state.earParams.boltDiam.value * state.earParams.boltDiam.unit.factor) ** 2 *
+            state.earParams.planeCount) /
+          state.tauInBolt.unit.factor;
+        let earFS =
+          (state.earParams.matEarLimit.value * state.earParams.matEarLimit.unit.factor) /
+          sigmaInEar /
+          state.sigmaInEar.unit.factor;
+        let earFSSM =
+          (state.earParams.matEarLimit.value * state.earParams.matEarLimit.unit.factor * state.conFactor) /
+          sigmaSm /
+          state.sigmaSm.unit.factor;
+        let boltFS =
+          (state.earParams.matBoltLimit.value * state.earParams.matBoltLimit.unit.factor * 0.63) /
+          tauInBolt /
+          state.tauInBolt.unit.factor;
+        state.sigmaInEar.value = sigmaInEar;
+        state.sigmaSm.value = sigmaSm;
+        state.tauInBolt.value = tauInBolt;
+        state.earFS = earFS;
+        state.earFSSM = earFSSM;
+        state.boltFS = boltFS;
+      }
     },
     setEarThick(state, action) {
-      state.earParams.earThick = action.payload;
+      state.earParams.earThick.value = action.payload;
+    },
+    setEarThickUnit(state, action) {
+      state.earParams.earThick.unit = action.payload;
     },
     setEarRadius(state, action) {
-      state.earParams.earRadius = action.payload;
+      state.earParams.earRadius.value = action.payload;
+    },
+    setEarRadiusUnit(state, action) {
+      state.earParams.earRadius.unit = action.payload;
     },
     setHoleDiam(state, action) {
-      state.earParams.holeDiam = action.payload;
+      state.earParams.holeDiam.value = action.payload;
+    },
+    setHoleDiamUnit(state, action) {
+      state.earParams.holeDiam.unit = action.payload;
     },
     setJumper(state, action) {
-      state.earParams.jumper = action.payload;
+      state.earParams.jumper.value = action.payload;
+    },
+    setJumperUnit(state, action) {
+      state.earParams.jumper.unit = action.payload;
     },
     setBoltDiam(state, action) {
-      state.earParams.boltDiam = action.payload;
+      state.earParams.boltDiam.value = action.payload;
+    },
+    setBoltDiamUnit(state, action) {
+      state.earParams.boltDiam.unit = action.payload;
     },
     setLoad(state, action) {
-      state.earParams.load = action.payload;
+      state.earParams.load.value = action.payload;
+    },
+    setLoadUnit(state, action) {
+      state.earParams.load.unit = action.payload;
     },
     setEMatLimit(state, action) {
-      state.earParams.matEarLimit = action.payload;
+      state.earParams.matEarLimit.value = action.payload;
+    },
+    setEMatLimitUnit(state, action) {
+      state.earParams.matEarLimit.unit = action.payload;
     },
     setBMatLimit(state, action) {
-      state.earParams.matBoltLimit = action.payload;
+      state.earParams.matBoltLimit.value = action.payload;
+    },
+    setBMatLimitUnit(state, action) {
+      state.earParams.matBoltLimit.unit = action.payload;
     },
     setPlaneCount(state, action) {
       state.earParams.planeCount = action.payload;
@@ -79,23 +149,14 @@ const lashingSlice = createSlice({
       state.conFactor = action.payload.value;
       state.conFactorText = action.payload.name;
     },
-    setSigmaInEar(state, action) {
-      state.sigmaInEar = action.payload;
+    setSigmaInEarUnit(state, action) {
+      state.sigmaInEar.unit = action.payload;
     },
-    setSigmaSm(state, action) {
-      state.sigmaSm = action.payload;
+    setSigmaSmUnit(state, action) {
+      state.sigmaSm.unit = action.payload;
     },
-    setTauInBolt(state, action) {
-      state.tauInBolt = action.payload;
-    },
-    setEarFS(state, action) {
-      state.earFS = action.payload;
-    },
-    setEarFSSM(state, action) {
-      state.earFSSM = action.payload;
-    },
-    setBoltFS(state, action) {
-      state.boltFS = action.payload;
+    setTauInBoltUnit(state, action) {
+      state.tauInBolt.unit = action.payload;
     },
     setToogler(state, action) {
       state.toogler = action.payload;
@@ -115,13 +176,18 @@ export const {
   setBMatLimit,
   setPlaneCount,
   setConFactor,
-  setSigmaInEar,
-  setSigmaSm,
-  setTauInBolt,
-  setEarFS,
-  setEarFSSM,
-  setBoltFS,
   setToogler,
+  setEarThickUnit,
+  setEarRadiusUnit,
+  setHoleDiamUnit,
+  setJumperUnit,
+  setBoltDiamUnit,
+  setLoadUnit,
+  setEMatLimitUnit,
+  setBMatLimitUnit,
+  setSigmaInEarUnit,
+  setSigmaSmUnit,
+  setTauInBoltUnit,
 } = lashingSlice.actions;
 
 export default lashingSlice.reducer;

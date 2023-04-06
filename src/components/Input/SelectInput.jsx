@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import stl from "./SelectInput.module.css";
 
-const SelectHandMadeInput = (props) => {
+const SelectInput = (props) => {
   // let paramsArray = [
   //   { value: 0.2, name: "Подвижное" },
   //   { value: 0.65, name: "Малоподвижное" },
@@ -10,10 +10,21 @@ const SelectHandMadeInput = (props) => {
   //   { value: 1.3, name: "Неподвижное неразъемное" },
   // ]; Пример входного массива параметров
 
-  let [isVisible, setVisibility] = useState(false);
+  const [isVisible, setVisible] = useState(false);
+  const selectRef = useRef(null);
+
+  useEffect(() => {
+    if (!isVisible) return;
+    const handleClick = (e) => {
+      if (!selectRef.current) return;
+      if (!selectRef.current.contains(e.target)) setVisible(false);
+    };
+    document.addEventListener("click", handleClick);
+    return () => document.removeEventListener("click", handleClick);
+  }, [isVisible, setVisible]);
 
   function onCurrentButtonClick() {
-    setVisibility(!isVisible);
+    setVisible(!isVisible);
     scrolling();
   }
 
@@ -31,7 +42,7 @@ const SelectHandMadeInput = (props) => {
   const dispatch = useDispatch();
   const setValueContainer = (el) => dispatch(props.setValue(el));
   const onButtonClick = (el) => {
-    setVisibility(false);
+    setVisible(false);
     setValueContainer(el);
     props.sideEffect();
   };
@@ -43,7 +54,7 @@ const SelectHandMadeInput = (props) => {
   ));
 
   return (
-    <div>
+    <div ref={selectRef}>
       <div>
         <button onClick={onCurrentButtonClick} className={stl.currentField} id="selectInput">
           <span>{props.text}</span>
@@ -58,4 +69,4 @@ const SelectHandMadeInput = (props) => {
   );
 };
 
-export default SelectHandMadeInput;
+export default SelectInput;

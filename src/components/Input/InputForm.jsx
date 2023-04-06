@@ -1,9 +1,10 @@
 import { useDispatch } from "react-redux";
 import stl from "./InputForm.module.css";
 
-const InputForm = (props) => {
+const InputForm = ({ calculateFn, disableInput, name, setValue, value, unit }) => {
   const dispatch = useDispatch();
-  const setValueContainer = (el) => dispatch(props.setValue(el));
+  const onBlurFn = () => dispatch(calculateFn());
+  const setValueContainer = (el) => dispatch(setValue(el));
 
   const onValueChange = (e) => {
     setValueContainer(+e.target.value);
@@ -16,21 +17,21 @@ const InputForm = (props) => {
 
   return (
     <>
-      <div className={!props.disableInput ? stl.form : stl.formDisable}>{props.name}</div>
+      <div className={!disableInput ? stl.form : stl.formDisable}>{name}</div>
       <form className={stl.form} onKeyDown={pressKey}>
-        {!props.disableInput ? (
-          <input className={stl.input} required type="number" onChange={onValueChange} value={props.value} />
-        ) : (
+        {!disableInput ? (
           <input
-            className={stl.inputDisable}
+            className={stl.input}
             required
             type="number"
             onChange={onValueChange}
-            value={props.value}
-            disabled
+            value={value}
+            onBlur={onBlurFn}
           />
+        ) : (
+          <input className={stl.inputDisable} required type="number" onChange={onValueChange} value={value} disabled />
         )}
-        <p>{props.unit}</p>
+        {unit}
       </form>
     </>
   );

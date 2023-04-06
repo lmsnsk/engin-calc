@@ -7,7 +7,7 @@ import {
   setCenterDistance,
   setLoad,
   setMatLimit,
-  setSliceLimit,
+  setBoltLimit,
   setThickness,
 } from "../../../redux/boltGroupSlice";
 import CalculationButton from "../../Input/CalculationButton";
@@ -20,7 +20,7 @@ import Results from "../../Results/Results";
 const BoltGroup = () => {
   const load = useSelector((state) => state.boltGroup.load);
   const matLimit = useSelector((state) => state.boltGroup.matLimit);
-  const sliceLimit = useSelector((state) => state.boltGroup.sliceLimit);
+  const boltLimit = useSelector((state) => state.boltGroup.boltLimit);
   const centerDistance = useSelector((state) => state.boltGroup.centerDistance);
   const thickness = useSelector((state) => state.boltGroup.thickness);
   const boltParams = useSelector((state) => state.boltGroup.boltParams);
@@ -73,8 +73,8 @@ const BoltGroup = () => {
         {input("Нагрузка", load, "кгс", setLoad)}
         {input("Расстояние от центра кручения до нагрузки", centerDistance, "мм", setCenterDistance)}
         {input("Толщина пластины", thickness, "мм", setThickness, function () {})}
-        {input("Предел прочности смятия пластины", matLimit, kgmm2, setMatLimit)}
-        {input("Предел прочности на срез болта", sliceLimit, kgmm2, setSliceLimit)}
+        {input("Предел прочности материала пластины", matLimit, kgmm2, setMatLimit)}
+        {input("Предел прочности материала болта", boltLimit, kgmm2, setBoltLimit)}
       </div>
       <h2>Матрица болтов</h2>
       <MatrixInput

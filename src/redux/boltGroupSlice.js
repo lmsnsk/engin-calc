@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   load: "",
   matLimit: "",
-  sliceLimit: "",
+  boltLimit: "",
   centerDistance: "",
   thickness: "",
   boltParams: [["", "", ""]],
@@ -27,8 +27,8 @@ const boltGroupSlice = createSlice({
     setMatLimit(state, action) {
       state.matLimit = action.payload;
     },
-    setSliceLimit(state, action) {
-      state.sliceLimit = action.payload;
+    setBoltLimit(state, action) {
+      state.boltLimit = action.payload;
     },
     setCenterDistance(state, action) {
       state.centerDistance = action.payload;
@@ -72,7 +72,7 @@ const boltGroupSlice = createSlice({
               2 * pLoad[i] * pMoment[i] * Math.cos(Math.PI - (state.boltParams[i][2] * Math.PI) / 180)
           )
         );
-        sliseMargin.push((area[i] * state.sliceLimit) / pResult[i]);
+        sliseMargin.push((area[i] * state.boltLimit * 0.63) / pResult[i]);
         collapseMargin.push((state.boltParams[i][0] * state.matLimit * state.thickness) / pResult[i]);
       }
       state.moment = moment;
@@ -94,7 +94,7 @@ export const {
   setThickness,
   setCenterDistance,
   setBoltParams,
-  setSliceLimit,
+  setBoltLimit,
   calculateBoltGroup,
 } = boltGroupSlice.actions;
 

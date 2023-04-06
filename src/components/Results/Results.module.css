@@ -2,8 +2,7 @@
   color: rgb(43, 43, 43);
   height: 35px;
   line-height: 1;
-  --fs: clamp(14px, 3vmin, 20px);
-  font-size: var(--fs);
+  font-size: clamp(14px, 3vmin, 20px);
 }
 
 .formGreen {
@@ -22,7 +21,7 @@
   color: rgb(189, 0, 0);
 }
 
-.form p {
+.unitText {
   margin-left: 5px;
   display: inline-block;
   font-family: "Times New Roman", Times, serif;

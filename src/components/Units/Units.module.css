@@ -1,0 +1,45 @@
+.wrapper {
+  display: inline-block;
+  font-family: "Times New Roman", Times, serif;
+  font-style: italic;
+  font-size: clamp(12px, 2.3vmin, 18px);
+}
+
+.mainUnit {
+  margin-left: 5px;
+  display: inline-block;
+  color: blue;
+  cursor: pointer;
+  user-select: none;
+}
+
+.dropBox {
+  margin-top: 5px;
+  position: absolute;
+  border: 1px gray solid;
+  border-radius: 5px;
+  /* translate: 15px 0px; */
+  display: block;
+  background-color: rgba(209, 209, 209, 0.4);
+  transition: 0.3s;
+  backdrop-filter: blur(8px);
+}
+
+.dropBoxHidden {
+  border: none;
+  translate: 0 0;
+}
+
+.dropItem {
+  color: rgb(0, 0, 0);
+  cursor: default;
+  padding: 5px 10px;
+  margin: 3px 3px;
+  text-align: center;
+  user-select: none;
+}
+
+.dropItem:hover {
+  border-radius: 5px;
+  background-color: #ffffff;
+}

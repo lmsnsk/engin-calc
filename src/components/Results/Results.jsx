@@ -20,7 +20,7 @@ const Results = (props) => {
     }
     return (
       <>
-        {a} <p>{el.unit}</p>
+        {a} <div className={stl.unitText}>{el.unit}</div>
       </>
     );
   }
