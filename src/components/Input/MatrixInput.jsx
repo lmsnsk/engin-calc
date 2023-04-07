@@ -1,39 +1,32 @@
 import { useDispatch } from "react-redux";
 import stl from "./MatrixInput.module.css";
 
-const MatrixInput = (props) => {
-  let rowsQuantity = props.value.length;
-  let boltsParams = props.value.map((el) => [...el]);
-  const titles = props.titles.map((el) => <p key={el}>{el}</p>);
+const MatrixInput = ({ value, titles, setValue, addRow, removeRow, units }) => {
+  let rowsQuantity = value.length;
+  const boltsParams = value.map((el) => [...el]);
+  const titlesArray = titles.map((el) => el);
   const dispatch = useDispatch();
 
   function onChange(index1, index2) {
     return function (e) {
       boltsParams[index1][index2] = +e.target.value;
-      dispatch(props.setValue(boltsParams));
+      dispatch(setValue(boltsParams));
     };
   }
 
-  const addRowField = () => dispatch(props.addRow(props.value[rowsQuantity - 1]));
-  const removeRowField = () => dispatch(props.removeRow());
+  const addRowField = () => dispatch(addRow(value[rowsQuantity - 1]));
+  const removeRowField = () => dispatch(removeRow());
 
   function initMatrixRow(i) {
-    return props.titles.map((el, index) => (
+    return titlesArray.map((el, index) => (
       <div key={el}>
-        <input
-          required
-          type="number"
-          className={stl.input}
-          value={props.value[i][index]}
-          onChange={onChange(i, index)}
-          onBlur={() => {}}
-        />
-        <p className={stl.unit}>{props.units[index]}</p>
+        <input required type="number" className={stl.input} value={value[i][index]} onChange={onChange(i, index)} />
+        <div className={stl.unit}>{units[index]}</div>
       </div>
     ));
   }
 
-  const matrixData = props.value.map((el, index) => (
+  const matrixData = value.map((el, index) => (
     <div className={stl.titles} key={index}>
       {initMatrixRow(index)}
     </div>
@@ -56,7 +49,11 @@ const MatrixInput = (props) => {
   return (
     <>
       {addRemoveButtons}
-      <div className={stl.titles}>{titles}</div>
+      <div className={stl.titles}>
+        <div>{titlesArray[0]}</div>
+        <div>{titlesArray[1]}</div>
+        <div>{titlesArray[2]}</div>
+      </div>
       {matrixData}
       {addRemoveButtons}
     </>

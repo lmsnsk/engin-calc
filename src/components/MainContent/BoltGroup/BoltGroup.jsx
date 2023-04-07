@@ -1,4 +1,5 @@
-import { useSelector } from "react-redux";
+import stl from "./BoltGroup.module.css";
+import { useDispatch, useSelector } from "react-redux";
 import {
   addRow,
   calculateBoltGroup,
@@ -9,13 +10,19 @@ import {
   setMatLimit,
   setBoltLimit,
   setThickness,
+  setLoadUnit,
+  setCenterDistanceUnit,
+  setThicknessUnit,
+  setMatLimitUnit,
+  setBoltLimitUnit,
 } from "../../../redux/boltGroupSlice";
+import Units from "./../../Units/Units";
 import CalculationButton from "../../Input/CalculationButton";
 import InputForm from "../../Input/InputForm";
 import MatrixInput from "../../Input/MatrixInput";
-import stl from "./BoltGroup.module.css";
 import boltsImg from "./../../../assets/images/bolt-group.png";
 import Results from "../../Results/Results";
+import { kgsUnitArray, kgsmm2UnitArray, meterUnitArray } from "../../Units/unitArrays";
 
 const BoltGroup = () => {
   const load = useSelector((state) => state.boltGroup.load);
@@ -28,24 +35,12 @@ const BoltGroup = () => {
   const collapseMargin = useSelector((state) => state.boltGroup.collapseMargin);
 
   const titles = ["Диаметр", "Плечо", "Угол"];
-  const units = ["мм", "мм", "град"];
-  const kgmm2 = (
-    <>
-      кг/мм<sup>2</sup>
-    </>
-  );
+  const units = ["мм", "мм", <p>&deg;</p>];
 
-  function input(name, value, unit, setValue, calculateFn, disableInput) {
-    return (
-      <InputForm
-        name={name}
-        value={value}
-        unit={unit}
-        setValue={setValue}
-        calculateFn={calculateFn}
-        disableInput={disableInput}
-      />
-    );
+  const dispatch = useDispatch();
+
+  function calculate() {
+    dispatch(calculateBoltGroup());
   }
 
   const resultsSlice = sliseMargin.map((el, index) => ({
@@ -70,11 +65,76 @@ const BoltGroup = () => {
         <img className={stl.imageBolt} src={boltsImg} alt="bolts" />
       </div>
       <div className={stl.initialData}>
-        {input("Нагрузка", load, "кгс", setLoad)}
-        {input("Расстояние от центра кручения до нагрузки", centerDistance, "мм", setCenterDistance)}
-        {input("Толщина пластины", thickness, "мм", setThickness, function () {})}
-        {input("Предел прочности материала пластины", matLimit, kgmm2, setMatLimit)}
-        {input("Предел прочности материала болта", boltLimit, kgmm2, setBoltLimit)}
+        <InputForm
+          name="Нагрузка"
+          value={load.value}
+          setValue={setLoad}
+          calculateFn={calculateBoltGroup}
+          unit={
+            <Units
+              unitArr={kgsUnitArray}
+              changeUnit={setLoadUnit}
+              currentUnit={load.unit}
+              calculateFn={calculateBoltGroup}
+            />
+          }
+        />
+        <InputForm
+          name="Расстояние от центра кручения до нагрузки"
+          value={centerDistance.value}
+          setValue={setCenterDistance}
+          calculateFn={calculateBoltGroup}
+          unit={
+            <Units
+              unitArr={meterUnitArray}
+              changeUnit={setCenterDistanceUnit}
+              currentUnit={centerDistance.unit}
+              calculateFn={calculateBoltGroup}
+            />
+          }
+        />
+        <InputForm
+          name="Толщина пластины"
+          value={thickness.value}
+          setValue={setThickness}
+          calculateFn={calculateBoltGroup}
+          unit={
+            <Units
+              unitArr={meterUnitArray}
+              changeUnit={setThicknessUnit}
+              currentUnit={thickness.unit}
+              calculateFn={calculateBoltGroup}
+            />
+          }
+        />
+        <InputForm
+          name="Предел прочности материала пластины"
+          value={matLimit.value}
+          setValue={setMatLimit}
+          calculateFn={calculateBoltGroup}
+          unit={
+            <Units
+              unitArr={kgsmm2UnitArray}
+              changeUnit={setMatLimitUnit}
+              currentUnit={matLimit.unit}
+              calculateFn={calculateBoltGroup}
+            />
+          }
+        />
+        <InputForm
+          name="Предел прочности материала болта"
+          value={boltLimit.value}
+          setValue={setBoltLimit}
+          calculateFn={calculateBoltGroup}
+          unit={
+            <Units
+              unitArr={kgsmm2UnitArray}
+              changeUnit={setBoltLimitUnit}
+              currentUnit={boltLimit.unit}
+              calculateFn={calculateBoltGroup}
+            />
+          }
+        />
       </div>
       <h2>Матрица болтов</h2>
       <MatrixInput
@@ -85,7 +145,7 @@ const BoltGroup = () => {
         addRow={addRow}
         removeRow={removeRow}
       />
-      <CalculationButton calculateFn={calculateBoltGroup} text="Рассчитать" />
+      <CalculationButton calculateFn={calculate} text="Рассчитать" />
       <div className={stl.matrixResult}>
         <div>
           {resultsSlice[0]?.value ? <h2>Запас по срезу</h2> : null}

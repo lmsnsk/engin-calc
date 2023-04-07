@@ -1,7 +1,7 @@
 import React from "react";
 import stl from "./Results.module.css";
 
-const Results = (props) => {
+const Results = ({ results }) => {
   let a = 0;
   function value(el) {
     a = +el.value;
@@ -25,7 +25,7 @@ const Results = (props) => {
     );
   }
 
-  let resultElement = props.results.map((el) => {
+  let resultElement = results.map((el) => {
     return (
       <React.Fragment key={el.id}>
         {isFinite(el.value) && typeof el.value === "number" ? (

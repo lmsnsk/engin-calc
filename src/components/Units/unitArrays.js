@@ -26,9 +26,19 @@ export const kgsUnitArray = [
   { text: "кН", factor: 1000 / 9.81 },
 ];
 
+export const nmmUnitArray = [
+  { text: "Н/мм", factor: 1 },
+  { text: "кгс/мм", factor: 9.81 },
+];
+
 export const kgsmUnitArray = [
   { text: "кгсм", factor: 1 },
   { text: "Нм", factor: 1 / 9.81 },
+];
+
+export const kgUnitArray = [
+  { text: "кг", factor: 1 },
+  { text: "г", factor: 0.001 },
 ];
 
 export const kgsmm2UnitArray = [
@@ -39,6 +49,11 @@ export const kgsmm2UnitArray = [
 export const gpaUnitArray = [
   { text: "ГПа", factor: 1 },
   { text: "кгсмм2", factor: 1 / 98.1 },
+];
+
+export const kgm3UnitArray = [
+  { text: "кгм3", factor: 1 },
+  { text: "гсм3", factor: 1000 },
 ];
 
 export const unitText = (text) => {
@@ -83,6 +98,18 @@ export const unitText = (text) => {
       return (
         <>
           см<sup>4</sup>
+        </>
+      );
+    case "кгм3":
+      return (
+        <>
+          кг/м<sup>3</sup>
+        </>
+      );
+    case "гсм3":
+      return (
+        <>
+          г/см<sup>3</sup>
         </>
       );
     case "кгсм":
