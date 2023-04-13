@@ -1,8 +1,14 @@
+import { useDispatch } from "react-redux";
 import stl from "./CalculationButton.module.css";
 
-const CalculationButton = ({ text, calculateFn }) => {
+const CalculationButton = ({ text, calculateFn, needDispatch }) => {
+  const dispatch = useDispatch();
   const calculateFnContainer = () => {
-    calculateFn();
+    if (needDispatch) {
+      dispatch(calculateFn());
+    } else {
+      calculateFn();
+    }
     setTimeout(scrollToResults, 100);
   };
 

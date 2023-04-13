@@ -233,13 +233,17 @@ const Beams = () => {
   };
 
   function onSectionButtonClick(section) {
-    clearBeamParams();
-    return dispatch(setSectionShowed(section));
+    if (section !== sectionShowed) {
+      dispatch(setSectionShowed(section));
+      clearBeamParams();
+    }
   }
 
   function onBeamTypeButtonClick(type) {
-    clearBeamParams();
-    return dispatch(setBeamTypeShowed(type));
+    if (type !== beamTypeShowed) {
+      clearBeamParams();
+      dispatch(setBeamTypeShowed(type));
+    }
   }
 
   function buttonSectionSelect(img, param) {
@@ -322,7 +326,7 @@ const Beams = () => {
         {buttonBeamTypeSelect(bucklingImg, paramsBeamTypeArray[2])}
       </div>
       {currentBeamType()}
-      <CalculationButton calculateFn={calculate} text="Рассчитать" />
+      <CalculationButton calculateFn={calculate} text="Рассчитать" needDispatch={true} />
       <Results results={results} />
     </div>
   );

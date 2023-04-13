@@ -22,8 +22,10 @@ const Buckling = ({ clearBeamParams, title, calculateFn }) => {
   const dispatch = useDispatch();
 
   function onLengthFactorButtonClick(type) {
-    clearBeamParams();
-    return dispatch(setlengthFactor(type));
+    if (type !== lengthFactor) {
+      clearBeamParams();
+      return dispatch(setlengthFactor(type));
+    }
   }
 
   function lengthFactorSelect(img, param) {
