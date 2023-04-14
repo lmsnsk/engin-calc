@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  load: { value: 500, unit: { factor: 1, text: "кгс" } },
-  matLimit: { value: 60, unit: { factor: 1, text: "кгсмм2" } },
-  boltLimit: { value: 100, unit: { factor: 1, text: "кгсмм2" } },
-  centerDistance: { value: 150, unit: { factor: 1, text: "мм" } },
-  thickness: { value: 4, unit: { factor: 1, text: "мм" } },
-  boltParams: [[8, 40, 30]],
+  load: { value: "", unit: { factor: 1, text: "кгс" } },
+  matLimit: { value: "", unit: { factor: 1, text: "кгсмм2" } },
+  boltLimit: { value: "", unit: { factor: 1, text: "кгсмм2" } },
+  centerDistance: { value: "", unit: { factor: 1, text: "мм" } },
+  thickness: { value: "", unit: { factor: 1, text: "мм" } },
+  boltParams: [["", "", ""]],
   area: [],
   moment: "",
   pLoad: [],
