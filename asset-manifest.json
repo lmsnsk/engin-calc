@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/engin-calc/static/css/main.7b498fe3.css",
-    "main.js": "/engin-calc/static/js/main.0e25f1bd.js",
+    "main.js": "/engin-calc/static/js/main.f0c5dd45.js",
     "static/js/787.ef7a1acb.chunk.js": "/engin-calc/static/js/787.ef7a1acb.chunk.js",
     "static/media/bc1.jpg": "/engin-calc/static/media/bc1.8195ded032b4ba1a38c3.jpg",
     "static/media/spring3D.png": "/engin-calc/static/media/spring3D.0097bd56d3161c258407.png",
@@ -38,11 +38,11 @@
     "static/media/rect.svg": "/engin-calc/static/media/rect.d9c86395a00eefe778e39dd6ad263b74.svg",
     "static/media/circle.svg": "/engin-calc/static/media/circle.c752669d2131beef5a75ac4bdde0fce4.svg",
     "main.7b498fe3.css.map": "/engin-calc/static/css/main.7b498fe3.css.map",
-    "main.0e25f1bd.js.map": "/engin-calc/static/js/main.0e25f1bd.js.map",
+    "main.f0c5dd45.js.map": "/engin-calc/static/js/main.f0c5dd45.js.map",
     "787.ef7a1acb.chunk.js.map": "/engin-calc/static/js/787.ef7a1acb.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7b498fe3.css",
-    "static/js/main.0e25f1bd.js"
+    "static/js/main.f0c5dd45.js"
   ]
 }
