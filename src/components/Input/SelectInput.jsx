@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import stl from "./SelectInput.module.css";
+import { scrolling } from "../supportFunctions/scrolling";
 
 const SelectInput = (props) => {
   // let paramsArray = [
@@ -25,18 +26,7 @@ const SelectInput = (props) => {
 
   function onCurrentButtonClick() {
     setVisible(!isVisible);
-    scrolling();
-  }
-
-  function getCoordinate() {
-    let coordinates = document.querySelector("#selectInput").getBoundingClientRect();
-    return coordinates.top;
-  }
-
-  function scrolling() {
-    if (getCoordinate() + 150 > document.documentElement.clientHeight && isVisible === false) {
-      setTimeout(() => window.scrollBy({ top: 150, left: 0, behavior: "smooth" }), 100);
-    }
+    scrolling(isVisible);
   }
 
   const dispatch = useDispatch();

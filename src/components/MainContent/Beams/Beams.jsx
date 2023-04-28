@@ -1,47 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { kgsmm2UnitArray, kgsUnitArray, gpaUnitArray, kgsmUnitArray, meterUnitArray } from "./../../Units/unitArrays";
-import {
-  setBeamTypeShowed,
-  setElMod,
-  setLoad,
-  setMatLimit,
-  setSectionShowed,
-  calculateChannelHorizSection,
-  calculateChannelVertSection,
-  calculateCircleSection,
-  calculateCircleTubeSection,
-  calculateRectangleSection,
-  calculateRectangleTubeSection,
-  calculateTBeamAndCornerSection,
-  calculateTwoSupBeam,
-  calculateConsoleBeam,
-  calculateBuckling,
-  setStrain,
-  setDeflection,
-  setSafeFactor,
-  setCriticalLoad,
-  setCriticalFactor,
-  setAReaction,
-  setBReaction,
-  setMoment,
-  setLoadUnit,
-  setMatLimitUnit,
-  setElModUnit,
-  setAReactionUnit,
-  setBReactionUnit,
-  setMomentUnit,
-  setStrainUnit,
-  setDeflectionUnit,
-  setCriticalLoadUnit,
-} from "../../../redux/beamsSlice";
-import InputForm from "../../Input/InputForm";
+import { setBeamTypeShowed, setSectionShowed } from "../../../redux/beamsSlice";
 import stl from "./Beams.module.css";
-import TwoSupBeam from "./TwoSupBeam";
 import CalculationButton from "../../Input/CalculationButton";
 import Section from "./Section";
 import Results from "../../Results/Results";
-import ConsoleBeam from "./ConsoleBeam";
-import Buckling from "./Buckling";
 import circleImg from "./../../../assets/images/circle.svg";
 import circleTubeImg from "./../../../assets/images/circleTube.svg";
 import rectImg from "./../../../assets/images/rect.svg";
@@ -53,184 +15,20 @@ import cornerImg from "./../../../assets/images/corner.svg";
 import consoleImg from "./../../../assets/images/console.svg";
 import twoBSupImg from "./../../../assets/images/2bsup.svg";
 import bucklingImg from "./../../../assets/images/buckling.svg";
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import Units from "../../Units/Units";
+import BeamsInputBlock from "./BeamsInputBlock";
 
-let titles = [
-  "Пруток круглый",
-  "Труба круглая",
-  "Пруток прямоугольный",
-  "Труба прямоугольная",
-  "Швеллер стоячий",
-  "Швеллер лежачий",
-  "Тавр",
-  "Уголок",
-];
-
-let paramsSectionsArray = titles.map((el, index) => ({ value: index + 1, name: el }));
-
-let paramsBeamTypeArray = [
-  { value: 1, name: "Двухопорная балка" },
-  { value: 2, name: "Консольная балка" },
-  { value: 3, name: "Общая потеря устойчивости" },
-];
-
-const Beams = () => {
-  const sectionShowed = useSelector((state) => state.beams.sectionShowed);
-  const beamTypeShowed = useSelector((state) => state.beams.beamTypeShowed);
-  const load = useSelector((state) => state.beams.load);
-  const matLimit = useSelector((state) => state.beams.matLimit);
-  const elMod = useSelector((state) => state.beams.elMod);
-  const aReaction = useSelector((state) => state.beams.aReaction);
-  const bReaction = useSelector((state) => state.beams.bReaction);
-  const moment = useSelector((state) => state.beams.moment);
-  const strain = useSelector((state) => state.beams.strain);
-  const deflection = useSelector((state) => state.beams.deflection);
-  const safeFactor = useSelector((state) => state.beams.safeFactor);
-  const criticalLoad = useSelector((state) => state.beams.criticalLoad);
-  const criticalFactor = useSelector((state) => state.beams.criticalFactor);
+const Beams = ({
+  titles,
+  results,
+  paramsSectionsArray,
+  paramsBeamTypeArray,
+  calculate,
+  clearBeamParams,
+  currentBeamType,
+}) => {
+  const { sectionShowed, beamTypeShowed } = useSelector((state) => state.beams);
 
   const dispatch = useDispatch();
-
-  const calculate = createAsyncThunk("beams/calculate", async (_, { dispatch }) => {
-    dispatch(calculateSection());
-    dispatch(calculateBeamType());
-  });
-
-  function calculateBeamType() {
-    switch (beamTypeShowed) {
-      case 1:
-        return calculateTwoSupBeam();
-      case 2:
-        return calculateConsoleBeam();
-      case 3:
-        return calculateBuckling();
-      default:
-        return null;
-    }
-  }
-
-  function calculateSection() {
-    switch (sectionShowed) {
-      case 1:
-        return calculateCircleSection();
-      case 2:
-        return calculateCircleTubeSection();
-      case 3:
-        return calculateRectangleSection();
-      case 4:
-        return calculateRectangleTubeSection();
-      case 5:
-        return calculateChannelVertSection();
-      case 6:
-        return calculateChannelHorizSection();
-      case 7:
-        return calculateTBeamAndCornerSection();
-      case 8:
-        return calculateTBeamAndCornerSection();
-      default:
-        return null;
-    }
-  }
-
-  const currentBeamType = () => {
-    switch (beamTypeShowed) {
-      case 1:
-        return <TwoSupBeam title={paramsBeamTypeArray[0].name} calculateFn={calculate} />;
-      case 2:
-        return <ConsoleBeam title={paramsBeamTypeArray[1].name} calculateFn={calculate} />;
-      case 3:
-        return (
-          <Buckling title={paramsBeamTypeArray[2].name} calculateFn={calculate} clearBeamParams={clearBeamParams} />
-        );
-      default:
-        return null;
-    }
-  };
-
-  let results = [
-    {
-      id: 1,
-      name: "Реакция в опоре 1",
-      value: aReaction.value,
-      unit: (
-        <Units
-          unitArr={kgsUnitArray}
-          changeUnit={setAReactionUnit}
-          currentUnit={aReaction.unit}
-          calculateFn={calculate}
-        />
-      ),
-    },
-    {
-      id: 2,
-      name: "Реакция в опоре 2",
-      value: bReaction.value,
-      unit: (
-        <Units
-          unitArr={kgsUnitArray}
-          changeUnit={setBReactionUnit}
-          currentUnit={bReaction.unit}
-          calculateFn={calculate}
-        />
-      ),
-    },
-    {
-      id: 3,
-      name: "Максимальный изгибающий момент",
-      value: moment.value,
-      unit: (
-        <Units unitArr={kgsmUnitArray} changeUnit={setMomentUnit} currentUnit={moment.unit} calculateFn={calculate} />
-      ),
-    },
-    {
-      id: 4,
-      name: "Максимальные напряжения",
-      value: strain.value,
-      unit: (
-        <Units unitArr={kgsmm2UnitArray} changeUnit={setStrainUnit} currentUnit={strain.unit} calculateFn={calculate} />
-      ),
-    },
-    {
-      id: 5,
-      name: "Максимальный прогиб",
-      value: deflection.value,
-      unit: (
-        <Units
-          unitArr={meterUnitArray}
-          changeUnit={setDeflectionUnit}
-          currentUnit={deflection.unit}
-          calculateFn={calculate}
-        />
-      ),
-    },
-    { id: 6, name: "Запас прочности", value: safeFactor, unit: "", color: true },
-    {
-      id: 7,
-      name: "Критическая нагрузка",
-      value: criticalLoad.value,
-      unit: (
-        <Units
-          unitArr={kgsUnitArray}
-          changeUnit={setCriticalLoadUnit}
-          currentUnit={criticalLoad.unit}
-          calculateFn={calculate}
-        />
-      ),
-    },
-    { id: 8, name: "Запас по устойчивости", value: criticalFactor, unit: "", color: true },
-  ];
-
-  const clearBeamParams = () => {
-    dispatch(setAReaction(""));
-    dispatch(setBReaction(""));
-    dispatch(setMoment(""));
-    dispatch(setStrain(""));
-    dispatch(setDeflection(""));
-    dispatch(setSafeFactor(""));
-    dispatch(setCriticalLoad(""));
-    dispatch(setCriticalFactor(""));
-  };
 
   function onSectionButtonClick(section) {
     if (section !== sectionShowed) {
@@ -285,40 +83,7 @@ const Beams = () => {
         {buttonSectionSelect(cornerImg, paramsSectionsArray[7])}
       </div>
       <Section titles={titles} calculateFn={calculate} />
-      <div className={stl.initialData}>
-        <InputForm
-          name="Нагрузка"
-          value={load.value}
-          unit={
-            <Units unitArr={kgsUnitArray} changeUnit={setLoadUnit} currentUnit={load.unit} calculateFn={calculate} />
-          }
-          setValue={setLoad}
-          calculateFn={calculate}
-        />
-        <InputForm
-          name="Предел прочности материала"
-          value={matLimit.value}
-          unit={
-            <Units
-              unitArr={kgsmm2UnitArray}
-              changeUnit={setMatLimitUnit}
-              currentUnit={matLimit.unit}
-              calculateFn={calculate}
-            />
-          }
-          setValue={setMatLimit}
-          calculateFn={calculate}
-        />
-        <InputForm
-          name="Модуль упругости метериала"
-          value={elMod.value}
-          unit={
-            <Units unitArr={gpaUnitArray} changeUnit={setElModUnit} currentUnit={elMod.unit} calculateFn={calculate} />
-          }
-          setValue={setElMod}
-          calculateFn={calculate}
-        />
-      </div>
+      <BeamsInputBlock calculate={calculate} />
       <h2>Выберите тип балки</h2>
       <div className={stl.buttonSelectBox}>
         {buttonBeamTypeSelect(twoBSupImg, paramsBeamTypeArray[0])}

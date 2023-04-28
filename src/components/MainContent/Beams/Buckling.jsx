@@ -13,11 +13,11 @@ import buckling8Img from "./../../../assets/images/buckling8.svg";
 import Units from "../../Units/Units";
 import { meterUnitArray } from "../../Units/unitArrays";
 
+const paramsArray = [1, 2, 2.000001, 0.5000001, 0.33, 1.00001, 0.5, 0.7];
+
 const Buckling = ({ clearBeamParams, title, calculateFn }) => {
   const length = useSelector((state) => state.beams.length);
   const lengthFactor = useSelector((state) => state.beams.lengthFactor);
-
-  const paramsArray = [1, 2, 2.000001, 0.5000001, 0.33, 1.00001, 0.5, 0.7];
 
   const dispatch = useDispatch();
 

@@ -2,6 +2,7 @@ import stl from "./Units.module.css";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { unitText } from "./unitArrays";
+import { scrolling } from "../supportFunctions/scrolling";
 
 const Units = ({ unitArr, changeUnit, currentUnit, calculateFn }) => {
   const [isVisible, setVisible] = useState(false);
@@ -17,18 +18,7 @@ const Units = ({ unitArr, changeUnit, currentUnit, calculateFn }) => {
 
   function onCurrentButtonClick() {
     setVisible(!isVisible);
-    scrolling();
-  }
-
-  function getCoordinate() {
-    let coordinates = unitScrollRef.current.getBoundingClientRect();
-    return coordinates.top;
-  }
-
-  function scrolling() {
-    if (getCoordinate() + 150 > document.documentElement.clientHeight && isVisible === false) {
-      setTimeout(() => window.scrollBy({ top: 150, left: 0, behavior: "smooth" }), 100);
-    }
+    scrolling(isVisible);
   }
 
   useEffect(() => {

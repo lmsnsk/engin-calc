@@ -3,11 +3,11 @@ import { Route, Routes } from "react-router-dom";
 import stl from "./App.module.css";
 import Header from "./components/Header/Header";
 import Sidebar from "./components/Header/Sidebar";
-import Beams from "./components/MainContent/Beams/Beams";
 import BoltGroup from "./components/MainContent/BoltGroup/BoltGroup";
-import LashingRing from "./components/MainContent/LashingRing/LashingRing";
-import Spring from "./components/MainContent/Spring/Spring";
 import StartPage from "./components/StartPage/StartPage";
+import LashingRingContainer from "./components/MainContent/LashingRing/LashingRingContainer";
+import BeamsContainer from "./components/MainContent/Beams/BeamsContainer";
+import SpringContainer from "./components/MainContent/Spring/SpringContainer";
 
 function App() {
   const [startPegeVisible, setStartPegeVisible] = useState(true);
@@ -24,10 +24,10 @@ function App() {
           </div>
           <div className={stl.content}>
             <Routes>
-              <Route path="/LashingRing" element={<LashingRing />} />
-              <Route path="/Beams" element={<Beams />} />
+              <Route path="/LashingRing" element={<LashingRingContainer />} />
+              <Route path="/Beams" element={<BeamsContainer />} />
               <Route path="/BoltGroup" element={<BoltGroup />} />
-              <Route path="/Spring" element={<Spring />} />
+              <Route path="/Spring" element={<SpringContainer />} />
             </Routes>
           </div>
         </div>
