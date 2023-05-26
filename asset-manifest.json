@@ -1,8 +1,7 @@
 {
   "files": {
-    "main.css": "/engin-calc/static/css/main.7b498fe3.css",
-    "main.js": "/engin-calc/static/js/main.f0c5dd45.js",
-    "static/js/787.ef7a1acb.chunk.js": "/engin-calc/static/js/787.ef7a1acb.chunk.js",
+    "main.css": "/engin-calc/static/css/main.77bfcb7f.css",
+    "main.js": "/engin-calc/static/js/main.71896c05.js",
     "static/media/bc1.jpg": "/engin-calc/static/media/bc1.8195ded032b4ba1a38c3.jpg",
     "static/media/spring3D.png": "/engin-calc/static/media/spring3D.0097bd56d3161c258407.png",
     "static/media/ear.png": "/engin-calc/static/media/ear.4d2fdb0b800fdf73d9a7.png",
@@ -17,7 +16,6 @@
     "static/media/buckling7.svg": "/engin-calc/static/media/buckling7.6f6fb09b9a542c09c29024f14d63b286.svg",
     "static/media/buckling1.svg": "/engin-calc/static/media/buckling1.6418f18565f5b3f562c47b646409c971.svg",
     "static/media/buckling2.svg": "/engin-calc/static/media/buckling2.af881fead63014753a240a4a0b74876f.svg",
-    "static/media/gear.svg": "/engin-calc/static/media/gear.61f8302d2cbd5fb57113ed83cd87fb81.svg",
     "static/media/2bsup.svg": "/engin-calc/static/media/2bsup.467930002bff61b43d452c211e487d11.svg",
     "static/media/buckling8.svg": "/engin-calc/static/media/buckling8.d37620fd45926afac7b3e162a05ea72c.svg",
     "static/media/bolts.svg": "/engin-calc/static/media/bolts.60487975ea48c934ab4edec7a0b33e99.svg",
@@ -37,12 +35,11 @@
     "static/media/circleTube.svg": "/engin-calc/static/media/circleTube.22db543544ddd117638ac3ba37dd98e7.svg",
     "static/media/rect.svg": "/engin-calc/static/media/rect.d9c86395a00eefe778e39dd6ad263b74.svg",
     "static/media/circle.svg": "/engin-calc/static/media/circle.c752669d2131beef5a75ac4bdde0fce4.svg",
-    "main.7b498fe3.css.map": "/engin-calc/static/css/main.7b498fe3.css.map",
-    "main.f0c5dd45.js.map": "/engin-calc/static/js/main.f0c5dd45.js.map",
-    "787.ef7a1acb.chunk.js.map": "/engin-calc/static/js/787.ef7a1acb.chunk.js.map"
+    "main.77bfcb7f.css.map": "/engin-calc/static/css/main.77bfcb7f.css.map",
+    "main.71896c05.js.map": "/engin-calc/static/js/main.71896c05.js.map"
   },
   "entrypoints": [
-    "static/css/main.7b498fe3.css",
-    "static/js/main.f0c5dd45.js"
+    "static/css/main.77bfcb7f.css",
+    "static/js/main.71896c05.js"
   ]
 }
