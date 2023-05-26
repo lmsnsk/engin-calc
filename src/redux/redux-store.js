@@ -3,7 +3,6 @@ import lashingReducer from "./lashingSlice";
 import beamsReducer from "./beamsSlice";
 import boltGroupReducer from "./boltGroupSlice";
 import springReducer from "./springSlice";
-import unitsReducer from "./unitsSlice";
 
 const store = configureStore({
   reducer: {
@@ -11,10 +10,7 @@ const store = configureStore({
     beams: beamsReducer,
     boltGroup: boltGroupReducer,
     spring: springReducer,
-    units: unitsReducer,
   },
 });
-
-window.store = store;
 
 export default store;

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
+
 import stl from "./App.module.css";
+
 import Header from "./components/Header/Header";
 import Sidebar from "./components/Header/Sidebar";
 import BoltGroup from "./components/MainContent/BoltGroup/BoltGroup";

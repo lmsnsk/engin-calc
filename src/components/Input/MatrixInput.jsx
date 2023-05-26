@@ -26,7 +26,7 @@ const MatrixInput = ({ value, titles, setValue, addRow, removeRow, units }) => {
     ));
   }
 
-  const matrixData = value.map((el, index) => (
+  const matrixData = value.map((_, index) => (
     <div className={stl.titles} key={index}>
       {initMatrixRow(index)}
     </div>
