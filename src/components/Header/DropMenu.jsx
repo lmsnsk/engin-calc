@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import stl from "./Header.module.css";
 import Links from "./Links";
+import { useLocation } from "react-router-dom";
 
-const DropMenu = ({ startPegeVisible }) => {
+const DropMenu = ({ startPageVisible }) => {
   const [isVisible, setVisible] = useState(false);
   const headerRef = useRef(null);
+  const location = useLocation();
 
   function link(e) {
     setVisible(e);
@@ -23,7 +25,7 @@ const DropMenu = ({ startPegeVisible }) => {
 
   return (
     <div className={isVisible ? stl.change : null} ref={headerRef}>
-      {!startPegeVisible ? (
+      {location.pathname !== "/" ? (
         <button className={stl.navButton} onClick={() => setVisible(!isVisible)}>
           <div className={stl.bar1}></div>
           <div className={stl.bar2}></div>

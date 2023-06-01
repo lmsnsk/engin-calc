@@ -6,14 +6,10 @@ import beamsImage from "./../../assets/images/beams3D.png";
 import bgimage from "./../../assets/images/bc1.jpg";
 import springimage from "./../../assets/images/spring3D.png";
 
-const StartPage = (props) => {
-  function onClick() {
-    return props.setValue(false);
-  }
-
+const StartPage = () => {
   function button(link, image, alt, title) {
     return (
-      <NavLink to={link} onClick={onClick}>
+      <NavLink to={link}>
         <div className={stl.buttonBox}>
           <img src={image} alt={alt} />
           <div className={stl.title}>{title}</div>

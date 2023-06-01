@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 
 import stl from "./App.module.css";
 
@@ -12,13 +11,13 @@ import BeamsContainer from "./components/MainContent/Beams/BeamsContainer";
 import SpringContainer from "./components/MainContent/Spring/SpringContainer";
 
 function App() {
-  const [startPegeVisible, setStartPegeVisible] = useState(true);
+  const location = useLocation();
 
   return (
     <div>
-      <Header startPegeVisible={startPegeVisible} />
-      {startPegeVisible ? (
-        <StartPage setValue={setStartPegeVisible} />
+      <Header />
+      {location.pathname === "/" ? (
+        <StartPage />
       ) : (
         <div className={stl.wrapper}>
           <div className={stl.hidebar}>
@@ -26,6 +25,7 @@ function App() {
           </div>
           <div className={stl.content}>
             <Routes>
+              <Route path="/" element={<StartPage />} />
               <Route path="/LashingRing" element={<LashingRingContainer />} />
               <Route path="/Beams" element={<BeamsContainer />} />
               <Route path="/BoltGroup" element={<BoltGroup />} />
