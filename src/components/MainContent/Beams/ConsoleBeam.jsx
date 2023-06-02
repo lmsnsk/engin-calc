@@ -1,9 +1,9 @@
 import { useSelector } from "react-redux";
 import { setLength, setLengthUnit } from "../../../redux/beamsSlice";
-import InputForm from "../../Input/InputForm";
-import stl from "./../MainContent.module.css";
-import Units from "../../Units/Units";
 import { meterUnitArray } from "../../Units/unitArrays";
+import InputForm from "../../Input/InputForm";
+import Units from "../../Units/Units";
+import stl from "./../MainContent.module.css";
 
 const ConsoleBeam = ({ calculateFn, title }) => {
   const length = useSelector((state) => state.beams.length);

@@ -68,7 +68,7 @@ const BeamsContainer = () => {
   const dispatch = useDispatch();
 
   const calculate = createAsyncThunk("beams/calculate", async (_, { dispatch }) => {
-    dispatch(calculateSection());
+    await dispatch(calculateSection());
     dispatch(calculateBeamType());
   });
 

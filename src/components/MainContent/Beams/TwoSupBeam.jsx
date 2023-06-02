@@ -6,9 +6,7 @@ import Units from "../../Units/Units";
 import { meterUnitArray } from "../../Units/unitArrays";
 
 const CalcTwoSupBeam = ({ title, calculateFn }) => {
-  const length = useSelector((state) => state.beams.length);
-
-  const loadDistance = useSelector((state) => state.beams.loadDistance);
+  const { length, loadDistance } = useSelector((state) => state.beams);
 
   return (
     <>

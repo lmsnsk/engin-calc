@@ -34,11 +34,11 @@ const MatrixInput = ({ value, titles, setValue, addRow, removeRow, units }) => {
 
   const addRemoveButtons = (
     <div className={stl.buttonBox}>
-      {rowsQuantity > 1 ? (
+      {rowsQuantity === 1 || (
         <button className={stl.remove} onClick={removeRowField}>
           <div className={stl.bar1}></div>
         </button>
-      ) : null}
+      )}
       <button className={stl.add} onClick={addRowField}>
         <div className={stl.bar1}></div>
         <div className={stl.bar2}></div>

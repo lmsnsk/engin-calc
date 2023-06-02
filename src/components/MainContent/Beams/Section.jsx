@@ -22,15 +22,9 @@ import Units from "../../Units/Units";
 import { meter2UnitArray, meter3UnitArray, meter4UnitArray, meterUnitArray } from "../../Units/unitArrays";
 
 const Section = ({ calculateFn, titles }) => {
-  const sectionShowed = useSelector((state) => state.beams.sectionShowed);
-  const diam = useSelector((state) => state.beams.diam);
-  const width = useSelector((state) => state.beams.width);
-  const heigth = useSelector((state) => state.beams.heigth);
-  const thickWall = useSelector((state) => state.beams.thickWall);
-  const thickShelf = useSelector((state) => state.beams.thickShelf);
-  const area = useSelector((state) => state.beams.area);
-  const momRes = useSelector((state) => state.beams.momRes);
-  const momIn = useSelector((state) => state.beams.momIn);
+  const { sectionShowed, diam, width, heigth, thickWall, thickShelf, area, momRes, momIn } = useSelector(
+    (state) => state.beams
+  );
 
   const sectionParamsArr = [
     <InputForm
@@ -162,7 +156,7 @@ const Section = ({ calculateFn, titles }) => {
     }
   };
 
-  let results = [
+  const results = [
     {
       id: 1,
       name: "Площадь сечения",

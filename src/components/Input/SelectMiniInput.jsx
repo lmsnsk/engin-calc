@@ -35,7 +35,7 @@ const SelectMiniInput = (props) => {
           </span>
         </button>
       </div>
-      {isVisible ? <div className={stl.dropBox}>{selectField}</div> : null}
+      {isVisible && <div className={stl.dropBox}>{selectField}</div>}
     </div>
   );
 };

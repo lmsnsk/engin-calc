@@ -1,5 +1,5 @@
-import stl from "./BoltGroup.module.css";
 import { useSelector } from "react-redux";
+import stl from "./BoltGroup.module.css";
 import {
   addRow,
   calculateBoltGroup,

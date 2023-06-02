@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import stl from "./SelectInput.module.css";
+
 import { scrolling } from "../supportFunctions/scrolling";
+
+import stl from "./SelectInput.module.css";
 
 const SelectInput = (props) => {
   // let paramsArray = [
@@ -26,7 +28,7 @@ const SelectInput = (props) => {
 
   function onCurrentButtonClick() {
     setVisible(!isVisible);
-    scrolling(isVisible);
+    scrolling(isVisible, selectRef.current);
   }
 
   const dispatch = useDispatch();
@@ -54,7 +56,7 @@ const SelectInput = (props) => {
           </span>
         </button>
       </div>
-      {isVisible ? <div className={stl.dropBox}>{selectField}</div> : null}
+      {isVisible && <div className={stl.dropBox}>{selectField}</div>}
     </div>
   );
 };

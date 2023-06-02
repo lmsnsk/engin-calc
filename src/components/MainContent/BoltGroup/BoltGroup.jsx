@@ -1,5 +1,5 @@
-import stl from "./BoltGroup.module.css";
 import { useDispatch, useSelector } from "react-redux";
+import stl from "./BoltGroup.module.css";
 import { calculateBoltGroup } from "../../../redux/boltGroupSlice";
 import CalculationButton from "../../Input/CalculationButton";
 import boltsImg from "./../../../assets/images/bolt-group.png";
@@ -7,7 +7,7 @@ import Results from "../../Results/Results";
 import BoltGroupInputBlock from "./BoltGroupInputBlock";
 
 const BoltGroup = () => {
-  const { sliseMargin, collapseMargin } = useSelector((state) => state.boltGroup);
+  const { sliceMargin, collapseMargin } = useSelector((state) => state.boltGroup);
 
   const dispatch = useDispatch();
 
@@ -15,7 +15,7 @@ const BoltGroup = () => {
     dispatch(calculateBoltGroup());
   }
 
-  const resultsSlice = sliseMargin.map((el, index) => ({
+  const resultsSlice = sliceMargin.map((el, index) => ({
     id: index,
     name: `Болт ${index + 1}`,
     value: el,

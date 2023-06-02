@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 import { kgsmm2UnitArray, kgsUnitArray, gpaUnitArray } from "../../Units/unitArrays";
 import { setElMod, setLoad, setMatLimit, setLoadUnit, setMatLimitUnit, setElModUnit } from "../../../redux/beamsSlice";
-import stl from "./Beams.module.css";
 import { inputBlock } from "./../../supportFunctions/inputBlock";
+import stl from "./Beams.module.css";
 
 const BeamsInputBlock = ({ calculate }) => {
   const { load, matLimit, elMod } = useSelector((state) => state.beams);

@@ -1,9 +1,10 @@
-import { setSigmaInEarUnit, setSigmaSmUnit, setTauInBoltUnit } from "../../../redux/lashingSlice";
 import { useDispatch, useSelector } from "react-redux";
+
 import Units from "../../Units/Units";
 import LashingRing from "./LashingRing";
 import { kgsmm2UnitArray } from "../../Units/unitArrays";
 import { calculateLashingRing } from "../../../redux/lashingSlice";
+import { setSigmaInEarUnit, setSigmaSmUnit, setTauInBoltUnit } from "../../../redux/lashingSlice";
 
 const paramsArray = [
   { value: 0.2, name: "Подвижное" },

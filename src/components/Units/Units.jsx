@@ -8,7 +8,6 @@ const Units = ({ unitArr, changeUnit, currentUnit, calculateFn }) => {
   const [isVisible, setVisible] = useState(false);
   const dispatch = useDispatch();
   const unitRef = useRef(null);
-  const unitScrollRef = useRef(null);
 
   const unitHandler = (unit) => {
     dispatch(changeUnit(unit));
@@ -18,7 +17,7 @@ const Units = ({ unitArr, changeUnit, currentUnit, calculateFn }) => {
 
   function onCurrentButtonClick() {
     setVisible(!isVisible);
-    scrolling(isVisible);
+    scrolling(isVisible, unitRef.current);
   }
 
   useEffect(() => {
@@ -33,7 +32,7 @@ const Units = ({ unitArr, changeUnit, currentUnit, calculateFn }) => {
 
   return (
     <div className={stl.wrapper} ref={unitRef}>
-      <div className={stl.mainUnit} onClick={onCurrentButtonClick} ref={unitScrollRef}>
+      <div className={stl.mainUnit} onClick={onCurrentButtonClick}>
         {unitText(currentUnit.text)}
       </div>
       {isVisible ? (

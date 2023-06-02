@@ -13,7 +13,7 @@ const initialState = {
   pMoment: [],
   pResult: [],
   sigmaSm: "",
-  sliseMargin: [],
+  sliceMargin: [],
   collapseMargin: [],
 };
 
@@ -70,7 +70,7 @@ const boltGroupSlice = createSlice({
       let pLoad = [];
       let pMoment = [];
       let pResult = [];
-      let sliseMargin = [];
+      let sliceMargin = [];
       let collapseMargin = [];
       for (let i = 0; i < state.boltParams.length; i++) {
         area.push((Math.PI / 4) * state.boltParams[i][0] ** 2);
@@ -89,7 +89,7 @@ const boltGroupSlice = createSlice({
               2 * pLoad[i] * pMoment[i] * Math.cos(Math.PI - (state.boltParams[i][2] * Math.PI) / 180)
           )
         );
-        sliseMargin.push((area[i] * (state.boltLimit.value * state.boltLimit.unit.factor) * 0.63) / pResult[i]);
+        sliceMargin.push((area[i] * (state.boltLimit.value * state.boltLimit.unit.factor) * 0.63) / pResult[i]);
         collapseMargin.push(
           (state.boltParams[i][0] *
             (state.matLimit.value * state.matLimit.unit.factor) *
@@ -102,7 +102,7 @@ const boltGroupSlice = createSlice({
       state.pLoad = pLoad;
       state.pMoment = pMoment;
       state.pResult = pResult;
-      state.sliseMargin = sliseMargin;
+      state.sliceMargin = sliceMargin;
       state.collapseMargin = collapseMargin;
     },
   },

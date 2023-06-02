@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import stl from "./Header.module.css";
-import Links from "./Links";
 import { useLocation } from "react-router-dom";
 
-const DropMenu = ({ startPageVisible }) => {
+import stl from "./Header.module.css";
+
+import Links from "./Links";
+
+const DropMenu = () => {
   const [isVisible, setVisible] = useState(false);
   const headerRef = useRef(null);
   const location = useLocation();

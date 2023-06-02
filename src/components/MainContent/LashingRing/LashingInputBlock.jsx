@@ -1,8 +1,11 @@
 import { useSelector } from "react-redux";
+
 import stl from "./LashingRing.module.css";
+
 import SelectInput from "../../Input/SelectInput";
 import CheckBox from "../../Input/CheckBox";
 import { kgsmm2UnitArray, meterUnitArray, kgsUnitArray } from "../../Units/unitArrays";
+import { inputBlock } from "../../supportFunctions/inputBlock";
 import {
   calculateLashingRing,
   setConFactor,
@@ -25,7 +28,6 @@ import {
   setEMatLimitUnit,
   setBMatLimitUnit,
 } from "../../../redux/lashingSlice";
-import { inputBlock } from "../../supportFunctions/inputBlock";
 
 const LashingInputBlock = ({ paramsArray, calculateFn }) => {
   const {
