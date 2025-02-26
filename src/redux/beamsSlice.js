@@ -161,38 +161,54 @@ const beamsSlice = createSlice({
       state.criticalFactor = action.payload;
     },
     calculateCircleSection(state) {
-      let area = (Math.PI * (state.diam.value * state.diam.unit.factor) ** 2) / 4 / state.area.unit.factor;
-      let momRes = (Math.PI * (state.diam.value * state.diam.unit.factor) ** 3) / 32 / state.momRes.unit.factor;
-      let momIn = (Math.PI * (state.diam.value * state.diam.unit.factor) ** 4) / 64 / state.momIn.unit.factor;
+      let area =
+        (Math.PI * (state.diam.value * state.diam.unit.factor) ** 2) / 4 / state.area.unit.factor;
+      let momRes =
+        (Math.PI * (state.diam.value * state.diam.unit.factor) ** 3) /
+        32 /
+        state.momRes.unit.factor;
+      let momIn =
+        (Math.PI * (state.diam.value * state.diam.unit.factor) ** 4) / 64 / state.momIn.unit.factor;
       state.area.value = area;
       state.momRes.value = momRes;
       state.momIn.value = momIn;
     },
     calculateCircleTubeSection(state) {
       let innerDiam =
-        state.diam.value * state.diam.unit.factor - 2 * (state.thickWall.value * state.thickWall.unit.factor);
+        state.diam.value * state.diam.unit.factor -
+        2 * (state.thickWall.value * state.thickWall.unit.factor);
       let area =
-        (Math.PI * ((state.diam.value * state.diam.unit.factor) ** 2 - innerDiam ** 2)) / 4 / state.area.unit.factor;
+        (Math.PI * ((state.diam.value * state.diam.unit.factor) ** 2 - innerDiam ** 2)) /
+        4 /
+        state.area.unit.factor;
       let momRes =
         (Math.PI * ((state.diam.value * state.diam.unit.factor) ** 4 - innerDiam ** 4)) /
         (32 * state.diam.value * state.diam.unit.factor) /
         state.momRes.unit.factor;
       let momIn =
-        (Math.PI * ((state.diam.value * state.diam.unit.factor) ** 4 - innerDiam ** 4)) / 64 / state.momIn.unit.factor;
+        (Math.PI * ((state.diam.value * state.diam.unit.factor) ** 4 - innerDiam ** 4)) /
+        64 /
+        state.momIn.unit.factor;
       state.area.value = area;
       state.momRes.value = momRes;
       state.momIn.value = momIn;
     },
     calculateRectangleSection(state) {
       let area =
-        (state.width.value * state.width.unit.factor * (state.heigth.value * state.heigth.unit.factor)) /
+        (state.width.value *
+          state.width.unit.factor *
+          (state.heigth.value * state.heigth.unit.factor)) /
         state.area.unit.factor;
       let momRes =
-        (state.width.value * state.width.unit.factor * (state.heigth.value * state.heigth.unit.factor) ** 2) /
+        (state.width.value *
+          state.width.unit.factor *
+          (state.heigth.value * state.heigth.unit.factor) ** 2) /
         6 /
         state.momRes.unit.factor;
       let momIn =
-        (state.width.value * state.width.unit.factor * (state.heigth.value * state.heigth.unit.factor) ** 3) /
+        (state.width.value *
+          state.width.unit.factor *
+          (state.heigth.value * state.heigth.unit.factor) ** 3) /
         12 /
         state.momIn.unit.factor;
       state.area.value = area;
@@ -201,20 +217,28 @@ const beamsSlice = createSlice({
     },
     calculateRectangleTubeSection(state) {
       let widthInner =
-        state.width.value * state.width.unit.factor - 2 * (state.thickWall.value * state.thickWall.unit.factor);
+        state.width.value * state.width.unit.factor -
+        2 * (state.thickWall.value * state.thickWall.unit.factor);
       let heigthInner =
-        state.heigth.value * state.heigth.unit.factor - 2 * (state.thickWall.value * state.thickWall.unit.factor);
+        state.heigth.value * state.heigth.unit.factor -
+        2 * (state.thickWall.value * state.thickWall.unit.factor);
       let area =
-        (state.width.value * state.width.unit.factor * (state.heigth.value * state.heigth.unit.factor) -
+        (state.width.value *
+          state.width.unit.factor *
+          (state.heigth.value * state.heigth.unit.factor) -
           widthInner * heigthInner) /
         state.area.unit.factor;
       let momRes =
-        (state.width.value * state.width.unit.factor * (state.heigth.value * state.heigth.unit.factor) ** 3 -
+        (state.width.value *
+          state.width.unit.factor *
+          (state.heigth.value * state.heigth.unit.factor) ** 3 -
           widthInner * heigthInner ** 3) /
         (6 * (state.heigth.value * state.heigth.unit.factor)) /
         state.momRes.unit.factor;
       let momIn =
-        (state.width.value * state.width.unit.factor * (state.heigth.value * state.heigth.unit.factor) ** 3 -
+        (state.width.value *
+          state.width.unit.factor *
+          (state.heigth.value * state.heigth.unit.factor) ** 3 -
           widthInner * heigthInner ** 3) /
         12 /
         state.momIn.unit.factor;
@@ -224,20 +248,28 @@ const beamsSlice = createSlice({
     },
     calculateChannelVertSection(state) {
       let widthInner =
-        state.width.value * state.width.unit.factor - state.thickWall.value * state.thickWall.unit.factor;
+        state.width.value * state.width.unit.factor -
+        state.thickWall.value * state.thickWall.unit.factor;
       let heigthInner =
-        state.heigth.value * state.heigth.unit.factor - 2 * (state.thickShelf.value * state.thickShelf.unit.factor);
+        state.heigth.value * state.heigth.unit.factor -
+        2 * (state.thickShelf.value * state.thickShelf.unit.factor);
       let area =
-        (state.width.value * state.width.unit.factor * (state.heigth.value * state.heigth.unit.factor) -
+        (state.width.value *
+          state.width.unit.factor *
+          (state.heigth.value * state.heigth.unit.factor) -
           widthInner * heigthInner) /
         state.area.unit.factor;
       let momRes =
-        (state.width.value * state.width.unit.factor * (state.heigth.value * state.heigth.unit.factor) ** 3 -
+        (state.width.value *
+          state.width.unit.factor *
+          (state.heigth.value * state.heigth.unit.factor) ** 3 -
           widthInner * heigthInner ** 3) /
         (6 * (state.heigth.value * state.heigth.unit.factor)) /
         state.momRes.unit.factor;
       let momIn =
-        (state.width.value * state.width.unit.factor * (state.heigth.value * state.heigth.unit.factor) ** 3 -
+        (state.width.value *
+          state.width.unit.factor *
+          (state.heigth.value * state.heigth.unit.factor) ** 3 -
           widthInner * heigthInner ** 3) /
         12 /
         state.momIn.unit.factor;
@@ -247,10 +279,14 @@ const beamsSlice = createSlice({
     },
     calculateChannelHorizSection(state) {
       let widthInner =
-        state.width.value * state.width.unit.factor - 2 * (state.thickShelf.value * state.thickShelf.unit.factor);
+        state.width.value * state.width.unit.factor -
+        2 * (state.thickShelf.value * state.thickShelf.unit.factor);
       let area =
         (widthInner * (state.thickWall.value * state.thickWall.unit.factor) +
-          state.heigth.value * state.heigth.unit.factor * 2 * (state.thickShelf.value * state.thickShelf.unit.factor)) /
+          state.heigth.value *
+            state.heigth.unit.factor *
+            2 *
+            (state.thickShelf.value * state.thickShelf.unit.factor)) /
         state.area.unit.factor;
       let y1 =
         (2 *
@@ -272,13 +308,18 @@ const beamsSlice = createSlice({
     },
     calculateTBeamAndCornerSection(state) {
       let widthInner =
-        state.width.value * state.width.unit.factor - state.thickWall.value * state.thickWall.unit.factor;
+        state.width.value * state.width.unit.factor -
+        state.thickWall.value * state.thickWall.unit.factor;
       let area =
         (widthInner * (state.thickShelf.value * state.thickShelf.unit.factor) +
-          state.heigth.value * state.heigth.unit.factor * (state.thickWall.value * state.thickWall.unit.factor)) /
+          state.heigth.value *
+            state.heigth.unit.factor *
+            (state.thickWall.value * state.thickWall.unit.factor)) /
         state.area.unit.factor;
       let y1 =
-        (state.thickWall.value * state.thickWall.unit.factor * (state.heigth.value * state.heigth.unit.factor) ** 2 +
+        (state.thickWall.value *
+          state.thickWall.unit.factor *
+          (state.heigth.value * state.heigth.unit.factor) ** 2 +
           widthInner * (state.thickShelf.value * state.thickShelf.unit.factor) ** 2) /
         (2 * area);
       let y2 = state.heigth.value * state.heigth.unit.factor - y1;
@@ -297,12 +338,16 @@ const beamsSlice = createSlice({
       let aReaction =
         (((state.load.value *
           state.load.unit.factor *
-          (state.length.value * state.length.unit.factor - state.loadDistance.value * state.loadDistance.unit.factor)) /
+          (state.length.value * state.length.unit.factor -
+            state.loadDistance.value * state.loadDistance.unit.factor)) /
           state.length.value) *
           state.length.unit.factor) /
         state.aReaction.unit.factor;
       let bReaction =
-        (((state.load.value * state.load.unit.factor * state.loadDistance.value * state.loadDistance.unit.factor) /
+        (((state.load.value *
+          state.load.unit.factor *
+          state.loadDistance.value *
+          state.loadDistance.unit.factor) /
           state.length.value) *
           state.length.unit.factor) /
         state.bReaction.unit.factor;
@@ -332,7 +377,8 @@ const beamsSlice = createSlice({
           state.length.value *
           state.length.unit.factor) /
         state.deflection.unit.factor;
-      let safeFactor = (state.matLimit.value * state.matLimit.unit.factor) / (strain * state.strain.unit.factor);
+      let safeFactor =
+        (state.matLimit.value * state.matLimit.unit.factor) / (strain * state.strain.unit.factor);
       state.aReaction.value = aReaction;
       state.bReaction.value = bReaction;
       state.moment.value = moment;
@@ -343,17 +389,25 @@ const beamsSlice = createSlice({
     calculateConsoleBeam(state) {
       let aReaction = (state.load.value * state.load.unit.factor) / state.aReaction.unit.factor;
       let moment =
-        (aReaction * state.aReaction.unit.factor * ((state.length.value * state.length.unit.factor) / 1000)) /
+        (aReaction *
+          state.aReaction.unit.factor *
+          ((state.length.value * state.length.unit.factor) / 1000)) /
         state.moment.unit.factor;
       let strain =
         (moment * state.moment.unit.factor * 1000) /
         (state.momRes.value * state.momRes.unit.factor) /
         state.strain.unit.factor;
       let deflection =
-        (state.load.value * state.load.unit.factor * (state.length.value * state.length.unit.factor) ** 3) /
-        (3 * (state.elMod.value * state.elMod.unit.factor * 101.9716) * state.momIn.value * state.momIn.unit.factor) /
+        (state.load.value *
+          state.load.unit.factor *
+          (state.length.value * state.length.unit.factor) ** 3) /
+        (3 *
+          (state.elMod.value * state.elMod.unit.factor * 101.9716) *
+          state.momIn.value *
+          state.momIn.unit.factor) /
         state.deflection.unit.factor;
-      let safeFactor = (state.matLimit.value * state.matLimit.unit.factor) / (strain * state.strain.unit.factor);
+      let safeFactor =
+        (state.matLimit.value * state.matLimit.unit.factor) / (strain * state.strain.unit.factor);
       state.aReaction.value = aReaction;
       state.moment.value = moment;
       state.strain.value = strain;
@@ -369,7 +423,8 @@ const beamsSlice = createSlice({
         (state.lengthFactor * state.length.value * state.length.unit.factor) ** 2 /
         state.criticalLoad.unit.factor;
       let criticalFactor =
-        (criticalLoad * state.criticalLoad.unit.factor) / (state.load.value * state.load.unit.factor);
+        (criticalLoad * state.criticalLoad.unit.factor) /
+        (state.load.value * state.load.unit.factor);
       state.criticalLoad.value = criticalLoad;
       state.criticalFactor = criticalFactor;
     },

@@ -25,6 +25,7 @@ const StartPage = () => {
       {button("/Beams", beamsImage, "beams", "Расчет балок")}
       {button("/BoltGroup", boltGroupImage, "bolt group", "Расчет группы болтов")}
       {button("/Spring", springimage, "spring", "Расчет пружин")}
+      {button("/Tolerances", springimage, "spring", "Допуски и посадки")}
     </div>
   );
 };

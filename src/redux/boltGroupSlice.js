@@ -62,7 +62,9 @@ const boltGroupSlice = createSlice({
     },
     calculateBoltGroup(state) {
       let moment =
-        (state.load.value * state.load.unit.factor * (state.centerDistance.value * state.centerDistance.unit.factor)) /
+        (state.load.value *
+          state.load.unit.factor *
+          (state.centerDistance.value * state.centerDistance.unit.factor)) /
         1000;
       let area = [];
       let sumArea = 0;
@@ -86,10 +88,15 @@ const boltGroupSlice = createSlice({
           Math.sqrt(
             pLoad[i] ** 2 +
               pMoment[i] ** 2 -
-              2 * pLoad[i] * pMoment[i] * Math.cos(Math.PI - (state.boltParams[i][2] * Math.PI) / 180)
+              2 *
+                pLoad[i] *
+                pMoment[i] *
+                Math.cos(Math.PI - (state.boltParams[i][2] * Math.PI) / 180)
           )
         );
-        sliceMargin.push((area[i] * (state.boltLimit.value * state.boltLimit.unit.factor) * 0.63) / pResult[i]);
+        sliceMargin.push(
+          (area[i] * (state.boltLimit.value * state.boltLimit.unit.factor) * 0.63) / pResult[i]
+        );
         collapseMargin.push(
           (state.boltParams[i][0] *
             (state.matLimit.value * state.matLimit.unit.factor) *

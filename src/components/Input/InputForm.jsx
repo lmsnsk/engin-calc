@@ -29,7 +29,14 @@ const InputForm = ({ calculateFn, disableInput, name, setValue, value, unit }) =
             onBlur={onBlurFn}
           />
         ) : (
-          <input className={stl.inputDisable} required type="number" onChange={onValueChange} value={value} disabled />
+          <input
+            className={stl.inputDisable}
+            required
+            type="number"
+            onChange={onValueChange}
+            value={value}
+            disabled
+          />
         )}
         {unit}
       </form>

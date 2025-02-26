@@ -11,6 +11,7 @@ const Links = ({ effect }) => {
       <NavItem link="/Beams" text="Расчет балок" effect={effect} img={beamImg} />
       <NavItem link="/BoltGroup" text="Расчёт группы болтов" effect={effect} img={boltImg} />
       <NavItem link="/Spring" text="Расчёт пружин" effect={effect} img={springImg} />
+      <NavItem link="/Tolerances" text="Допуски и посадки" effect={effect} img={springImg} />
     </>
   );
 };

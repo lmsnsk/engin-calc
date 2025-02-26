@@ -133,10 +133,18 @@ const springSlice = createSlice({
         ((state.F2.value * state.F2.unit.factor - state.F1.value * state.F1.unit.factor) * g) /
         (state.h.value * state.h.unit.factor) /
         state.c.unit.factor;
-      let D = (state.D1.value * state.D1.unit.factor - state.d.value * state.d.unit.factor) / state.D.unit.factor;
+      let D =
+        (state.D1.value * state.D1.unit.factor - state.d.value * state.d.unit.factor) /
+        state.D.unit.factor;
       let n = Math.round((state.c1.value * state.c1.unit.factor) / (c * state.c.unit.factor));
-      let s1 = (state.F1.value * state.F1.unit.factor * g) / (c * state.c.unit.factor) / state.s1.unit.factor;
-      let s2 = (state.F2.value * state.F2.unit.factor * g) / (c * state.c.unit.factor) / state.s2.unit.factor;
+      let s1 =
+        (state.F1.value * state.F1.unit.factor * g) /
+        (c * state.c.unit.factor) /
+        state.s1.unit.factor;
+      let s2 =
+        (state.F2.value * state.F2.unit.factor * g) /
+        (c * state.c.unit.factor) /
+        state.s2.unit.factor;
       let s3 = F3 / (c * state.c.unit.factor) / state.s3.unit.factor;
       let l3, l0, l1, l2;
       switch (state.springType) {

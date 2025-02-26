@@ -9,6 +9,7 @@ import StartPage from "./components/StartPage/StartPage";
 import LashingRingContainer from "./components/MainContent/LashingRing/LashingRingContainer";
 import BeamsContainer from "./components/MainContent/Beams/BeamsContainer";
 import SpringContainer from "./components/MainContent/Spring/SpringContainer";
+import Tolerances from "./components/MainContent/Tolerances/Tolerances";
 
 function App() {
   const location = useLocation();
@@ -30,6 +31,7 @@ function App() {
               <Route path="/Beams" element={<BeamsContainer />} />
               <Route path="/BoltGroup" element={<BoltGroup />} />
               <Route path="/Spring" element={<SpringContainer />} />
+              <Route path="/Tolerances" element={<Tolerances />} />
             </Routes>
           </div>
         </div>

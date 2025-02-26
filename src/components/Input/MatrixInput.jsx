@@ -20,7 +20,13 @@ const MatrixInput = ({ value, titles, setValue, addRow, removeRow, units }) => {
   function initMatrixRow(i) {
     return titlesArray.map((el, index) => (
       <div key={el}>
-        <input required type="number" className={stl.input} value={value[i][index]} onChange={onChange(i, index)} />
+        <input
+          required
+          type="number"
+          className={stl.input}
+          value={value[i][index]}
+          onChange={onChange(i, index)}
+        />
         <div className={stl.unit}>{units[index]}</div>
       </div>
     ));
