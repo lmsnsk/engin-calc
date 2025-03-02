@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import lashingReducer from "./lashingSlice";
+
 import beamsReducer from "./beamsSlice";
-import boltGroupReducer from "./boltGroupSlice";
 import springReducer from "./springSlice";
+import lashingReducer from "./lashingSlice";
+import toleranceReducer from "./toleranceSlice";
+import boltGroupReducer from "./boltGroupSlice";
 
 const store = configureStore({
   reducer: {
@@ -10,6 +12,7 @@ const store = configureStore({
     beams: beamsReducer,
     boltGroup: boltGroupReducer,
     spring: springReducer,
+    tolerances: toleranceReducer,
   },
 });
 

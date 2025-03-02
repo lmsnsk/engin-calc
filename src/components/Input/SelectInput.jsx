@@ -6,7 +6,7 @@ import { scrolling } from "../supportFunctions/scrolling";
 import stl from "./SelectInput.module.css";
 
 const SelectInput = (props) => {
-  // let paramsArray = [
+  // const paramsArray = [
   //   { value: 0.2, name: "Подвижное" },
   //   { value: 0.65, name: "Малоподвижное" },
   //   { value: 1, name: "Неподвижное разъемное" },
@@ -15,6 +15,7 @@ const SelectInput = (props) => {
 
   const [isVisible, setVisible] = useState(false);
   const selectRef = useRef(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!isVisible) return;
@@ -31,7 +32,6 @@ const SelectInput = (props) => {
     scrolling(isVisible, selectRef.current);
   }
 
-  const dispatch = useDispatch();
   const setValueContainer = (el) => dispatch(props.setValue(el));
   const onButtonClick = (el) => {
     setVisible(false);

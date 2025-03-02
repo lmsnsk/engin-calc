@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import stl from "./InputForm.module.css";
 
-const InputForm = ({ calculateFn, disableInput, name, setValue, value, unit }) => {
+const InputForm = ({ calculateFn, disableInput, name, setValue, value, unit, notBlur }) => {
   const dispatch = useDispatch();
   const onBlurFn = () => dispatch(calculateFn());
   const setValueContainer = (el) => dispatch(setValue(el));
@@ -26,7 +26,7 @@ const InputForm = ({ calculateFn, disableInput, name, setValue, value, unit }) =
             type="number"
             onChange={onValueChange}
             value={value}
-            onBlur={onBlurFn}
+            onBlur={notBlur ? () => {} : onBlurFn}
           />
         ) : (
           <input

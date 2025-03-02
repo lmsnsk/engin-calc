@@ -1,21 +1,34 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import stl from "./SelectMiniInput.module.css";
 
 const SelectMiniInput = (props) => {
   // let paramsArray = [1, 5, 7, 8]; Пример входного массива параметров
 
-  let [isVisible, setVisibility] = useState(false);
+  const [isVisible, setVisible] = useState(false);
+  const dispatch = useDispatch();
 
-  const onCurrentButtonClick = () => {
-    setVisibility(!isVisible);
+  const selectRef = useRef(null);
+
+  useEffect(() => {
+    if (!isVisible) return;
+    const handleClick = (e) => {
+      if (!selectRef.current) return;
+      if (!selectRef.current.contains(e.target)) setVisible(false);
+    };
+    document.addEventListener("click", handleClick);
+    return () => document.removeEventListener("click", handleClick);
+  }, [isVisible, setVisible]);
+
+  const setValueContainer = (el) => dispatch(props.setValue(el));
+
+  const onButtonClick = (el) => {
+    setVisible(false);
+    setValueContainer(el);
   };
 
-  const dispatch = useDispatch();
-  const setValueContainer = (el) => dispatch(props.setValue(el));
-  const onButtonClick = (el) => {
-    setVisibility(false);
-    setValueContainer(el);
+  const onCurrentButtonClick = () => {
+    setVisible(!isVisible);
   };
 
   let selectField = props.paramsArray.map((element) => (
@@ -25,7 +38,7 @@ const SelectMiniInput = (props) => {
   ));
 
   return (
-    <div>
+    <div ref={selectRef}>
       <div>
         <button onClick={onCurrentButtonClick} className={stl.currentField}>
           <span>{props.value}</span>

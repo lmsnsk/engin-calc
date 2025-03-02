@@ -14,7 +14,9 @@ const paramsArray = [
 ];
 
 const LashingRingContainer = () => {
-  const { sigmaInEar, earFS, sigmaSm, earFSSM, tauInBolt, boltFS } = useSelector((state) => state.lashingRing);
+  const { sigmaInEar, earFS, sigmaSm, earFSSM, tauInBolt, boltFS } = useSelector(
+    (state) => state.lashingRing
+  );
 
   const dispatch = useDispatch();
   function calculate() {
