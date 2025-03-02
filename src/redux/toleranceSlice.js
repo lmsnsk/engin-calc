@@ -6,6 +6,10 @@ const initialState = {
   kvalShaft: "",
   fieldShaft: "",
   nominalDimension: "",
+  holeMaxValue: undefined,
+  holeMinValue: undefined,
+  shaftMaxValue: undefined,
+  shaftMinValue: undefined,
 };
 
 const toleranceSlice = createSlice({
@@ -27,10 +31,31 @@ const toleranceSlice = createSlice({
     setNominalDimension(state, action) {
       state.nominalDimension = action.payload;
     },
+    setHoleMaxValue(state, action) {
+      state.holeMaxValue = action.payload;
+    },
+    setHoleMinValue(state, action) {
+      state.holeMinValue = action.payload;
+    },
+    setShaftMaxValue(state, action) {
+      state.shaftMaxValue = action.payload;
+    },
+    setShaftMinValue(state, action) {
+      state.shaftMinValue = action.payload;
+    },
   },
 });
 
-export const { setFieldHole, setKvalHole, setFieldShaft, setKvalShaft, setNominalDimension } =
-  toleranceSlice.actions;
+export const {
+  setFieldHole,
+  setKvalHole,
+  setFieldShaft,
+  setKvalShaft,
+  setNominalDimension,
+  setHoleMaxValue,
+  setHoleMinValue,
+  setShaftMaxValue,
+  setShaftMinValue,
+} = toleranceSlice.actions;
 
 export default toleranceSlice.reducer;

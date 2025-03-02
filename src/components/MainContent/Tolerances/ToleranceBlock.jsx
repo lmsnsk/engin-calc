@@ -1,4 +1,8 @@
+import { useDispatch } from "react-redux";
+
 import SelectMiniInput from "../../Input/SelectMiniInput";
+
+import stl from "./Tolerances.module.css";
 
 const ToleranceBlock = ({
   fieldList,
@@ -8,15 +12,17 @@ const ToleranceBlock = ({
   setKval,
   kval,
   nominalDimension,
-  findIndex,
+  index,
+  minValue,
+  maxValue,
+  setMinValue,
+  setMaxValue,
 }) => {
-  let index = findIndex();
-  let minValue;
-  let maxValue;
+  const dispatch = useDispatch();
 
-  if (index !== undefined && field && kval) {
-    minValue = obj[field][kval].values[index][0];
-    maxValue = obj[field][kval].values[index][1];
+  if (index !== undefined && nominalDimension >= 0 && field && kval) {
+    dispatch(setMinValue(obj[field][kval].values[index][0]));
+    dispatch(setMaxValue(obj[field][kval].values[index][1]));
   }
 
   return (
@@ -26,7 +32,7 @@ const ToleranceBlock = ({
       {field && (
         <SelectMiniInput paramsArray={Object.keys(obj[field])} value={kval} setValue={setKval} />
       )}
-      {index === undefined ? (
+      {index < 0 ? (
         <div>Значение размера вне диапазона</div>
       ) : (
         field &&

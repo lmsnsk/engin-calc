@@ -1,0 +1,13 @@
+.wrapper {
+  padding-left: 5px;
+  max-width: 800px;
+  margin: 5px auto;
+  transition: 0.3s;
+}
+
+.initialData {
+  position: relative;
+  display: grid;
+  grid-template-columns: 5fr 3fr;
+  padding: 3px 2px 10px 2px;
+}
