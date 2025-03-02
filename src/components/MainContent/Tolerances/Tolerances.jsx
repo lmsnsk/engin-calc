@@ -84,7 +84,7 @@ const Tolerances = () => {
           name="Номинальный размер"
           setValue={setNominalDimension}
           value={nominalDimension}
-          unit="мм"
+          unit=" мм"
           notBlur={true}
         />
       </div>

@@ -7,7 +7,7 @@ const InputForm = ({ calculateFn, disableInput, name, setValue, value, unit, not
   const setValueContainer = (el) => dispatch(setValue(el));
 
   const onValueChange = (e) => {
-    setValueContainer(+e.target.value);
+    setValueContainer(e.target.value);
   };
 
   //Отменяет отправку формы при нажатии Enter
