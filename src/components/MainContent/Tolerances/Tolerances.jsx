@@ -50,7 +50,7 @@ const Tolerances = () => {
     );
   };
 
-  let index = findIndex();
+  const index = findIndex();
 
   const showResult = () => {
     if (
@@ -58,8 +58,9 @@ const Tolerances = () => {
       shaftMinValue !== undefined &&
       shaftMaxValue !== undefined &&
       holeMinValue !== undefined &&
-      index &&
-      index >= 0
+      index >= 0 &&
+      kvalHole !== "" &&
+      kvalShaft !== ""
     ) {
       dispatch(setVal1());
       dispatch(setVal2());

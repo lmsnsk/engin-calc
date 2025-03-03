@@ -77,14 +77,19 @@ const ToleranceBlock = ({
             <h4>
               {field}
               {kval}
+              {obj[field][kval].rec ? " Рекомендуемая" : null}
             </h4>
             <div className={stl.val}>
               Максимальное значение допуска:
-              <p className={isHoleGap(maxValue) ? stl.plusVal : stl.minusVal}>{maxValue}</p>
+              <p className={isHoleGap(maxValue) ? stl.plusVal : stl.minusVal}>
+                {isNaN(maxValue) ? "-" : maxValue}
+              </p>
             </div>
             <div className={stl.val}>
               Минимальное значение допуска:
-              <p className={isHoleGap(minValue) ? stl.plusVal : stl.minusVal}>{minValue}</p>
+              <p className={isHoleGap(minValue) ? stl.plusVal : stl.minusVal}>
+                {isNaN(minValue) ? "-" : minValue}
+              </p>
             </div>
           </>
         )
