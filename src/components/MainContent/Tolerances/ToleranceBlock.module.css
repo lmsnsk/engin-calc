@@ -1,0 +1,45 @@
+.box {
+  font-size: clamp(12px, 2.3vmin, 18px);
+  margin-bottom: 20px;
+}
+
+.categoryName {
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.selectInputs {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+h4 {
+  margin: 10px 0;
+  color: rgb(67, 36, 139);
+}
+
+.val {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+.plusVal {
+  color: green;
+  font-weight: 500;
+}
+
+.minusVal {
+  color: red;
+  font-weight: 500;
+}
+
+.incorrectDataMsg {
+  background-color: red;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 15px 0;
+  padding: 0 5px 5px 10px;
+}

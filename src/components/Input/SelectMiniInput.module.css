@@ -1,6 +1,6 @@
 .currentField {
   display: flex;
-  width: clamp(60px, 14vmin, 100px);
+  width: clamp(40px, 14vmin, 60px);
   justify-content: space-between;
   font-size: clamp(12px, 2.3vmin, 18px);
   border-radius: 0;
@@ -23,7 +23,7 @@
 
 .dropBox {
   position: absolute;
-  width: clamp(60px, 14vmin, 100px);
+  width: clamp(40px, 14vmin, 60px);
   height: auto;
   border: 1px rgb(168, 168, 168) solid;
   background-color: white;

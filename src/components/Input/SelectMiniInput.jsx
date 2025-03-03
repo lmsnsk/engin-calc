@@ -24,7 +24,9 @@ const SelectMiniInput = (props) => {
 
   const onButtonClick = (el) => {
     setVisible(false);
+    if (props.value === el) return;
     setValueContainer(el);
+    props.sideEffect();
   };
 
   const onCurrentButtonClick = () => {

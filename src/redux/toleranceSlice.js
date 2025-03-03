@@ -10,6 +10,8 @@ const initialState = {
   holeMinValue: undefined,
   shaftMaxValue: undefined,
   shaftMinValue: undefined,
+  val1: 0,
+  val2: 0,
 };
 
 const toleranceSlice = createSlice({
@@ -43,6 +45,12 @@ const toleranceSlice = createSlice({
     setShaftMinValue(state, action) {
       state.shaftMinValue = action.payload;
     },
+    setVal1(state) {
+      state.val1 = +(state.holeMinValue - state.shaftMaxValue).toFixed(5);
+    },
+    setVal2(state) {
+      state.val2 = +(state.holeMaxValue - state.shaftMinValue).toFixed(5);
+    },
   },
 });
 
@@ -56,6 +64,8 @@ export const {
   setHoleMinValue,
   setShaftMaxValue,
   setShaftMinValue,
+  setVal1,
+  setVal2,
 } = toleranceSlice.actions;
 
 export default toleranceSlice.reducer;
