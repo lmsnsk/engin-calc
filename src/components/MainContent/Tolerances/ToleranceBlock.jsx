@@ -45,8 +45,6 @@ const ToleranceBlock = ({
     return false;
   };
 
-  const clearKval = () => dispatch(setKval(""));
-
   return (
     <div className={stl.box}>
       <div className={stl.categoryName}>{name}</div>
@@ -55,7 +53,7 @@ const ToleranceBlock = ({
           paramsArray={fieldList}
           value={field}
           setValue={setField}
-          sideEffect={clearKval}
+          sideEffect={() => dispatch(setKval(""))}
         />
         {field && (
           <SelectMiniInput
@@ -74,11 +72,13 @@ const ToleranceBlock = ({
         kval &&
         nominalDimension > 0 && (
           <>
-            <h4>
-              {field}
-              {kval}
-              {obj[field][kval].rec ? " Рекомендуемая" : null}
-            </h4>
+            <div className={stl.tolRes}>
+              <span>{field}</span>
+              <span>{kval}</span>
+              <span className={stl.recomended}>
+                {obj[field][kval].rec ? "Рекомендуемый" : null}
+              </span>
+            </div>
             <div className={stl.val}>
               Максимальное значение допуска:
               <p className={isHoleGap(maxValue) ? stl.plusVal : stl.minusVal}>

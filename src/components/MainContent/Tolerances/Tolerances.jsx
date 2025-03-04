@@ -74,7 +74,7 @@ const Tolerances = () => {
       } else if (val1 < 0 && val2 < 0) {
         return (
           <div className={stl.result}>
-            Натяг от {-val1} до {-val2}
+            Натяг от {-val2} до {-val1}
           </div>
         );
       }

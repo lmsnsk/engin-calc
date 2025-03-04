@@ -14,9 +14,16 @@
   gap: 10px;
 }
 
-h4 {
+.tolRes {
   margin: 10px 0;
   color: rgb(67, 36, 139);
+  font-weight: bold;
+}
+
+.tolRes > .recomended {
+  margin-left: 50px;
+  color: rgb(57, 151, 36);
+  font-weight: 300;
 }
 
 .val {
