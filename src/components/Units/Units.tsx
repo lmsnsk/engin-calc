@@ -1,6 +1,9 @@
-import stl from "./Units.module.css";
-import { FC, useEffect, useRef, useState } from "react";
+import { Action } from "redux";
 import { useDispatch } from "react-redux";
+import { FC, useEffect, useRef, useState } from "react";
+
+import stl from "./Units.module.css";
+
 import { unitText } from "./unitArrays";
 import { scrolling } from "../supportFunctions/scrolling";
 
@@ -11,9 +14,9 @@ interface IUnit {
 
 interface IUnits {
   unitArr: IUnit[];
-  changeUnit: any; //!
+  changeUnit: (val: IUnit) => Action;
   currentUnit: IUnit;
-  calculateFn: any; //!
+  calculateFn: () => Action;
 }
 
 const Units: FC<IUnits> = ({ unitArr, changeUnit, currentUnit, calculateFn }) => {
@@ -28,6 +31,7 @@ const Units: FC<IUnits> = ({ unitArr, changeUnit, currentUnit, calculateFn }) =>
   };
 
   function onCurrentButtonClick() {
+    if (!unitRef.current) return;
     setVisible(!isVisible);
     scrolling(isVisible, unitRef.current);
   }
@@ -36,7 +40,6 @@ const Units: FC<IUnits> = ({ unitArr, changeUnit, currentUnit, calculateFn }) =>
     if (!isVisible) return;
     const handleClick = (e: MouseEvent) => {
       if (!unitRef.current) return;
-      // if (!unitRef.current.contains(e.target)) setVisible(false);
       if (!e.composedPath().includes(unitRef.current)) setVisible(false);
     };
     document.addEventListener("click", handleClick);

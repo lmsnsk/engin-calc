@@ -17,7 +17,7 @@ const DropMenu: FC = () => {
 
   useEffect(() => {
     if (!isVisible) return;
-    const handleClick = (e: Event) => {
+    const handleClick = (e: MouseEvent) => {
       if (!headerRef.current) return;
       if (!e.target) return;
       if (!e.composedPath().includes(headerRef.current)) setVisible(false);
