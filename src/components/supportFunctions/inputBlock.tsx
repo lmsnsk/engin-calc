@@ -1,10 +1,12 @@
 import { FC } from "react";
-import InputForm from "../Input/InputForm";
+import { Action } from "redux";
+
 import Units from "../Units/Units";
+import InputForm from "../Input/InputForm";
 
 interface InputBlockI {
   inputArrayParams: any; //!
-  calculateFn: any; //!
+  calculateFn: () => Action;
 }
 
 export const InputBlock: FC<InputBlockI> = ({ inputArrayParams, calculateFn }) => {

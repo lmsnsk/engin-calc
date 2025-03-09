@@ -12,6 +12,9 @@ export interface IParams {
 }
 
 interface ISelectInputProps {
+  name?: string;
+  id?: string;
+  value: number;
   text: string;
   paramsArray: IParams[];
   setValue: (el: IParams) => Action;

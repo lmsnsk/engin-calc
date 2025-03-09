@@ -6,12 +6,12 @@ interface ResultsProps {
   results: IResults[];
 }
 
-interface IResults {
+export interface IResults {
   id: number;
   name: string;
-  value: number;
+  value: string;
   unit: ReactNode;
-  color: string | undefined;
+  color?: boolean;
 }
 
 const Results: FC<ResultsProps> = ({ results }) => {
@@ -41,7 +41,7 @@ const Results: FC<ResultsProps> = ({ results }) => {
   const resultElement = results.map((el) => {
     return (
       <Fragment key={el.id}>
-        {isFinite(el.value) && typeof el.value === "number" ? (
+        {isFinite(+el.value) && typeof el.value === "number" ? (
           <>
             <div className={stl.form}>{el.name}:</div>
             {el.color ? (

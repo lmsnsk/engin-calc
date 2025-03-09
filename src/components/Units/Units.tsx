@@ -7,15 +7,15 @@ import stl from "./Units.module.css";
 import { unitText } from "./unitArrays";
 import { scrolling } from "../supportFunctions/scrolling";
 
-interface IUnit {
+interface IUnitItem {
   text: string;
-  factor: string;
+  factor: number;
 }
 
 interface IUnits {
-  unitArr: IUnit[];
-  changeUnit: (val: IUnit) => Action;
-  currentUnit: IUnit;
+  unitArr: IUnitItem[];
+  changeUnit: (val: IUnitItem) => Action;
+  currentUnit: IUnitItem;
   calculateFn: () => Action;
 }
 
@@ -24,17 +24,17 @@ const Units: FC<IUnits> = ({ unitArr, changeUnit, currentUnit, calculateFn }) =>
   const dispatch = useDispatch();
   const unitRef = useRef<HTMLDivElement>(null);
 
-  const unitHandler = (unit: IUnit) => {
+  const unitHandler = (unit: IUnitItem) => {
     dispatch(changeUnit(unit));
     setVisible(false);
     dispatch(calculateFn());
   };
 
-  function onCurrentButtonClick() {
+  const onCurrentButtonClick = () => {
     if (!unitRef.current) return;
     setVisible(!isVisible);
     scrolling(isVisible, unitRef.current);
-  }
+  };
 
   useEffect(() => {
     if (!isVisible) return;

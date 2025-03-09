@@ -10,7 +10,7 @@ import springimage from "./../../assets/images/spring3D.png";
 import boltGroupImage from "./../../assets/images/bolt-group3D.png";
 
 const StartPage: FC = () => {
-  function button(link: string, image: string, alt: string, title: string) {
+  const button = (link: string, image: string, alt: string, title: string) => {
     return (
       <NavLink to={link}>
         <div className={stl.buttonBox}>
@@ -19,7 +19,7 @@ const StartPage: FC = () => {
         </div>
       </NavLink>
     );
-  }
+  };
 
   return (
     <div className={stl.wrapper}>

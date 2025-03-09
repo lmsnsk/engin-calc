@@ -7,7 +7,7 @@ import stl from "./CalculationButton.module.css";
 interface CalculationButtonProps {
   text: string;
   calculateFn: () => Action;
-  needDispatch: boolean;
+  needDispatch?: boolean;
 }
 
 const CalculationButton: FC<CalculationButtonProps> = ({ text, calculateFn, needDispatch }) => {
