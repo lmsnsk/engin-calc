@@ -1,16 +1,17 @@
+import { FC } from "react";
 import { NavLink } from "react-router-dom";
 
 import stl from "./StartPage.module.css";
 
-import earImage from "./../../assets/images/ear3D.png";
-import boltGroupImage from "./../../assets/images/bolt-group3D.png";
-import beamsImage from "./../../assets/images/beams3D.png";
 import bgImage from "./../../assets/images/bc1.jpg";
+import earImage from "./../../assets/images/ear3D.png";
+import beamsImage from "./../../assets/images/beams3D.png";
 import springImage from "./../../assets/images/spring3D.png";
 import tolerancesImage from "./../../assets/images/tolerances.png";
+import boltGroupImage from "./../../assets/images/bolt-group3D.png";
 
-const StartPage = () => {
-  function button(link, image, alt, title) {
+const StartPage: FC = () => {
+  const button = (link: string, image: string, alt: string, title: string) => {
     return (
       <NavLink to={link}>
         <div className={stl.buttonBox}>
@@ -19,7 +20,7 @@ const StartPage = () => {
         </div>
       </NavLink>
     );
-  }
+  };
 
   return (
     <div className={stl.wrapper}>
