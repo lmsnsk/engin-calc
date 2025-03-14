@@ -1,10 +1,11 @@
 {
   "files": {
     "main.css": "/engin-calc/static/css/main.88c4989d.css",
-    "main.js": "/engin-calc/static/js/main.ff1a69cb.js",
+    "main.js": "/engin-calc/static/js/main.4d1b6c6c.js",
     "static/media/bc1.jpg": "/engin-calc/static/media/bc1.8195ded032b4ba1a38c3.jpg",
     "static/media/spring3D.png": "/engin-calc/static/media/spring3D.0097bd56d3161c258407.png",
     "static/media/ear.png": "/engin-calc/static/media/ear.4d2fdb0b800fdf73d9a7.png",
+    "static/media/tolerances.png": "/engin-calc/static/media/tolerances.123179240a1002f90cf1.png",
     "static/media/bolt-group3D.png": "/engin-calc/static/media/bolt-group3D.b554f452098713df6298.png",
     "static/media/ear3D.png": "/engin-calc/static/media/ear3D.e99d16c51412d1c5f080.png",
     "static/media/beams3D.png": "/engin-calc/static/media/beams3D.537c8ed1b6fe1776dda7.png",
@@ -36,10 +37,10 @@
     "static/media/rect.svg": "/engin-calc/static/media/rect.d9c86395a00eefe778e39dd6ad263b74.svg",
     "static/media/circle.svg": "/engin-calc/static/media/circle.c752669d2131beef5a75ac4bdde0fce4.svg",
     "main.88c4989d.css.map": "/engin-calc/static/css/main.88c4989d.css.map",
-    "main.ff1a69cb.js.map": "/engin-calc/static/js/main.ff1a69cb.js.map"
+    "main.4d1b6c6c.js.map": "/engin-calc/static/js/main.4d1b6c6c.js.map"
   },
   "entrypoints": [
     "static/css/main.88c4989d.css",
-    "static/js/main.ff1a69cb.js"
+    "static/js/main.4d1b6c6c.js"
   ]
 }
