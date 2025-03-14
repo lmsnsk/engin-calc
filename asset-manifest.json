@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/engin-calc/static/css/main.88c4989d.css",
-    "main.js": "/engin-calc/static/js/main.4d1b6c6c.js",
+    "main.js": "/engin-calc/static/js/main.57f0fe23.js",
     "static/media/bc1.jpg": "/engin-calc/static/media/bc1.8195ded032b4ba1a38c3.jpg",
     "static/media/spring3D.png": "/engin-calc/static/media/spring3D.0097bd56d3161c258407.png",
     "static/media/ear.png": "/engin-calc/static/media/ear.4d2fdb0b800fdf73d9a7.png",
@@ -27,6 +27,7 @@
     "static/media/spring-compression.svg": "/engin-calc/static/media/spring-compression.b5209b1d90f1744777489e58672b3f0e.svg",
     "static/media/channelVert.svg": "/engin-calc/static/media/channelVert.5e64fb2568d435df4c778bf554619858.svg",
     "static/media/channelHoriz.svg": "/engin-calc/static/media/channelHoriz.38183c734f5555949b4afedf656fc38c.svg",
+    "static/media/tolerances.svg": "/engin-calc/static/media/tolerances.c33813677fbf73adbc9db76d69cc32e4.svg",
     "static/media/spring-stretching.svg": "/engin-calc/static/media/spring-stretching.17a85e55a52c5f81b001fcf8b083dd7c.svg",
     "static/media/tBeam.svg": "/engin-calc/static/media/tBeam.784befc9a3d3e69e90cf57ea5d4a06c6.svg",
     "static/media/corner.svg": "/engin-calc/static/media/corner.927a51b8c4e4d754fe595a268362eae6.svg",
@@ -37,10 +38,10 @@
     "static/media/rect.svg": "/engin-calc/static/media/rect.d9c86395a00eefe778e39dd6ad263b74.svg",
     "static/media/circle.svg": "/engin-calc/static/media/circle.c752669d2131beef5a75ac4bdde0fce4.svg",
     "main.88c4989d.css.map": "/engin-calc/static/css/main.88c4989d.css.map",
-    "main.4d1b6c6c.js.map": "/engin-calc/static/js/main.4d1b6c6c.js.map"
+    "main.57f0fe23.js.map": "/engin-calc/static/js/main.57f0fe23.js.map"
   },
   "entrypoints": [
     "static/css/main.88c4989d.css",
-    "static/js/main.4d1b6c6c.js"
+    "static/js/main.57f0fe23.js"
   ]
 }
