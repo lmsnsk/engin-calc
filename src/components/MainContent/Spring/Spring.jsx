@@ -8,7 +8,14 @@ import springStretchingImg from "./../../../assets/images/spring-stretching.svg"
 import SpringInputBlock1 from "./SpringInputBlock1";
 import SpringInputBlock2 from "./SpringInputBlock2";
 
-const Spring = ({ results1, results2, calculate, buttonSpringTypeSelect, typeText, paramsSpringTypeArray }) => {
+const Spring = ({
+  results1,
+  results2,
+  calculate,
+  buttonSpringTypeSelect,
+  typeText,
+  paramsSpringTypeArray,
+}) => {
   const { springType, F1, F2, F3, h, ro, D, d, c1 } = useSelector((state) => state.spring);
 
   const dispatch = useDispatch();
@@ -30,7 +37,9 @@ const Spring = ({ results1, results2, calculate, buttonSpringTypeSelect, typeTex
           <button className={stl.getF3} onClick={() => dispatch(calculateF3())}>
             Получить силу пружины при максимальной деформации
           </button>
-          {F3.value && F3.value > 0 && F2.value > 0 && F1.value > 0 ? <Results results={results1} /> : null}
+          {F3.value && F3.value > 0 && F2.value > 0 && F1.value > 0 ? (
+            <Results results={results1} />
+          ) : null}
           {F3.value && F3.value > 0 ? (
             <>
               <h3>Берется из таблиц ГОСТ 13766...76-86 по силе при максимальной деформации</h3>

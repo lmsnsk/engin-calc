@@ -8,7 +8,7 @@ import springImg from "./../../assets/images/spring-icon.svg";
 import tolerancesImg from "./../../assets/images/tolerances.svg";
 
 interface LinksProps {
-  effect: () => void;
+  effect: (e: boolean) => void;
 }
 
 const Links: FC<LinksProps> = ({ effect }) => {

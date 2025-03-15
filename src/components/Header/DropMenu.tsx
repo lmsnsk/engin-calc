@@ -10,10 +10,10 @@ const DropMenu: FC = () => {
   const headerRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
 
-  function link(e: boolean) {
+  const link = (e: boolean) => {
     setVisible(e);
     setTimeout(() => window.scroll({ top: 0, left: 0, behavior: "smooth" }), 100);
-  }
+  };
 
   useEffect(() => {
     if (!isVisible) return;
