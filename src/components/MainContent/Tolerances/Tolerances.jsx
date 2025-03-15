@@ -42,11 +42,11 @@ const Tolerances = () => {
   const dispatch = useDispatch();
 
   const findIndex = () => {
-    if (nominalDimension === "") return undefined;
-    if (nominalDimension >= 1 && nominalDimension <= 3) return 0;
+    if (nominalDimension.value === "") return undefined;
+    if (nominalDimension.value >= 1 && nominalDimension.value <= 3) return 0;
 
     return tolerancesObj.limits.findIndex(
-      (el) => nominalDimension > el.minLimit && nominalDimension <= el.maxLimit
+      (el) => nominalDimension.value > el.minLimit && nominalDimension.value <= el.maxLimit
     );
   };
 
@@ -54,33 +54,33 @@ const Tolerances = () => {
 
   const showResult = () => {
     if (
-      holeMaxValue !== undefined &&
-      shaftMinValue !== undefined &&
-      shaftMaxValue !== undefined &&
-      holeMinValue !== undefined &&
+      holeMaxValue.value !== undefined &&
+      shaftMinValue.value !== undefined &&
+      shaftMaxValue.value !== undefined &&
+      holeMinValue.value !== undefined &&
       index >= 0 &&
-      kvalHole !== "" &&
-      kvalShaft !== ""
+      kvalHole.value !== "" &&
+      kvalShaft.value !== ""
     ) {
       dispatch(setVal1());
       dispatch(setVal2());
 
-      if (val1 >= 0 && val2 > 0) {
+      if (val1.value >= 0 && val2.value > 0) {
         return (
           <div className={stl.result}>
-            Зазор от {val1} до {val2}
+            Зазор от {val1.value} мм до {val2.value} мм
           </div>
         );
-      } else if (val1 < 0 && val2 < 0) {
+      } else if (val1.value < 0 && val2.value < 0) {
         return (
           <div className={stl.result}>
-            Натяг от {-val2} до {-val1}
+            Натяг от {-val2.value} мм до {-val1.value} мм
           </div>
         );
       }
       return (
         <div className={stl.result}>
-          Переходная посадка с зазором {val2} и натягом {-val1}
+          Переходная посадка с зазором {val2.value} мм и натягом {-val1.value} мм
         </div>
       );
     }
@@ -92,7 +92,7 @@ const Tolerances = () => {
         <InputForm
           name="Номинальный размер"
           setValue={setNominalDimension}
-          value={nominalDimension}
+          value={nominalDimension.value}
           unit=" мм"
           notBlur={true}
         />
@@ -101,30 +101,30 @@ const Tolerances = () => {
       <ToleranceBlock
         name={"Охватывающая поверхность"}
         fieldList={fieldHolesList}
-        field={fieldHole}
+        field={fieldHole.value}
         setField={setFieldHole}
         obj={tolerancesObj.holes}
-        kval={kvalHole}
+        kval={kvalHole.value}
         setKval={setKvalHole}
-        nominalDimension={nominalDimension}
+        nominalDimension={nominalDimension.value}
         index={index}
-        minValue={holeMinValue}
-        maxValue={holeMaxValue}
+        minValue={holeMinValue.value}
+        maxValue={holeMaxValue.value}
         setMinValue={setHoleMinValue}
         setMaxValue={setHoleMaxValue}
       />
       <ToleranceBlock
         name={"Охватываемая поверхность"}
         fieldList={fieldShaftsList}
-        field={fieldShaft}
+        field={fieldShaft.value}
         setField={setFieldShaft}
         obj={tolerancesObj.shafts}
-        kval={kvalShaft}
+        kval={kvalShaft.value}
         setKval={setKvalShaft}
-        nominalDimension={nominalDimension}
+        nominalDimension={nominalDimension.value}
         index={index}
-        minValue={shaftMinValue}
-        maxValue={shaftMaxValue}
+        minValue={shaftMinValue.value}
+        maxValue={shaftMaxValue.value}
         setMinValue={setShaftMinValue}
         setMaxValue={setShaftMaxValue}
       />

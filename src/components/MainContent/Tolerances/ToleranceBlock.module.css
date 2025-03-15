@@ -29,7 +29,7 @@
 .val {
   display: flex;
   flex-direction: row;
-  gap: 15px;
+  gap: 10px;
 }
 
 .plusVal {

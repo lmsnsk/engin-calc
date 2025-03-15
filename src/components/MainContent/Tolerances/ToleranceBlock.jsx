@@ -1,8 +1,8 @@
 import { useDispatch } from "react-redux";
 
-import SelectMiniInput from "../../Input/SelectMiniInput";
-
 import stl from "./ToleranceBlock.module.css";
+
+import SelectMiniInput from "../../Input/SelectMiniInput";
 
 const DATA_LENGTH = 25;
 
@@ -84,12 +84,14 @@ const ToleranceBlock = ({
               <p className={isHoleGap(maxValue) ? stl.plusVal : stl.minusVal}>
                 {isNaN(maxValue) ? "-" : maxValue}
               </p>
+              мм
             </div>
             <div className={stl.val}>
               Минимальное значение допуска:
               <p className={isHoleGap(minValue) ? stl.plusVal : stl.minusVal}>
                 {isNaN(minValue) ? "-" : minValue}
               </p>
+              мм
             </div>
           </>
         )

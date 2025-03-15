@@ -29,7 +29,9 @@ let paramsSpringTypeArray = [
 ];
 
 const SpringContainer = () => {
-  const { springType, F0, F3, c, n, D, s1, s2, s3, l0, l1, l2, l3, t, l, m } = useSelector((state) => state.spring);
+  const { springType, F0, F3, c, n, D, s1, s2, s3, l0, l1, l2, l3, t, l, m } = useSelector(
+    (state) => state.spring
+  );
 
   const dispatch = useDispatch();
 
@@ -49,7 +51,9 @@ const SpringContainer = () => {
   function buttonSpringTypeSelect(img, param) {
     return (
       <div
-        className={`${stl.buttonSelect} ${springType === param.value ? stl.buttonSelectActive : null}`}
+        className={`${stl.buttonSelect} ${
+          springType === param.value ? stl.buttonSelectActive : null
+        }`}
         onClick={() => onClickchangeSpringType(param)}
       >
         <img src={img} alt="" />
@@ -91,7 +95,14 @@ const SpringContainer = () => {
       id: 1,
       name: "Сила пружины при максимальной деформации",
       value: F3.value,
-      unit: <Units unitArr={kgsUnitArray} changeUnit={setF3Unit} currentUnit={F3.unit} calculateFn={calculateF3} />,
+      unit: (
+        <Units
+          unitArr={kgsUnitArray}
+          changeUnit={setF3Unit}
+          currentUnit={F3.unit}
+          calculateFn={calculateF3}
+        />
+      ),
     },
   ];
 
@@ -100,19 +111,40 @@ const SpringContainer = () => {
       id: 1,
       name: "Сила предварительного напряжения",
       value: F0.value,
-      unit: <Units unitArr={kgsUnitArray} changeUnit={setF0Unit} currentUnit={F0.unit} calculateFn={calculateSpring} />,
+      unit: (
+        <Units
+          unitArr={kgsUnitArray}
+          changeUnit={setF0Unit}
+          currentUnit={F0.unit}
+          calculateFn={calculateSpring}
+        />
+      ),
     },
     {
       id: 2,
       name: "Жесткость пружины",
       value: c.value,
-      unit: <Units unitArr={nmmUnitArray} changeUnit={setCUnit} currentUnit={c.unit} calculateFn={calculateSpring} />,
+      unit: (
+        <Units
+          unitArr={nmmUnitArray}
+          changeUnit={setCUnit}
+          currentUnit={c.unit}
+          calculateFn={calculateSpring}
+        />
+      ),
     },
     {
       id: 3,
       name: "Диаметр пружины по осям",
       value: D.value,
-      unit: <Units unitArr={meterUnitArray} changeUnit={setDUnit} currentUnit={D.unit} calculateFn={calculateSpring} />,
+      unit: (
+        <Units
+          unitArr={meterUnitArray}
+          changeUnit={setDUnit}
+          currentUnit={D.unit}
+          calculateFn={calculateSpring}
+        />
+      ),
     },
     { id: 4, name: "Число витков", value: n, unit: "" },
     {
@@ -120,7 +152,12 @@ const SpringContainer = () => {
       name: "Деформация предварительного натяжения",
       value: s1.value,
       unit: (
-        <Units unitArr={meterUnitArray} changeUnit={setS1Unit} currentUnit={s1.unit} calculateFn={calculateSpring} />
+        <Units
+          unitArr={meterUnitArray}
+          changeUnit={setS1Unit}
+          currentUnit={s1.unit}
+          calculateFn={calculateSpring}
+        />
       ),
     },
     {
@@ -128,7 +165,12 @@ const SpringContainer = () => {
       name: "Рабочая деформация",
       value: s2.value,
       unit: (
-        <Units unitArr={meterUnitArray} changeUnit={setS2Unit} currentUnit={s2.unit} calculateFn={calculateSpring} />
+        <Units
+          unitArr={meterUnitArray}
+          changeUnit={setS2Unit}
+          currentUnit={s2.unit}
+          calculateFn={calculateSpring}
+        />
       ),
     },
     {
@@ -136,7 +178,12 @@ const SpringContainer = () => {
       name: "Максимальная деформация",
       value: s3.value,
       unit: (
-        <Units unitArr={meterUnitArray} changeUnit={setS3Unit} currentUnit={s3.unit} calculateFn={calculateSpring} />
+        <Units
+          unitArr={meterUnitArray}
+          changeUnit={setS3Unit}
+          currentUnit={s3.unit}
+          calculateFn={calculateSpring}
+        />
       ),
     },
     {
@@ -144,7 +191,12 @@ const SpringContainer = () => {
       name: resultText()[0],
       value: l3.value,
       unit: (
-        <Units unitArr={meterUnitArray} changeUnit={setL3Unit} currentUnit={l3.unit} calculateFn={calculateSpring} />
+        <Units
+          unitArr={meterUnitArray}
+          changeUnit={setL3Unit}
+          currentUnit={l3.unit}
+          calculateFn={calculateSpring}
+        />
       ),
     },
     {
@@ -152,7 +204,12 @@ const SpringContainer = () => {
       name: resultText()[1],
       value: l0.value,
       unit: (
-        <Units unitArr={meterUnitArray} changeUnit={setL0Unit} currentUnit={l0.unit} calculateFn={calculateSpring} />
+        <Units
+          unitArr={meterUnitArray}
+          changeUnit={setL0Unit}
+          currentUnit={l0.unit}
+          calculateFn={calculateSpring}
+        />
       ),
     },
     {
@@ -160,7 +217,12 @@ const SpringContainer = () => {
       name: resultText()[2],
       value: l1.value,
       unit: (
-        <Units unitArr={meterUnitArray} changeUnit={setL1Unit} currentUnit={l1.unit} calculateFn={calculateSpring} />
+        <Units
+          unitArr={meterUnitArray}
+          changeUnit={setL1Unit}
+          currentUnit={l1.unit}
+          calculateFn={calculateSpring}
+        />
       ),
     },
     {
@@ -168,26 +230,52 @@ const SpringContainer = () => {
       name: resultText()[3],
       value: l2.value,
       unit: (
-        <Units unitArr={meterUnitArray} changeUnit={setL2Unit} currentUnit={l2.unit} calculateFn={calculateSpring} />
+        <Units
+          unitArr={meterUnitArray}
+          changeUnit={setL2Unit}
+          currentUnit={l2.unit}
+          calculateFn={calculateSpring}
+        />
       ),
     },
     {
       id: 12,
       name: "Шаг пружины",
       value: t.value,
-      unit: <Units unitArr={meterUnitArray} changeUnit={setTUnit} currentUnit={t.unit} calculateFn={calculateSpring} />,
+      unit: (
+        <Units
+          unitArr={meterUnitArray}
+          changeUnit={setTUnit}
+          currentUnit={t.unit}
+          calculateFn={calculateSpring}
+        />
+      ),
     },
     {
       id: 13,
       name: "Длина развертки",
       value: l.value,
-      unit: <Units unitArr={meterUnitArray} changeUnit={setLUnit} currentUnit={l.unit} calculateFn={calculateSpring} />,
+      unit: (
+        <Units
+          unitArr={meterUnitArray}
+          changeUnit={setLUnit}
+          currentUnit={l.unit}
+          calculateFn={calculateSpring}
+        />
+      ),
     },
     {
       id: 14,
       name: "Масса пружины",
       value: m.value,
-      unit: <Units unitArr={kgUnitArray} changeUnit={setMUnit} currentUnit={m.unit} calculateFn={calculateSpring} />,
+      unit: (
+        <Units
+          unitArr={kgUnitArray}
+          changeUnit={setMUnit}
+          currentUnit={m.unit}
+          calculateFn={calculateSpring}
+        />
+      ),
     },
   ];
 
